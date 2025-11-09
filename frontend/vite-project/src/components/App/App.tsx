@@ -156,9 +156,14 @@ function App() {
 
                       {/* Content */}
                       <div className="flex-1 min-w-0">
-                        <h3 className="text-lg font-semibold text-gray-900 truncate">
-                          {item.name}
-                        </h3>
+                        <div className="flex items-start justify-between gap-2 mb-1">
+                          <h3 className="text-lg font-semibold text-gray-900 truncate">
+                            {item.name}
+                          </h3>
+                          <span className="text-xs text-gray-400 font-mono flex-shrink-0">
+                            {item.itemId}
+                          </span>
+                        </div>
                         {item.description && (
                           <p className="text-sm text-gray-600 mt-1">
                             {item.description}
