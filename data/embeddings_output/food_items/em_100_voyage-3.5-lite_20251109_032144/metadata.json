@@ -1,0 +1,7 @@
+{
+  "model_name": "voyage-3.5-lite",
+  "num_items": 100,
+  "embedding_dimension": 1024,
+  "timestamp": "20251109_032144",
+  "source_file": "../../../data/5k_items_new_format@v1.jsonl"
+}

@@ -14,6 +14,7 @@ from prosus.utils.image_utils import image_to_base64
 class OpenAIModel(StrEnum):
     GPT_4_1_MINI = "gpt-4.1-mini"
     GPT_5_NANO = "gpt-5-nano"
+    GPT_5_MINI = "gpt-5-mini"
     GPT_4O = "gpt-4o"  # Vision-capable model
     GPT_4O_MINI = "gpt-4o-mini"  # Vision-capable model
 
@@ -63,33 +64,54 @@ async def get_openai_embedding(
 
 
 async def get_openai_vision_response(
-    image_input: Union[str, Path],
+    image_inputs: Union[list[Union[str, Path]], Union[str, Path]],
     text_prompt: str,
     model: OpenAIModel = OpenAIModel.GPT_5_NANO,
     system_message: str = "You are a helpful assistant that can analyze images.",
 ) -> str:
     """
-    Send a text + image prompt to OpenAI's Vision API.
+    Send a text + image(s) prompt to OpenAI's Vision API.
+
+    Args:
+        image_inputs: Single image or list of images (file paths or base64 strings)
+        text_prompt: Text prompt to accompany the images
+        model: OpenAI model to use
+        system_message: System message for the assistant
+
     Returns:
         The model's response as a string
     """
-    
 
-    #* Determine if input is a file path or base64 string
-    # Base64 strings with data URI start with "data:", otherwise treat as file path
-    if isinstance(image_input, (str, Path)) and not str(image_input).startswith("data:"):
-        # Check if it's a valid file path
-        image_path = Path(image_input)
-        if image_path.exists():
-            # Convert file to base64 with data URI prefix
-            base64_image = image_to_base64(str(image_input), include_data_uri=True)
+    #* Normalize to list for uniform processing
+    if not isinstance(image_inputs, list):
+        image_inputs = [image_inputs]
+
+    #* Process all images to base64
+    base64_images = []
+    for image_input in image_inputs:
+        # Determine if input is a file path or base64 string
+        # Base64 strings with data URI start with "data:", otherwise treat as file path
+        if isinstance(image_input, (str, Path)) and not str(image_input).startswith("data:"):
+            # Check if it's a valid file path
+            image_path = Path(image_input)
+            if image_path.exists():
+                # Convert file to base64 with data URI prefix
+                base64_images.append(image_to_base64(str(image_input), include_data_uri=True))
+            else:
+                raise FileNotFoundError(f"Image file not found: {image_input}")
         else:
-            # If not a file, assume it's base64 without data URI prefix
-            # This handles the case where someone passes raw base64
-            raise FileNotFoundError(f"Image file not found: {image_input}")
-    else:
-        # Already a base64 string with data URI prefix
-        base64_image = str(image_input)
+            # Already a base64 string with data URI prefix
+            base64_images.append(str(image_input))
+
+    #* Build content array: text first, then all images
+    content = [{"type": "text", "text": text_prompt}]
+    content.extend([
+        {
+            "type": "image_url",
+            "image_url": {"url": img}
+        }
+        for img in base64_images
+    ])
 
     #* Create the messages with vision content
     openai_client = get_openai_async_client()
@@ -99,18 +121,7 @@ async def get_openai_vision_response(
             {"role": "system", "content": system_message},
             {
                 "role": "user",
-                "content": [
-                    {
-                        "type": "text",
-                        "text": text_prompt
-                    },
-                    {
-                        "type": "image_url",
-                        "image_url": {
-                            "url": base64_image
-                        }
-                    }
-                ]
+                "content": content
             }
         ],
     )

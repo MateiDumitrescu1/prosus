@@ -11,7 +11,7 @@ from pathlib import Path
 project_root = Path(__file__).parent.parent.parent
 sys.path.insert(0, str(project_root))
 
-from prosus.constants import test_query, tesst_documents
+from prosus.constants import test_query, test_documents
 from prosus.search_indexes.faiss_.faiss_ops import FaissIndex
 from prosus.api_wrappers.voyage_.voyage_api_wrapper import VoyageAIModelAPI, VoyageAIModels
 
@@ -42,11 +42,11 @@ async def test_faiss_with_voyage_embeddings():
     #* Load test documents and query from constants
     print(f"\n[Step 2] Loading test data...")
     print(f"Query: '{test_query}'")
-    print(f"Number of documents: {len(tesst_documents)}")
+    print(f"Number of documents: {len(test_documents)}")
 
     #* Embed documents using document mode
     print("\n[Step 3] Embedding documents (using document mode)...")
-    document_embeddings = await voyage_api.aembed_documents(tesst_documents)
+    document_embeddings = await voyage_api.aembed_documents(test_documents)
     print(f"Generated {len(document_embeddings)} document embeddings")
     print(f"Embedding dimension: {len(document_embeddings[0])}")
 
@@ -86,7 +86,7 @@ async def test_faiss_with_voyage_embeddings():
         print(f"Rank {rank}:")
         print(f"  Document Index: {idx}")
         print(f"  Similarity Score: {score:.4f}")
-        print(f"  Text: '{tesst_documents[idx]}'")
+        print(f"  Text: '{test_documents[idx]}'")
         print()
 
     #* Close the Voyage AI client

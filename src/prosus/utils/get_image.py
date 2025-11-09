@@ -18,7 +18,6 @@ from paths_ import downloaded_images_dir
 # URL prefix for iFood images
 IMAGE_URL_PREFIX = "https://static.ifood-static.com.br/image/upload/t_low/pratos/"
 
-
 def download_image(
     image_str: str,
     output_folder: str = downloaded_images_dir,
@@ -26,6 +25,7 @@ def download_image(
 ) -> Optional[str]:
     """
     Download an image from iFood's static server and save it locally.
+    Before downloading, check if the image doesn't already exist (in the `output_folder` folder) to avoid redundant downloads.
 
     Args:
         image_str: The image path from the CSV (e.g., "820af392-002c-47b1-bfae-d7ef31743c7f/202402200931_gxgyfoywbcj.jpeg")
@@ -49,6 +49,11 @@ def download_image(
     # Generate safe filename by replacing forward slashes with underscores
     safe_filename = image_str.replace("/", "_")
     output_file = output_path / safe_filename
+
+    # Check if image already exists (caching to avoid redundant downloads)
+    if output_file.exists():
+        print(f"Image already exists, skipping download: {output_file}")
+        return str(output_file)
 
     try:
         print(f"Downloading image from: {full_url}")

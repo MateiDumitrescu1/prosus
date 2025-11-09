@@ -86,7 +86,8 @@ This new data format is optimized for text search queries over the food items.
 ```json
 "item_id": <the given itemId from the CSV>,  
 "name": "The given item name",
-"description": "A concise keyword-dense natural language description combining the given `description` field with the extracted information from the image.",
+"description": "The given description"
+"combined_description": "A concise keyword-dense natural language description combining the given `description` field, the given `name` field and the extracted information from the image.",
 "metrics": {
     "total_orders": <computed using the given total_orders field of the data>,
     "reorder_rate": <comnputed using the reorderRate field in the given data>,

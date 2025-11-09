@@ -28,6 +28,12 @@ check_dir_exists(new_data_format_dir)
 downloaded_images_dir = os.path.abspath(os.path.join(data_dir, 'downloaded_images'))
 check_dir_exists(downloaded_images_dir)
 
+embeddings_output_dir = os.path.abspath(os.path.join(data_dir, 'embeddings_output'))
+check_dir_exists(embeddings_output_dir)
+
+combined_descriptions_dir = os.path.abspath(os.path.join(data_dir, 'combined_descriptions'))
+check_dir_exists(combined_descriptions_dir)
+
 #! ---------------- TESTING ----------------
 
 def test_():
