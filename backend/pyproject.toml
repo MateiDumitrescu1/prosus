@@ -14,7 +14,8 @@ dependencies = [
     "PyStemmer", # useful for bm25s
     "jax[cpu]", # bm25 docs say this cna be installed for a speed boost
     "autofaiss>=2.12.0",
-    "fsspec>=2024.10.0"
+    "fsspec>=2024.10.0",
+    "numpy"
 ]
 
 [tool.mypy]
@@ -34,7 +35,7 @@ fallback_version = "0.2.0"
 
 [tool.setuptools.packages.find]
 where = ["src"]         # search only there
-include = ["prosus*",] # pick up both packages
+include = ["prosus*","server*"] # pick up both packages
 
 [tool.pyrefly]
 python-version = ">=3.11,<3.12"
