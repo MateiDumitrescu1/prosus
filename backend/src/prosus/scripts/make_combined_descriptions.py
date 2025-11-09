@@ -12,6 +12,7 @@ from prosus.api_wrappers.llms.openai import (
 from prosus.utils.csv_json_jsonl import read_jsonl_to_list
 from prosus.utils.get_image import download_image
 from prosus.utils.read_good_ids import read_good_ids
+from prosus.scripts.script_utils.combined_description_utils import get_combined_descriptions_from_folder
 
 async def create_combined_description_for_item(
     name: str,
@@ -33,21 +34,23 @@ async def create_combined_description_for_item(
     """
     # Create the prompt for the LLM
     prompt = f"""
-    You will be given some images of an item and its current name and description.
-    Create a description for this food item that will be used in a semantic search enginer for food queries.
-    Do not make this sound like an advertisement. It needs to be a backend-only description that helps match search queries to food items.
+    You will be given an image (or images ) of an item and its current name and description.
+    Create a description for this food item that will be used in a semantic search engine for food queries.
+    Do not make this sound like an advertisement. It will be backend-only description that helps match search queries to food items.
+    If the image has some distinct visual features, include them in the description.
 
     Item Name: {name}
     Current Description: {description}
 
     Create a combined description that:
-    1. Maintains accuracy to the original information
-    2. Does not add any new information not present in the name/description/images
-    3. Keywords are important for search matching, try to use them
-    4. Is concise but informative (2-4 sentences)
-    5. Is written in Portuguese (the same language as the input)
+    1. Maintains accuracy to the original name/description/images
+    2. Integrates visual details from the image(s) if available
+    3. Does not add any new information that is not present in the name/description/images
+    4. Keywords are important for search matching, try to use them. Mention things like nutrients (mention high protein, low carb, etc. if applicable), mention adjectives (spicy, creamy, crunchy, etc.) if applicable.
+    5. Is concise but informative (2-4 sentences)
+    6. Is written in Portuguese (the same language as the input)
 
-    Only return the combined description, nothing else.
+    Only return this new description, nothing else.
     """
 
     try:
@@ -92,7 +95,7 @@ async def make_combined_descriptions(
     good_ids: list[str],
     input_csv_path: Optional[str],
     output_jsonl_path: Optional[str],
-    batch_size: int = 10,
+    batch_size: int = 20,
     max_items: int | None = None,
     ids_to_skip: list[str] | None = None
 ) -> Dict[str, str]:
@@ -270,37 +273,17 @@ def overwrite_combined_description_field_in_jsonl(
     print(f"✓ Updated combined_description for {updated_count} items")
     print(f"✓ Output saved to: {jsonl_output_file_path}")
 
-def identify_all_ids_with_already_computed_descriptions() -> list[str]:
-    """
-    Look in the `combined_descriptions_dir`, find all JSONL files, and extract all item IDs that already have combined descriptions computed.
-    """
-    item_ids = set()
-
-    # Iterate over all JSONL files in the combined_descriptions_dir
-    for jsonl_file in Path(combined_descriptions_dir).glob("*.jsonl"):
-        with open(jsonl_file, 'r', encoding='utf-8') as f:
-            for line in f:
-                try:
-                    item_data = json.loads(line.strip())
-                    item_ids.add(item_data.get('itemId'))
-                except json.JSONDecodeError:
-                    continue
-
-    return list(item_ids)
-
-
-
 #! ---- RUNNING THE METHODS ----
 from datetime import datetime
 async def run_make_combined_descriptions():
     input_csv = fivek_items_csv_path
     current_time = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    output_jsonl = Path(combined_descriptions_dir) / f"combined_descriptions_{current_time}.jsonl"
+    output_jsonl = Path(combined_descriptions_dir) / f"combined_descriptions_{current_time}@v1.jsonl"
     
     food_item_ids_only = read_good_ids()
     print(f"Loaded {len(food_item_ids_only)} good item IDs to process.")
     
-    existing_items = identify_all_ids_with_already_computed_descriptions()
+    existing_items = list(get_combined_descriptions_from_folder().keys())
     print(f"Found {len(existing_items)} items with existing combined descriptions, skipping them.")
     
     await make_combined_descriptions(
@@ -308,12 +291,12 @@ async def run_make_combined_descriptions():
         input_csv_path=input_csv, 
         output_jsonl_path=str(output_jsonl), 
         max_items=None,
-        ids_to_skip=existing_items,
+        ids_to_skip=None,
     )
 
 #! --- TESTING ---
 def test_identify_all_ids_with_already_computed_descriptions():
-    ids = identify_all_ids_with_already_computed_descriptions()
+    ids = list(get_combined_descriptions_from_folder(version="v0").keys())
     print(f"Found {len(ids)} item IDs with existing combined descriptions.")
 
 if __name__ == "__main__":

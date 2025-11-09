@@ -114,7 +114,6 @@ async def arerank(
     Returns:
         List of dicts with keys:
             - index: Original position in documents list
-            - document: Document text
             - relevance_score: Relevance score (0-1 range)
         Sorted by descending relevance.
 
@@ -123,6 +122,10 @@ async def arerank(
       - Max documents: 1,000
       - Context limit: 32,000 tokens (query + any single document)
     """
+    
+    if "rerank" not in model.value:
+        raise ValueError("Model must be a reranking model (e.g., RERANK_2, RERANK_2_5)")
+    
     if not isinstance(query, str):
         raise TypeError("query must be a string")
 

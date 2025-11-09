@@ -5,6 +5,10 @@
 *.jpeg
 *.png
 
+# Allow files that start with combined_descriptions
+!combined_descriptions*
+!**/combined_descriptions*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

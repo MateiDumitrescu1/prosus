@@ -12,8 +12,15 @@ import numpy as np
 import asyncio
 from prosus.api_wrappers.voyage_.voyage_api_wrapper import VoyageAIModelAPI, VoyageAIModels
 from datetime import datetime
+from enum import StrEnum
 
+class RerankStrategy(StrEnum):
+    MULTIPLY = "multiply" # the final score is: aggregated_score * relevance_score
+    REPLACE = "replace" # the final score is simply the relevance_score
+
+#! config
 ground_truth_item_data = "../../data/5k_items_new_format@v1.jsonl" # we use this to get the tags and hooks for items
+#! config
 
 @cache
 def build_tag_hooks_lookup_dict():
@@ -78,15 +85,22 @@ def build_item_descriptions_dict():
     return item_descriptions
 
 common_top_k = 30 # all 3 search methods will return top 30 items
-#TODO at the reranking step, instead of multiplying scores, can't we simply consider the relevant score form the reranker as the final score?
-async def match_query(query:str):
+
+async def match_query(query:str, rerank_strategy: RerankStrategy = RerankStrategy.REPLACE):
     """
     Takes in a query and runs the whole pipeline to return relevant results.
+
+    Args:
+        query: The search query string
+        rerank_strategy: Strategy for combining scores (MULTIPLY or REPLACE). Defaults to REPLACE.
+
+    Pipeline:
     1. search the indexes and get 0-1 normalized scores for top items from each index.
     2. add up the scores for item ids and make a shortlist
-    3. use Voyage AI reranker to rerank the shortlisted items, and multiply each score by the rerank relevance score.
-    4. modify the scores based on total_orders and reorder_rate (popularity boost).
-    5. return the final ranked list of items with scores.
+    3. use Voyage AI reranker to rerank the shortlisted items
+    4. apply the selected reranking strategy to compute final scores
+    5. modify the scores based on total_orders and reorder_rate (popularity boost).
+    6. return the final ranked list of items with scores.
     """
 
     # Compute query embedding once at the top (used by FAISS indexes)
@@ -269,7 +283,7 @@ async def match_query(query:str):
     rerank_documents = [item_descriptions.get(item_id, "") for item_id in rerank_item_ids]
 
     # Call the reranker
-    print("Reranking with Voyage AI...")
+    print(f"Reranking with Voyage AI (strategy: {rerank_strategy})...")
     voyage_api = VoyageAIModelAPI(model_name=VoyageAIModels.RERANK_2_LITE)
 
     reranked_results = await voyage_api.arerank_documents(
@@ -278,7 +292,7 @@ async def match_query(query:str):
         top_k=None  # Return all reranked results
     )
 
-    #* Multiply aggregated scores by rerank relevance scores
+    #* Use rerank relevance scores as final scores based on selected strategy
     final_scores = []
     for rerank_result in reranked_results:
         original_index = rerank_result["index"]
@@ -286,8 +300,15 @@ async def match_query(query:str):
         aggregated_score = aggregated_scores[item_id]
         relevance_score = rerank_result["relevance_score"]
 
-        # Combine scores: multiply aggregated score by rerank relevance
-        final_score = aggregated_score * relevance_score
+        # Apply reranking strategy
+        if rerank_strategy == RerankStrategy.MULTIPLY:
+            # Multiply aggregated score with relevance score
+            final_score = aggregated_score * relevance_score
+        elif rerank_strategy == RerankStrategy.REPLACE:
+            # Use reranker's relevance score as the final score
+            final_score = relevance_score
+        else:
+            raise ValueError(f"Unknown rerank strategy: {rerank_strategy}")
 
         final_scores.append({
             "item_id": item_id,

@@ -18,7 +18,7 @@ import json
 # Add the prosus package to the path so we can import match_query
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from prosus.match_query import match_query
+from prosus.match_query import match_query, RerankStrategy
 from prosus.search_indexes.orch import (
     build_and_return__bm25_combined_description_index,
     build_and_return__faiss_combined_description_index,
@@ -143,6 +143,7 @@ class SearchQuery(BaseModel):
     """Request model for search endpoint."""
     query: str = Field(..., description="Search query string", min_length=1)
     top_k: int = Field(10, description="Number of top results to return", ge=1, le=100)
+    rerank_strategy: str = Field("replace", description="Reranking strategy: 'multiply' or 'replace'")
 
 
 # Response model for search results
@@ -168,17 +169,27 @@ async def search(search_query: SearchQuery):
     Search for items matching the query.
 
     Args:
-        search_query: SearchQuery object containing the query string and top_k parameter
+        search_query: SearchQuery object containing the query string, top_k parameter, and rerank_strategy
 
     Returns:
         SearchResponse: Object containing the top matching item IDs
 
     Raises:
-        HTTPException: If the search fails
+        HTTPException: If the search fails or invalid rerank_strategy is provided
     """
     try:
-        # Run the matching pipeline
-        results = await match_query(search_query.query)
+        # Validate rerank_strategy parameter
+        if search_query.rerank_strategy not in ["multiply", "replace"]:
+            raise HTTPException(
+                status_code=400,
+                detail=f"Invalid rerank_strategy: {search_query.rerank_strategy}. Must be 'multiply' or 'replace'"
+            )
+
+        # Convert string to RerankStrategy enum
+        strategy = RerankStrategy(search_query.rerank_strategy)
+
+        # Run the matching pipeline with the specified strategy
+        results = await match_query(search_query.query, rerank_strategy=strategy)
 
         # Extract item IDs from top_k results
         item_ids = [result["item_id"] for result in results[:search_query.top_k]]
@@ -189,6 +200,9 @@ async def search(search_query: SearchQuery):
             count=len(item_ids)
         )
 
+    except HTTPException:
+        # Re-raise HTTP exceptions
+        raise
     except Exception as e:
         # Log the error and return HTTP 500
         print(f"Error during search: {str(e)}")

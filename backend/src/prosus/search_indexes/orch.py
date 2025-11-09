@@ -9,7 +9,18 @@ from paths_ import embeddings_output_dir, tags_and_hooks_embeddings_dir, combine
 from prosus.api_wrappers.voyage_.voyage_api_wrapper import VoyageAIModelAPI, VoyageAIModels, default_voyage_ai_embedding_model
 from prosus.search_indexes.faiss_.faiss_ops import FaissIndex
 from prosus.search_indexes.bm25_.bm25_ import BM25Index
-from prosus.scripts.make_embeddings import read_combined_descriptions_from_folder
+from prosus.scripts.script_utils.combined_description_utils  import get_combined_descriptions_from_folder
+
+#! ---- config ----
+version_to_use = "v0"
+# combined_description_emb_file = "../../../data/embeddings_output/combined_description_embeddings/em_full_voyage-3.5-lite_20251109_182758/embeddings.jsonl"
+combined_description_emb_file = Path(embeddings_output_dir) / "combined_description_embeddings" / "em_full_voyage-3.5-lite_20251109_182758" / "embeddings.jsonl"
+
+# tags_and_hooks_emb_file = "../../../data/embeddings_output/tags_and_hooks_embeddings/tag_embeddings_voyage-3.5-lite_20251109_183615/embeddings.jsonl"
+tags_and_hooks_emb_file = Path(embeddings_output_dir) / "tags_and_hooks_embeddings" / "tag_embeddings_voyage-3.5-lite_20251109_183615" / "embeddings.jsonl"
+
+csv_ground_truth_path = "../../../data/5k_items_curated.csv"
+#! ---- config ----
 
 #! BM25 on combined descriptions
 @cache
@@ -23,7 +34,7 @@ def build_and_return__bm25_combined_description_index():
             - item_ids: List of item IDs corresponding to each document in the corpus
     """
     # Read combined descriptions from folder
-    combined_descriptions = read_combined_descriptions_from_folder()
+    combined_descriptions = get_combined_descriptions_from_folder(version=version_to_use)
 
     # Prepare corpus and item IDs in consistent order
     item_ids = []
@@ -45,9 +56,6 @@ def build_and_return__bm25_combined_description_index():
     return bm25_index, item_ids
 
 #! FAISS on combined descriptions
-# combined_description_emb_file = "../../../data/embeddings_output/combined_description_embeddings/em_full_voyage-3.5-lite_20251109_182758/embeddings.jsonl"
-combined_description_emb_file = Path(embeddings_output_dir) / "combined_description_embeddings" / "em_full_voyage-3.5-lite_20251109_182758" / "embeddings.jsonl"
-
 @cache
 def build_and_return__faiss_combined_description_index():
     """
@@ -84,8 +92,7 @@ def build_and_return__faiss_combined_description_index():
     return faiss_index, item_ids
 
 #! FAISS on tags and hooks
-# tags_and_hooks_emb_file = "../../../data/embeddings_output/tags_and_hooks_embeddings/tag_embeddings_voyage-3.5-lite_20251109_183615/embeddings.jsonl"
-tags_and_hooks_emb_file = Path(embeddings_output_dir) / "tags_and_hooks_embeddings" / "tag_embeddings_voyage-3.5-lite_20251109_183615" / "embeddings.jsonl"
+
 
 @cache
 def build_and_return__faiss_tags_hooks_index():
@@ -128,7 +135,6 @@ def test_bm25_combined_description_index():
     """
     Test the BM25 combined description index by searching for items matching 'burger'.
     """
-    csv_ground_truth_path = "../../../data/5k_items_curated.csv"
 
     # Read the ground truth CSV and create a mapping of item IDs -> (name, description)
     print(f"Reading ground truth data from: {csv_ground_truth_path}")
@@ -215,7 +221,6 @@ def test_faiss_combined_description_index():
     """
     Test the FAISS combined description index by searching for similar items.
     """
-    csv_ground_truth_path = "../../../data/5k_items_curated.csv"
 
     # Read the ground truth CSV and create a mapping of item IDs -> (name, description)
     print(f"Reading ground truth data from: {csv_ground_truth_path}")

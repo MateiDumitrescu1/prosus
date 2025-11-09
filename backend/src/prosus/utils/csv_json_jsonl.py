@@ -1,6 +1,4 @@
-import csv
-import json
-
+import json, os, csv
 
 def read_jsonl_to_list(file_path: str) -> list[dict]:
     """
@@ -38,3 +36,48 @@ def read_jsonl_to_list(file_path: str) -> list[dict]:
 
     return data_list
 
+def combine_jsonl_files(input_files: list[str], output_file: str) -> None:
+    """
+    Combine multiple JSONL files into one.
+
+    Args:
+        input_files: List of paths to input JSONL files
+        output_file: Path to the output combined JSONL file
+    """
+    combined_data = []
+
+    for input_file in input_files:
+        data = read_jsonl_to_list(input_file)
+        combined_data.extend(data)
+
+    with open(output_file, 'w', encoding='utf-8') as file:
+        for item in combined_data:
+            file.write(json.dumps(item) + '\n')
+
+def list_jsonl_files_in_folder(folder_path: str) -> list[str]:
+    """
+    List all JSONL files in a given folder.
+
+    Args:
+        folder_path: Path to the folder
+
+    Returns:
+        List of JSONL file paths
+    """
+    jsonl_files = []
+    for root, dirs, files in os.walk(folder_path):
+        for filename in files:
+            if filename.endswith('.jsonl'):
+                jsonl_files.append(os.path.join(root, filename))
+    return jsonl_files
+
+
+#! ----------- RUN -----------
+
+def run_combine_jsonl_files():
+    all_current_files = list_jsonl_files_in_folder("../../../data/combined_descriptions")
+    output_file = 'combined_descriptions@v0.jsonl'
+    combine_jsonl_files(input_files=all_current_files, output_file=output_file)
+
+if __name__ == "__main__":
+    run_combine_jsonl_files()

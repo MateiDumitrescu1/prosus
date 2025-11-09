@@ -7,6 +7,7 @@ from pathlib import Path
 from datetime import datetime
 from prosus.api_wrappers.voyage_.voyage_api_wrapper import VoyageAIModelAPI, VoyageAIModels, default_voyage_ai_embedding_model
 from paths_ import embeddings_output_dir, combined_descriptions_dir, tags_and_hooks_embeddings_dir
+from prosus.scripts.script_utils.combined_description_utils import get_combined_descriptions_from_folder
 
 #! ---------------------- read relevant data ----------------------
 def read_tags_from_jsonl(jsonl_path: str) -> list[str]:
@@ -45,38 +46,19 @@ def read_associated_keyword_hooks_from_jsonl(jsonl_path: str) -> list[str]:
             all_hooks.extend(hooks)
     return all_hooks
 
-def read_combined_descriptions_from_folder() -> dict[str, str]:
-    """
-    Read all JSONL files in `combined_descriptions_dir` and return a mapping of item_id to combined description.
-    Dedup by itemId.
-    """
-    combined_descriptions = {}
-    seen_ids = set() #* for deduplication
-    
-    for jsonl_file in Path(combined_descriptions_dir).glob("*.jsonl"):
-        with open(jsonl_file, 'r', encoding='utf-8') as f:
-            for line in f:
-                item = json.loads(line)
-                item_id = item.get('itemId')
-                if item_id in seen_ids:
-                    continue
-                seen_ids.add(item_id)
-                description = item.get('combined_description', '')
-                combined_descriptions[item_id] = description
-                
-    return combined_descriptions
-
 #! ---------------------- embed ----------------------
 def embed_combined_descriptions(
+        version: str,
         save_dir: str,
         model_name: VoyageAIModels = default_voyage_ai_embedding_model,
-        cap_items : int | None = None
+        cap_items : int | None = None,
     ):
     """
     Create embeddings for food items using combined descriptions from the folder and save them to a JSONL file.
     Each row in the JSONL file contains itemId and the embedding vector.
 
     Args:
+        version: Version string (e.g., "v0", "v1") to filter which combined description files to read
         save_dir: Directory where embeddings will be saved
         model_name: VoyageAI model to use for embeddings
         cap_items: Optional limit on number of items to embed (for testing)
@@ -87,7 +69,7 @@ def embed_combined_descriptions(
     print(f"Reading combined descriptions from folder...")
 
     # Read combined descriptions from the folder
-    combined_descriptions = read_combined_descriptions_from_folder()
+    combined_descriptions = get_combined_descriptions_from_folder(version=version)
 
     print(f"Loaded {len(combined_descriptions)} food items")
 
@@ -257,6 +239,7 @@ def run_embed_tags_and_hooks():
 def run_embed_combined_descriptions():
     """Run the combined descriptions embedding function with default parameters"""
     embed_combined_descriptions(
+        version="v0",
         save_dir=Path(embeddings_output_dir) / "combined_description_embeddings",
         cap_items=None  # Set to an integer for testing with fewer items
     )
@@ -275,7 +258,7 @@ def run_embed_combined_descriptions():
 
 def test_read_combined_descriptions_from_folder():
     """Test reading combined descriptions from the folder"""
-    combined_descriptions = read_combined_descriptions_from_folder()
+    combined_descriptions = get_combined_descriptions_from_folder()
     print(f"Read {len(combined_descriptions)} combined descriptions.")
     # Print first 5 entries
     for i, (item_id, description) in enumerate(combined_descriptions.items()):

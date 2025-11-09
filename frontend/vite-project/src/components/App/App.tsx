@@ -24,6 +24,7 @@ function App() {
   const [items, setItems] = useState<ItemDetails[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [rerankStrategy, setRerankStrategy] = useState<'multiply' | 'replace'>('replace')
 
   const handleSearch = async (e: FormEvent) => {
     e.preventDefault()
@@ -46,7 +47,8 @@ function App() {
         },
         body: JSON.stringify({
           query: query.trim(),
-          top_k: 10
+          top_k: 30,
+          rerank_strategy: rerankStrategy
         })
       })
 
@@ -84,12 +86,12 @@ function App() {
       <div className="max-w-3xl mx-auto">
         {/* Header */}
         <h1 className="text-4xl font-bold text-gray-900 mb-8 text-center">
-          Semantic Search
+          Hybrid Search
         </h1>
 
         {/* Search Form */}
         <form onSubmit={handleSearch} className="mb-8">
-          <div className="flex gap-2">
+          <div className="flex gap-2 mb-3">
             <input
               type="text"
               value={query}
@@ -105,6 +107,39 @@ function App() {
             >
               {isLoading ? 'Searching...' : 'Search'}
             </button>
+          </div>
+
+          {/* Strategy Selector */}
+          <div className="flex items-center gap-3">
+            <label className="text-sm font-medium text-gray-700">
+              Rerank Strategy:
+            </label>
+            <div className="flex gap-2">
+              <button
+                type="button"
+                onClick={() => setRerankStrategy('replace')}
+                disabled={isLoading}
+                className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${
+                  rerankStrategy === 'replace'
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                } disabled:opacity-50 disabled:cursor-not-allowed`}
+              >
+                Replace
+              </button>
+              <button
+                type="button"
+                onClick={() => setRerankStrategy('multiply')}
+                disabled={isLoading}
+                className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${
+                  rerankStrategy === 'multiply'
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                } disabled:opacity-50 disabled:cursor-not-allowed`}
+              >
+                Multiply
+              </button>
+            </div>
           </div>
         </form>
 
