@@ -34,6 +34,9 @@ check_dir_exists(embeddings_output_dir)
 combined_descriptions_dir = os.path.abspath(os.path.join(data_dir, 'combined_descriptions'))
 check_dir_exists(combined_descriptions_dir)
 
+translations_dir = os.path.abspath(os.path.join(data_dir, 'translations'))
+check_dir_exists(translations_dir)
+
 #! ---------------- TESTING ----------------
 
 def test_():

@@ -6,11 +6,12 @@ from typing import Dict, Optional
 import sys
 from paths_ import data_dir, fivek_items_csv_path, combined_descriptions_dir
 
-from prosus.llm_api_wrapper import ( 
+from prosus.api_wrappers.llms.openai import ( 
     get_openai_llm_response, get_openai_vision_response, OpenAIModel
 )
+from prosus.utils.csv_json_jsonl import read_jsonl_to_list
 from prosus.utils.get_image import download_image
-
+from prosus.utils.read_good_ids import read_good_ids
 
 async def create_combined_description_for_item(
     name: str,
@@ -68,7 +69,7 @@ async def create_combined_description_for_item(
                 combined_description = await get_openai_vision_response(
                     image_inputs=downloaded_image_paths,
                     text_prompt=prompt,
-                    model=OpenAIModel.GPT_5_MINI
+                    model=OpenAIModel.GPT_5_NANO
                 )
             else:
                 # Fallback to text-only if all image downloads failed
@@ -88,10 +89,12 @@ async def create_combined_description_for_item(
 
 
 async def make_combined_descriptions(
+    good_ids: list[str],
     input_csv_path: Optional[str],
-    output_json_path: Optional[str],
+    output_jsonl_path: Optional[str],
     batch_size: int = 10,
-    max_items: int | None = None
+    max_items: int | None = None,
+    ids_to_skip: list[str] | None = None
 ) -> Dict[str, str]:
     """
     Read the original CSV file and create combined descriptions using LLM.
@@ -101,10 +104,12 @@ async def make_combined_descriptions(
     to create rich, combined descriptions.
 
     Args:
+        good_ids: Only include an ID if it's in this list
         input_csv_path: Path to input CSV file (default: data/5k_items_curated.csv)
-        output_json_path: Path to save combined descriptions (default: data/combined_descriptions.json)
+        output_jsonl_path: Path to save combined descriptions (default: data/combined_descriptions.jsonl)
         batch_size: Number of items to process concurrently (default: 10)
         max_items: Maximum number of items to process (None = all items)
+        ids_to_skip: List of item IDs to skip during processing (None = skip no items)
 
     Returns:
         Dictionary mapping item_id to combined_description
@@ -115,7 +120,11 @@ async def make_combined_descriptions(
         raise FileNotFoundError(f"Input CSV file not found: {input_csv_path}")
 
     print(f"Reading CSV file: {input_csv_path}")
-    print(f"Output will be saved to: {output_json_path}")
+    print(f"Output will be saved to: {output_jsonl_path}")
+
+    # Initialize ids_to_skip to empty list if None
+    if ids_to_skip is None:
+        ids_to_skip = []
 
     # Dictionary to store results
     combined_descriptions = {}
@@ -132,6 +141,15 @@ async def make_combined_descriptions(
 
                 # Extract required fields
                 item_id = row['itemId']
+
+                # Only include items whose IDs are in the good_ids list
+                if good_ids and item_id not in good_ids:
+                    continue
+
+                # Skip items whose IDs are in the ids_to_skip list
+                if item_id in ids_to_skip:
+                    continue
+
                 name = item_metadata.get('name', '')
                 description = item_metadata.get('description', '')
                 images = item_metadata.get('images', [])
@@ -153,7 +171,7 @@ async def make_combined_descriptions(
 
     print(f"\nProcessing {len(items_to_process)} items...")
 
-    # Process items in batches to avoid overwhelming the API
+    #* Process items in batches to avoid overwhelming the API
     for i in range(0, len(items_to_process), batch_size):
         batch = items_to_process[i:i + batch_size]
         print(f"\nProcessing batch {i//batch_size + 1}/{(len(items_to_process) + batch_size - 1)//batch_size}")
@@ -178,20 +196,97 @@ async def make_combined_descriptions(
 
         print(f"Completed {min(i + batch_size, len(items_to_process))}/{len(items_to_process)} items")
 
-    # Save results to JSON file
-    print(f"\nSaving combined descriptions to {output_json_path}")
-    with open(output_json_path, 'w', encoding='utf-8') as f:
-        json.dump(combined_descriptions, f, ensure_ascii=False, indent=2)
+        # Write checkpoint after each batch - overwrite file with all accumulated results
+        print(f"Saving checkpoint to {output_jsonl_path}")
+        with open(output_jsonl_path, 'w', encoding='utf-8') as f:
+            for item_id, combined_desc in combined_descriptions.items():
+                # Each line is a JSON object with itemId and combined_description
+                json_obj = {
+                    'itemId': item_id,
+                    'combined_description': combined_desc
+                }
+                f.write(json.dumps(json_obj, ensure_ascii=False) + '\n')
+        print(f"Checkpoint saved ({len(combined_descriptions)} items so far)")
+
+    # Final save message
+    print(f"\nFinal save to {output_jsonl_path}")
 
     print(f"✓ Successfully created {len(combined_descriptions)} combined descriptions")
 
     return combined_descriptions
 
+def overwrite_combined_description_field_in_jsonl(
+        desc_dict: Dict[str, str],  # item_id -> combined_description
+        jsonl_input_file_path: str,
+        jsonl_output_file_path: str,
+    ):
+    """
+    Take the data from the input JSONL file and create a new JSONL file by overwriting the combined_description field with new descriptions given in the `desc_dict` dict.
 
-def overwrite_combined_description_field_in_jsonl():
-    # read the jsonl file
-    # for each item, overwrite the combined description field with the new one
-    pass
+    Args:
+        desc_dict: Dictionary mapping item_id to combined_description
+        jsonl_input_file_path: Path to the input JSONL file
+        jsonl_output_file_path: Path to the output JSONL file
+    """
+    # Verify input file exists
+    if not Path(jsonl_input_file_path).exists():
+        raise FileNotFoundError(f"Input JSONL file not found: {jsonl_input_file_path}")
+
+    print(f"Reading JSONL file: {jsonl_input_file_path}")
+    print(f"Updating combined descriptions for {len(desc_dict)} items...")
+
+    updated_count = 0
+    total_items = 0
+
+    # Read input JSONL file and write to output with updated combined_description
+    with open(jsonl_input_file_path, 'r', encoding='utf-8') as input_file, \
+         open(jsonl_output_file_path, 'w', encoding='utf-8') as output_file:
+
+        for line in input_file:
+            total_items += 1
+
+            try:
+                # Parse JSON object from line
+                item_data = json.loads(line.strip())
+
+                # Get item_id from the JSON object
+                item_id = item_data.get('itemId')
+
+                # If this item_id exists in desc_dict, update the combined_description field
+                if item_id and item_id in desc_dict:
+                    item_data['combined_description'] = desc_dict[item_id]
+                    updated_count += 1
+
+                # Write the (possibly updated) JSON object to output file
+                output_file.write(json.dumps(item_data, ensure_ascii=False) + '\n')
+
+            except json.JSONDecodeError as e:
+                print(f"Warning: Failed to parse JSON on line {total_items}: {e}")
+                # Write original line if parsing fails
+                output_file.write(line)
+                continue
+
+    print(f"\n✓ Successfully processed {total_items} items")
+    print(f"✓ Updated combined_description for {updated_count} items")
+    print(f"✓ Output saved to: {jsonl_output_file_path}")
+
+def identify_all_ids_with_already_computed_descriptions() -> list[str]:
+    """
+    Look in the `combined_descriptions_dir`, find all JSONL files, and extract all item IDs that already have combined descriptions computed.
+    """
+    item_ids = set()
+
+    # Iterate over all JSONL files in the combined_descriptions_dir
+    for jsonl_file in Path(combined_descriptions_dir).glob("*.jsonl"):
+        with open(jsonl_file, 'r', encoding='utf-8') as f:
+            for line in f:
+                try:
+                    item_data = json.loads(line.strip())
+                    item_ids.add(item_data.get('itemId'))
+                except json.JSONDecodeError:
+                    continue
+
+    return list(item_ids)
 
 
 
@@ -200,8 +295,27 @@ from datetime import datetime
 async def run_make_combined_descriptions():
     input_csv = fivek_items_csv_path
     current_time = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    output_json = Path(combined_descriptions_dir) / f"combined_descriptions_{current_time}.json"
-    await make_combined_descriptions(input_csv_path=input_csv, output_json_path=str(output_json), max_items=10)
+    output_jsonl = Path(combined_descriptions_dir) / f"combined_descriptions_{current_time}.jsonl"
     
+    food_item_ids_only = read_good_ids()
+    print(f"Loaded {len(food_item_ids_only)} good item IDs to process.")
+    
+    existing_items = identify_all_ids_with_already_computed_descriptions()
+    print(f"Found {len(existing_items)} items with existing combined descriptions, skipping them.")
+    
+    await make_combined_descriptions(
+        good_ids=food_item_ids_only,
+        input_csv_path=input_csv, 
+        output_jsonl_path=str(output_jsonl), 
+        max_items=None,
+        ids_to_skip=existing_items,
+    )
+
+#! --- TESTING ---
+def test_identify_all_ids_with_already_computed_descriptions():
+    ids = identify_all_ids_with_already_computed_descriptions()
+    print(f"Found {len(ids)} item IDs with existing combined descriptions.")
+
 if __name__ == "__main__":
     asyncio.run(run_make_combined_descriptions())
+    # test_identify_all_ids_with_already_computed_descriptions()
