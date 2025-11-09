@@ -4,7 +4,8 @@ import numpy as np
 import asyncio
 import os
 import pandas as pd
-from paths_ import embeddings_output_dir, tags_and_hooks_embeddings_dir
+from pathlib import Path
+from paths_ import embeddings_output_dir, tags_and_hooks_embeddings_dir, combined_descriptions_dir
 from prosus.api_wrappers.voyage_.voyage_api_wrapper import VoyageAIModelAPI, VoyageAIModels, default_voyage_ai_embedding_model
 from prosus.search_indexes.faiss_.faiss_ops import FaissIndex
 from prosus.search_indexes.bm25_.bm25_ import BM25Index
@@ -44,7 +45,8 @@ def build_and_return__bm25_combined_description_index():
     return bm25_index, item_ids
 
 #! FAISS on combined descriptions
-combined_description_emb_file = "../../../data/embeddings_output/combined_description_embeddings/em_full_voyage-3.5-lite_20251109_182758/embeddings.jsonl"
+# combined_description_emb_file = "../../../data/embeddings_output/combined_description_embeddings/em_full_voyage-3.5-lite_20251109_182758/embeddings.jsonl"
+combined_description_emb_file = Path(embeddings_output_dir) / "combined_description_embeddings" / "em_full_voyage-3.5-lite_20251109_182758" / "embeddings.jsonl"
 
 @cache
 def build_and_return__faiss_combined_description_index():
@@ -82,7 +84,8 @@ def build_and_return__faiss_combined_description_index():
     return faiss_index, item_ids
 
 #! FAISS on tags and hooks
-tags_and_hooks_emb_file = "../../../data/embeddings_output/tags_and_hooks_embeddings/tag_embeddings_voyage-3.5-lite_20251109_183615/embeddings.jsonl"
+# tags_and_hooks_emb_file = "../../../data/embeddings_output/tags_and_hooks_embeddings/tag_embeddings_voyage-3.5-lite_20251109_183615/embeddings.jsonl"
+tags_and_hooks_emb_file = Path(embeddings_output_dir) / "tags_and_hooks_embeddings" / "tag_embeddings_voyage-3.5-lite_20251109_183615" / "embeddings.jsonl"
 
 @cache
 def build_and_return__faiss_tags_hooks_index():
@@ -234,7 +237,7 @@ def test_faiss_combined_description_index():
     print(f"\nFAISS combined description index: {faiss_index}")
     print(f"Total items indexed: {len(item_ids)}")
 
-    test_query = "pizza with pepperoni"
+    test_query = "burger"
     print(f"\nTest query: '{test_query}'")
 
     # Embed the query using the Voyage AI wrapper with the default model
@@ -273,9 +276,9 @@ def test_faiss_combined_description_index():
 
 if __name__ == "__main__":
 
-    test_bm25_combined_description_index()
+    # test_bm25_combined_description_index()
 
     # test_faiss_tags_hooks_index()
 
-    # test_faiss_combined_description_index()
+    test_faiss_combined_description_index()
 

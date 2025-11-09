@@ -151,7 +151,7 @@ async def arerank(
 
 class VoyageAIModelAPI:
     def __init__(self, 
-            model_name: VoyageAIModels = VoyageAIModels.VOYAGE_3_5, 
+            model_name: VoyageAIModels = default_voyage_ai_embedding_model, 
             show_progress_bar: bool = False
         ):
         self.api_key = get_voyage_ai_API_KEY()

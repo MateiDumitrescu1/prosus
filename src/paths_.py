@@ -40,6 +40,9 @@ check_dir_exists(translations_dir)
 tags_and_hooks_embeddings_dir = os.path.abspath(os.path.join(embeddings_output_dir, 'tags_and_hooks_embeddings'))
 check_dir_exists(tags_and_hooks_embeddings_dir)
 
+matching_output_dir = os.path.abspath(os.path.join(data_dir, 'matching_output')) # used to save the intermediate scores and final matching results
+check_dir_exists(matching_output_dir)
+
 #! ---------------- TESTING ----------------
 
 def test_():
