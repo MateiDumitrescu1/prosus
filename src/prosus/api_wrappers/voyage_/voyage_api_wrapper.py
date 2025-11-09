@@ -25,6 +25,8 @@ class VoyageAIModels(StrEnum):
     RERANK_2_5 = "rerank-2.5"
     RERANK_2_5_LITE = "rerank-2.5-lite"
 
+default_voyage_ai_embedding_model = VoyageAIModels.VOYAGE_3_5_LITE
+
 @cache
 def get_voyage_ai_API_KEY() -> str:
     key = os.getenv("VOYAGE_AI_API_KEY")

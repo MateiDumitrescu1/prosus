@@ -5,8 +5,8 @@ import numpy as np
 import asyncio
 from pathlib import Path
 from datetime import datetime
-from prosus.api_wrappers.voyage_.voyage_api_wrapper import VoyageAIModelAPI, VoyageAIModels
-from paths_ import embeddings_output_dir, combined_descriptions_dir
+from prosus.api_wrappers.voyage_.voyage_api_wrapper import VoyageAIModelAPI, VoyageAIModels, default_voyage_ai_embedding_model
+from paths_ import embeddings_output_dir, combined_descriptions_dir, tags_and_hooks_embeddings_dir
 
 #! ---------------------- read relevant data ----------------------
 def read_tags_from_jsonl(jsonl_path: str) -> list[str]:
@@ -46,63 +46,64 @@ def read_associated_keyword_hooks_from_jsonl(jsonl_path: str) -> list[str]:
     return all_hooks
 
 def read_combined_descriptions_from_folder() -> dict[str, str]:
-    """Read all JSONL files in `combined_descriptions_dir` and return a mapping of item_id to combined description."""
+    """
+    Read all JSONL files in `combined_descriptions_dir` and return a mapping of item_id to combined description.
+    Dedup by itemId.
+    """
     combined_descriptions = {}
+    seen_ids = set() #* for deduplication
+    
     for jsonl_file in Path(combined_descriptions_dir).glob("*.jsonl"):
         with open(jsonl_file, 'r', encoding='utf-8') as f:
             for line in f:
                 item = json.loads(line)
                 item_id = item.get('itemId')
+                if item_id in seen_ids:
+                    continue
+                seen_ids.add(item_id)
                 description = item.get('combined_description', '')
                 combined_descriptions[item_id] = description
+                
     return combined_descriptions
 
 #! ---------------------- embed ----------------------
-def embed_food_item_data(
-        jsonl_path: str, 
-        save_dir: str, 
-        model_name: VoyageAIModels = VoyageAIModels.VOYAGE_3_5_LITE,
+def embed_combined_descriptions(
+        save_dir: str,
+        model_name: VoyageAIModels = default_voyage_ai_embedding_model,
         cap_items : int | None = None
     ):
     """
-    Create embeddings for food items from a JSONL file and save them to disk.
+    Create embeddings for food items using combined descriptions from the folder and save them to a JSONL file.
+    Each row in the JSONL file contains itemId and the embedding vector.
 
     Args:
-        jsonl_path: Path to the JSONL file containing food item data
         save_dir: Directory where embeddings will be saved
         model_name: VoyageAI model to use for embeddings
+        cap_items: Optional limit on number of items to embed (for testing)
 
     Returns:
         Path to the folder where embeddings were saved
     """
-    print(f"Reading food items from {jsonl_path}...")
+    print(f"Reading combined descriptions from folder...")
 
-    # Read the JSONL file line by line
-    items = []
-    with open(jsonl_path, 'r', encoding='utf-8') as f:
-        for line in f:
-            items.append(json.loads(line))
+    # Read combined descriptions from the folder
+    combined_descriptions = read_combined_descriptions_from_folder()
 
-    print(f"Loaded {len(items)} food items")
-    
-    if cap_items is not None:
-        items = items[:cap_items]
-        print(f"Capped to {cap_items} items for embedding")
+    print(f"Loaded {len(combined_descriptions)} food items")
 
-    # Unify name + description into a single text string (simply append)
+    # Prepare item IDs and texts to embed
     item_ids = []
     texts_to_embed = []
 
-    for item in items:
-        item_ids.append(item['item_id'])
+    for item_id, description in combined_descriptions.items():
+        item_ids.append(item_id)
+        texts_to_embed.append(description)
 
-        # Extract name and description from the item
-        name = item.get('name', '')
-        description = item.get('description', '')
-
-        # Combine name and description by simple concatenation
-        combined_text = f"{name} {description}".strip()
-        texts_to_embed.append(combined_text)
+    # Cap items if specified
+    if cap_items is not None:
+        item_ids = item_ids[:cap_items]
+        texts_to_embed = texts_to_embed[:cap_items]
+        print(f"Capped to {cap_items} items for embedding")
 
     # Call the embedding API using the wrapper in document mode
     print(f"Creating embeddings using {model_name}...")
@@ -125,21 +126,23 @@ def embed_food_item_data(
 
     print(f"Saving embeddings to {save_folder_path}...")
 
-    # Convert embeddings to numpy array and save
-    embeddings_array = np.array(embeddings_list, dtype=np.float32)
-    np.save(save_folder_path / "embeddings.npy", embeddings_array)
-
-    # Save item IDs in the same order as embeddings for mapping
-    with open(save_folder_path / "item_ids.json", 'w', encoding='utf-8') as f:
-        json.dump(item_ids, f, indent=2)
+    # Save embeddings as JSONL file where each row has itemId and embedding vector
+    jsonl_output_path = save_folder_path / "embeddings.jsonl"
+    with open(jsonl_output_path, 'w', encoding='utf-8') as f:
+        for item_id, embedding in zip(item_ids, embeddings_list):
+            row = {
+                "itemId": item_id,
+                "embedding": embedding
+            }
+            f.write(json.dumps(row) + '\n')
 
     # Save metadata about the embedding process
     metadata = {
         "model_name": model_name,
-        "num_items": len(items),
+        "num_items": len(item_ids),
         "embedding_dimension": len(embeddings_list[0]) if embeddings_list else 0,
         "timestamp": timestamp,
-        "source_file": jsonl_path
+        "source": "combined_descriptions_folder"
     }
     with open(save_folder_path / "metadata.json", 'w', encoding='utf-8') as f:
         json.dump(metadata, f, indent=2)
@@ -148,10 +151,16 @@ def embed_food_item_data(
     print(f"  - Processed {metadata['num_items']} items")
     print(f"  - Embedding dimension: {metadata['embedding_dimension']}")
     print(f"  - Saved to: {save_folder_path}")
+    print(f"  - JSONL file: {jsonl_output_path}")
 
     return save_folder_path
 
-def embed_tags(input_jsonl_path: str, model_name: VoyageAIModels = VoyageAIModels.VOYAGE_3_5_LITE):
+#TODO the tags need to be cleaned a bit: remove underscores
+def embed_tags_and_hooks(
+        save_dir: str,
+        input_jsonl_path: str, 
+        model_name: VoyageAIModels = default_voyage_ai_embedding_model
+    ):
     """
     Create embeddings for all unique tags from a JSONL file and save them to disk.
 
@@ -194,22 +203,23 @@ def embed_tags(input_jsonl_path: str, model_name: VoyageAIModels = VoyageAIModel
     # Run the async embedding function
     embeddings_list = asyncio.run(get_embeddings())
 
-    # Create a mapping from tag to embedding
-    tag_embeddings = {}
-    for tag, embedding in zip(unique_tags, embeddings_list):
-        tag_embeddings[tag] = embedding
-
-    #* Save to embeddings_output_dir with timestamp
+    #* Save to save_dir with timestamp
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     save_folder_name = f"tag_embeddings_{model_name}_{timestamp}"
-    save_folder_path = Path(embeddings_output_dir) / "tags" / save_folder_name
+    save_folder_path = Path(save_dir) / save_folder_name
     save_folder_path.mkdir(parents=True, exist_ok=True)
 
     print(f"Saving tag embeddings to {save_folder_path}...")
 
-    #* Save tag embeddings as JSON (embeddings are already lists for JSON serialization)
-    with open(save_folder_path / "tag_embeddings.json", 'w', encoding='utf-8') as f:
-        json.dump(tag_embeddings, f, indent=2)
+    #* Save tag embeddings as JSONL file where each row has the tag/hook word and embedding vector
+    jsonl_output_path = save_folder_path / "embeddings.jsonl"
+    with open(jsonl_output_path, 'w', encoding='utf-8') as f:
+        for tag, embedding in zip(unique_tags, embeddings_list):
+            row = {
+                "word": tag,
+                "embedding": embedding
+            }
+            f.write(json.dumps(row) + '\n')
 
     #* Save metadata about the embedding process
     metadata = {
@@ -230,30 +240,38 @@ def embed_tags(input_jsonl_path: str, model_name: VoyageAIModels = VoyageAIModel
     print(f"  - Processed {metadata['num_unique_tags']} unique tags")
     print(f"  - Embedding dimension: {metadata['embedding_dimension']}")
     print(f"  - Saved to: {save_folder_path}")
+    print(f"  - JSONL file: {jsonl_output_path}")
 
     return save_folder_path
 
 #! --- RUN ---
 
-def run_embed_tags():
-    """Run the tag embedding function with default parameters"""
+def run_embed_tags_and_hooks():
+    """Run the tag and hook embedding function with default parameters"""
     jsonl_path = "../../../data/5k_items_new_format@v1.jsonl"
-    embed_tags(input_jsonl_path=jsonl_path, model_name=VoyageAIModels.VOYAGE_3_5_LITE)
+    embed_tags_and_hooks(
+        save_dir=tags_and_hooks_embeddings_dir,
+        input_jsonl_path=jsonl_path,
+    )
+
+def run_embed_combined_descriptions():
+    """Run the combined descriptions embedding function with default parameters"""
+    embed_combined_descriptions(
+        save_dir=Path(embeddings_output_dir) / "combined_description_embeddings",
+        cap_items=None  # Set to an integer for testing with fewer items
+    )
 
 #! --- TESTING ---
 
-def test_embed_food_item_data():
-    """Test the embedding creation function with sample data"""
-    sample_jsonl_path = "../../../data/5k_items_new_format@v1.jsonl"  # Path to a sample JSONL file
-    save_directory = embeddings_output_dir + "/food_items" # Directory to save embeddings
+# def test_embed_food_item_data():
+#     """Test the embedding creation function with combined descriptions from folder"""
+#     save_directory = embeddings_output_dir + "/food_items" # Directory to save embeddings
 
-    # Call the embedding function
-    embed_food_item_data(
-        jsonl_path=sample_jsonl_path,
-        save_dir=save_directory,
-        model_name=VoyageAIModels.VOYAGE_3_5_LITE,
-        cap_items=100
-    )
+#     # Call the embedding function
+#     embed_food_item_data(
+#         save_dir=save_directory,
+#         cap_items=100
+#     )
 
 def test_read_combined_descriptions_from_folder():
     """Test reading combined descriptions from the folder"""
@@ -267,5 +285,7 @@ def test_read_combined_descriptions_from_folder():
 
 if __name__ == "__main__":
     # test_embed_food_item_data()
-    test_read_combined_descriptions_from_folder()
+    # test_read_combined_descriptions_from_folder()
+    run_embed_tags_and_hooks()
+    # run_embed_combined_descriptions()
     print("Test completed.")

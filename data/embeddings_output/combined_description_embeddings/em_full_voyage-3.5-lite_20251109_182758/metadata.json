@@ -1,0 +1,7 @@
+{
+  "model_name": "voyage-3.5-lite",
+  "num_items": 540,
+  "embedding_dimension": 1024,
+  "timestamp": "20251109_182758",
+  "source": "combined_descriptions_folder"
+}

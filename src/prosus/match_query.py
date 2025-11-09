@@ -1,1 +1,7 @@
-# take in a query and consult the FAISS index to find the top matches
+# this is the main pipeline 
+
+def match_query(query:str):
+    """
+    Takes in a query and runs the whole pipeline to return relevant results.
+    
+    """
