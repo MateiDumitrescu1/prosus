@@ -1,1 +1,0 @@
-# read the saved embeddings and make a FAISS index in-memory out of them

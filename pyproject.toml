@@ -13,6 +13,8 @@ dependencies = [
     "bm25s", # https://github.com/xhluca/bm25s
     "PyStemmer", # useful for bm25s
     "jax[cpu]", # bm25 docs say this cna be installed for a speed boost
+    "autofaiss>=2.12.0",
+    "fsspec>=2024.10.0"
 ]
 
 [tool.mypy]

@@ -1,5 +1,9 @@
 import bm25s
 
+
+class BM25Index:
+    pass
+
 # Create your corpus here
 corpus = [
     "a cat is a feline and likes to purr",
