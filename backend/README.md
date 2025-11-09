@@ -1,10 +1,4 @@
 
-# Setup
-```
-uv venv --python 3.11
-uv pip install -e .
-```
-
 
 # Interesting things found in the data
 

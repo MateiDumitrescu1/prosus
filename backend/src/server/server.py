@@ -4,11 +4,16 @@ Provides an endpoint to query the matching pipeline and return top item IDs.
 """
 
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 import uvicorn
 from pydantic import BaseModel, Field
-from typing import List
+from typing import List, Optional, Dict, Any
 import sys
 from pathlib import Path
+import os
+import csv
+import json
 
 # Add the prosus package to the path so we can import match_query
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -27,6 +32,70 @@ app = FastAPI(
     version="1.0.0"
 )
 
+# Add CORS middleware to allow frontend requests
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],  # Vite default dev server
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Mount static files for serving images and data
+# Get the path to the data directory (backend/data)
+DATA_DIR = Path(__file__).parent.parent.parent / "data"
+IMAGES_DIR = DATA_DIR / "downloaded_images"
+ITEMS_CSV = DATA_DIR / "5k_items_curated.csv"
+
+# Mount the images directory so frontend can access images via /images/{filename}
+if IMAGES_DIR.exists():
+    app.mount("/images", StaticFiles(directory=str(IMAGES_DIR)), name="images")
+    print(f"Mounted images directory: {IMAGES_DIR}")
+else:
+    print(f"Warning: Images directory not found at {IMAGES_DIR}")
+
+# Global variable to store items data (loaded on startup)
+items_by_id: Dict[str, Dict[str, Any]] = {}
+
+
+def load_items_data():
+    """
+    Load items data from CSV and create a lookup dictionary by itemId.
+    """
+    global items_by_id
+    items_by_id = {}
+
+    if not ITEMS_CSV.exists():
+        print(f"Warning: Items CSV not found at {ITEMS_CSV}")
+        return
+
+    try:
+        with open(ITEMS_CSV, 'r', encoding='utf-8') as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                item_id = row.get('itemId')
+                if item_id:
+                    # Parse the JSON fields
+                    metadata = json.loads(row.get('itemMetadata', '{}'))
+
+                    # Convert image paths from CSV format (UUID/filename) to actual format (UUID_filename)
+                    csv_images = metadata.get('images', [])
+                    converted_images = [img.replace('/', '_') for img in csv_images]
+
+                    items_by_id[item_id] = {
+                        'itemId': item_id,
+                        'name': metadata.get('name', ''),
+                        'description': metadata.get('description', ''),
+                        'price': metadata.get('price', 0),
+                        'images': converted_images,
+                        'category_name': metadata.get('category_name', ''),
+                        'taxonomy': metadata.get('taxonomy', {}),
+                        'tags': metadata.get('tags', [])
+                    }
+        print(f"Loaded {len(items_by_id)} items from CSV")
+    except Exception as e:
+        print(f"Error loading items data: {e}")
+
 
 @app.on_event("startup")
 async def startup_event():
@@ -35,10 +104,14 @@ async def startup_event():
     This ensures indexes are ready before any queries are received.
     """
     print("\n" + "="*80)
-    print("INITIALIZING SEARCH INDEXES...")
+    print("INITIALIZING SEARCH INDEXES AND DATA...")
     print("="*80)
 
     try:
+        # Load items data from CSV
+        print("\n[0/3] Loading items data from CSV...")
+        load_items_data()
+
         # Build BM25 index on combined descriptions
         print("\n[1/3] Building BM25 combined description index...")
         bm25_index, bm25_items = build_and_return__bm25_combined_description_index()
@@ -123,6 +196,29 @@ async def search(search_query: SearchQuery):
             status_code=500,
             detail=f"Search failed: {str(e)}"
         )
+
+
+@app.get("/items/{item_id}")
+async def get_item(item_id: str):
+    """
+    Get item details by item ID.
+
+    Args:
+        item_id: The item ID to look up
+
+    Returns:
+        Item details including name, description, price, images, etc.
+
+    Raises:
+        HTTPException: If item not found
+    """
+    if item_id not in items_by_id:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Item {item_id} not found"
+        )
+
+    return items_by_id[item_id]
 
 
 @app.get("/health")
