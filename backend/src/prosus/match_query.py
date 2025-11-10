@@ -23,11 +23,46 @@ class RerankStrategy(StrEnum):
 
 #! config
 ground_truth_item_data = "../../data/5k_items_new_format@v1.jsonl" # we use this to get the tags and hooks for items
-clip_image_index_score_multiplier = 0.75
-bm25_tag_hooks_score_multiplier = 0.5
 
-relevance_score_power = 1.0 # when using the MULTIPLY strategy, raise the relevance score to this power before multiplying. this helps to emphasize the reranker's relevance score more.
-# set to 1.5 or 2.0 to penalize low relevance scores more heavily
+class PipelineParameters:
+    """
+    Parameters for the matching pipeline.
+    Adjust these values to tune the behavior of the matching process.
+    """
+    clip_image_index_score_multiplier = 0.75
+    bm25_tag_hooks_score_multiplier = 0.5
+
+    relevance_score_power = 1.0 
+    
+    def __init__(self,
+            clip_image_index_score_multiplier: float = 0.75,
+
+            bm25_tag_hooks_score_multiplier: float = 0.5,
+
+            relevance_score_power: float = 1.0, # when using the MULTIPLY strategy, raise the relevance score to this power before multiplying. this helps to emphasize the reranker's relevance score more.
+            # set to 1.5 or 2.0 to penalize low relevance scores more heavily
+
+            rerank_strategy: RerankStrategy = RerankStrategy.MULTIPLY
+        ):
+        """
+        Initialize pipeline parameters with the provided values.
+        """
+        self.clip_image_index_score_multiplier = clip_image_index_score_multiplier
+        self.bm25_tag_hooks_score_multiplier = bm25_tag_hooks_score_multiplier
+        self.relevance_score_power = relevance_score_power
+        self.rerank_strategy = rerank_strategy
+        
+    def to_json_string(self):
+        """
+        Convert the pipeline parameters to a JSON string for easy logging.
+        """
+        return json.dumps({
+            "clip_image_index_score_multiplier": self.clip_image_index_score_multiplier,
+            "bm25_tag_hooks_score_multiplier": self.bm25_tag_hooks_score_multiplier,
+            "relevance_score_power": self.relevance_score_power,
+            "rerank_strategy": self.rerank_strategy
+        }, indent=2)
+        
 #! config
 
 @cache
@@ -105,13 +140,13 @@ def build_item_descriptions_dict():
 
 common_top_k = 30 # all 4 search methods will return top 30 items
 
-async def match_query(query:str, rerank_strategy: RerankStrategy = RerankStrategy.REPLACE):
+async def match_query(query: str, params: PipelineParameters):
     """
     Takes in a query and runs the whole pipeline to return relevant results.
 
     Args:
         query: The search query string
-        rerank_strategy: Strategy for combining scores (MULTIPLY or REPLACE). Defaults to REPLACE.
+        params: PipelineParameters instance containing all configuration parameters
 
     Pipeline:
     1. Search four different indexes and get 0-1 normalized scores for top items from each:
@@ -335,13 +370,13 @@ async def match_query(query:str, rerank_strategy: RerankStrategy = RerankStrateg
     # Add FAISS tags/hooks scores with multiplier
     for result in faiss_tags_results:
         item_id = result["item_id"]
-        weighted_score = result["score"] * bm25_tag_hooks_score_multiplier
+        weighted_score = result["score"] * params.bm25_tag_hooks_score_multiplier
         aggregated_scores[item_id] = aggregated_scores.get(item_id, 0) + weighted_score
 
     # Add CLIP image scores with multiplier
     for result in clip_image_results:
         item_id = result["item_id"]
-        weighted_score = result["score"] * clip_image_index_score_multiplier
+        weighted_score = result["score"] * params.clip_image_index_score_multiplier
         aggregated_scores[item_id] = aggregated_scores.get(item_id, 0) + weighted_score
 
     #* Create shortlist of top items (sort by aggregated score)
@@ -365,7 +400,7 @@ async def match_query(query:str, rerank_strategy: RerankStrategy = RerankStrateg
     rerank_documents = [item_descriptions.get(item_id, "") for item_id in rerank_item_ids]
 
     # Call the reranker
-    print(f"Reranking with Voyage AI (strategy: {rerank_strategy})...")
+    print(f"Reranking with Voyage AI (strategy: {params.rerank_strategy})...")
     voyage_api = VoyageAIModelAPI(model_name=VoyageAIModels.RERANK_2_5)
 
     reranked_results = await voyage_api.arerank_documents(
@@ -383,14 +418,14 @@ async def match_query(query:str, rerank_strategy: RerankStrategy = RerankStrateg
         relevance_score = rerank_result["relevance_score"]
 
         # Apply reranking strategy
-        if rerank_strategy == RerankStrategy.MULTIPLY:
+        if params.rerank_strategy == RerankStrategy.MULTIPLY:
             # Multiply aggregated score with relevance score raised to a power
-            final_score = aggregated_score * (relevance_score ** relevance_score_power)
-        elif rerank_strategy == RerankStrategy.REPLACE:
+            final_score = aggregated_score * (relevance_score ** params.relevance_score_power)
+        elif params.rerank_strategy == RerankStrategy.REPLACE:
             # Use reranker's relevance score as the final score
             final_score = relevance_score
         else:
-            raise ValueError(f"Unknown rerank strategy: {rerank_strategy}")
+            raise ValueError(f"Unknown rerank strategy: {params.rerank_strategy}")
 
         final_scores.append({
             "item_id": item_id,
@@ -418,7 +453,8 @@ async def match_query(query:str, rerank_strategy: RerankStrategy = RerankStrateg
 
 async def test_match_query():
     query = "burger"
-    results = await match_query(query)
+    params = PipelineParameters()
+    results = await match_query(query, params)
     print(f"\nFinal Results for query: '{query}'")
     for rank, result in enumerate(results, start=1):
         print(f"Rank {rank}: Item ID: {result['item_id']}, Final Score: {result['score']:.4f}, "

@@ -46,6 +46,9 @@ check_dir_exists(clip_image_embeddings_dir)
 matching_output_dir = os.path.abspath(os.path.join(data_dir, 'matching_output')) # used to save the intermediate scores and final matching results
 check_dir_exists(matching_output_dir)
 
+q100_output_dir = os.path.abspath(os.path.join(data_dir, 'q100_output')) # used to save the 100 queries answer results
+check_dir_exists(q100_output_dir)
+
 #! ---------------- TESTING ----------------
 
 def test_():

@@ -18,7 +18,7 @@ import json
 # Add the prosus package to the path so we can import match_query
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from prosus.match_query import match_query, RerankStrategy
+from prosus.match_query import match_query, RerankStrategy, PipelineParameters
 from prosus.search_indexes.orch import (
     build_and_return__bm25_combined_description_index,
     build_and_return__faiss_combined_description_index,
@@ -194,8 +194,11 @@ async def search(search_query: SearchQuery):
         # Convert string to RerankStrategy enum
         strategy = RerankStrategy(search_query.rerank_strategy)
 
-        # Run the matching pipeline with the specified strategy
-        results = await match_query(search_query.query, rerank_strategy=strategy)
+        # Create pipeline parameters with the specified rerank strategy
+        params = PipelineParameters(rerank_strategy=strategy)
+
+        # Run the matching pipeline with the specified parameters
+        results = await match_query(search_query.query, params)
 
         # Extract item IDs from top_k results
         item_ids = [result["item_id"] for result in results[:search_query.top_k]]
