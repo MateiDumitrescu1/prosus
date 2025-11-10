@@ -52,10 +52,6 @@ These keywords can be used as a shortcut to go from **query → food item**. If 
 
 ```
 
-### `category_name` field
-This is similar to `taxonomy`, we just treat is as another tag.
-
-
 ### `taxonomy` field
 
 This can be used for tags. We can match up our query with certain tags and then bump up the score for food items with those tags.
@@ -68,12 +64,19 @@ This can be used for tags. We can match up our query with certain tags and then 
 },
 ```
 
-# Search algorithms used in the solution
-### vector search
-### text search
-BM25
+### `category_name` field
+This is similar to `taxonomy`, we just treat is as another tag.
 
-# New streamlined data format
+# Search algorithms used in the solution
+
+### vector search
+We use embedding models to embed the data into high-dimensional vectors. We then build in-memory FAISS indexes from these vectors, so we can perform fast similarity search using inner product (dot product) distance metric, which gives us cosine similarity when the embeddings are normalized. 
+
+### text (keyword) search
+
+We BM25 for a fast and simple keyword search.
+
+# Streamlined data format
 
 This new data format is optimized for text search queries over the food items.
 
@@ -143,15 +146,45 @@ Rationale: Enables queries like "café da manhã" (breakfast) or "jantar" (dinne
 ##### weigh the tags
 
 
-# Search strategy 
+# Search algorithm
 
-Use multiple search avenues and combine the scores / results.
+The search pipeline (implemented in `match_query.py`) runs multiple parallel searches and intelligently combines their results through a multi-stage process:
 
-### tag search
-**query** ---(semantic distance)---> **related tags** ---(we hit those tags and for each item, sum up the points for each tageted tag. if tags are not weighted, all count as 1 point )---> **ranked list of items based on total tag score**
+## Pipeline Overview
 
-As of right now tags are not weighted, this will be implemented later. If tags are not weighted, we are basically ranking the items based on how many of their tags were considered relevant to the search query.
+### Stage 1: Parallel Multi-Index Search
+Four different search methods run in parallel, each returning the top 30 items:
 
-### semantic search on `description`
+1. **BM25 Combined Description Index** - Keyword-based search on item names and descriptions
+2. **FAISS Combined Description Index** - Semantic vector search on item descriptions using Voyage AI embeddings
+3. **FAISS Tags/Hooks Index** - Semantic matching on tags and keyword hooks
+   - Finds the top 30 most similar tags/hooks to the query
+   - Scores items based on: (matched tags/hooks count) / (total tags/hooks for item)
+   - Returns top 10 items with normalized scores (0-1 range)
+4. **FAISS CLIP Image Index** - Visual-semantic matching on product images using CLIP embeddings
+   - Encodes query text with CLIP multilingual model
+   - Matches against CLIP-encoded product images
 
-### text search on `description`
+All scores are normalized to the 0-1 range for fair comparison.
+
+### Stage 2: Score Aggregation
+Scores from all four methods are aggregated with configurable multipliers:
+- BM25 description scores: weight = 1.0
+- FAISS description scores: weight = 1.0
+- FAISS tags/hooks scores: weight = 0.5 (configurable via `bm25_tag_hooks_score_multiplier`)
+- CLIP image scores: weight = 0.75 (configurable via `clip_image_index_score_multiplier`)
+
+Items are ranked by their total aggregated score, and the top 50 candidates are shortlisted for reranking.
+
+### Stage 3: AI Reranking
+The shortlisted candidates are reranked using the Voyage AI rerank-2.5 model, which deeply understands semantic relevance between the query and item descriptions.
+
+Two reranking strategies are available:
+- **MULTIPLY** (default): `final_score = aggregated_score × (relevance_score ^ power)`
+  - Combines search signals with AI relevance assessment
+  - The `relevance_score_power` parameter (default 1.0) can emphasize the reranker's judgment
+- **REPLACE**: `final_score = relevance_score`
+  - Uses only the reranker's relevance score
+
+### Stage 4: Final Ranking
+Items are sorted by final score and returned. Future enhancements will include popularity boosts based on `total_orders` and `reorder_rate` metrics. 

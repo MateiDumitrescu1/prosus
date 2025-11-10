@@ -19,3 +19,8 @@ python server.py # start the FastAPI backend
 npm install
 npm run dev
 ```
+
+# Presentation
+
+Excalidraw diagram: https://link.excalidraw.com/l/2ZcMrPTn79L/65TwIf5dT3p
+Google slides: https://docs.google.com/presentation/d/1rZZ8MI--K4-NVf-MLFNS6d0geA-VQcu2RTxFwqkLtvc/edit?usp=sharing
