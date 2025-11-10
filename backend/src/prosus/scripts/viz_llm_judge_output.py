@@ -143,7 +143,7 @@ def plot_llm_judge_results(file_path: Path):
 
     # Save the figure
     plt.savefig(output_file, dpi=300, bbox_inches='tight')
-    print(f" Visualization saved to: {output_file}")
+    print(f"Visualization saved to: {output_file}")
 
     # Close the figure to free memory
     plt.close(fig)
@@ -151,7 +151,7 @@ def plot_llm_judge_results(file_path: Path):
 
 if __name__ == "__main__":
     # Example usage
-    results_file = "../../../data/q100_output/run_20251110_052004/llm_judge_results_20251110_071033.txt"
+    results_file = "../../../data/q100_output/run_20251110_072451/llm_judge_results_20251110_072859.txt"
     results_file = Path(results_file)
     
     if results_file.exists():

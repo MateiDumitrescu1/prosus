@@ -4,8 +4,19 @@
 *.jpg
 *.jpeg
 *.png
+*.npy
+
+# Ignore folders starting with problematic_prompts (root and any subdirectory)
+problematic_prompts*/
+**/problematic_prompts*/
+
+# Allow PNG files that start with llm_judge (root and any subdirectory)
+!llm_judge*.png
+!**/llm_judge*.png
 
 !5k_items_new_format@v1.jsonl
+
+!backend/data/embeddings_output/**/*.jsonl
 
 # Allow any .jsonl files in q100_output (including subdirectories)
 !backend/data/q100_output/
@@ -15,6 +26,10 @@
 !combined_descriptions*
 !**/combined_descriptions*
 
+# files > 100MB
+backend/data/embeddings_output/tags_and_hooks_embeddings/tag_embeddings_voyage-3.5-lite_20251109_183615/embeddings.jsonl
+
+#! -------------------------------- common stuff --------------------------------
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -42,6 +57,8 @@ pip-wheel-metadata/
 .installed.cfg
 *.egg
 MANIFEST
+
+
 
 # Virtual environments
 .env

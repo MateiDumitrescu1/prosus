@@ -94,4 +94,5 @@ async def process_all_queries(params=PipelineParameters()):
     print(f"{'='*60}")
 
 if __name__ == "__main__":
-    asyncio.run(process_all_queries())
+    params_to_use = PipelineParameters(clip_image_index_score_multiplier=0.0)
+    asyncio.run(process_all_queries(params=params_to_use))

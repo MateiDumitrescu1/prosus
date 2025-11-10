@@ -20,9 +20,11 @@ current_time = datetime.now().strftime("%Y%m%d_%H%M%S")
 # Configuration paths
 combined_descriptions = get_combined_descriptions_from_folder(version="v1")
 
+current_run_being_analyzed = "run_20251110_072451"
+
 ITEMS_FILE = Path(data_dir) / "5k_items_new_format@v1.jsonl"
-RESULTS_FILE = Path(data_dir) / "q100_output" / "run_20251110_052004" / "results.jsonl"
-OUTPUT_FILE = Path(data_dir) / "q100_output" / "run_20251110_052004" / f"llm_judge_results_{current_time}.txt"
+RESULTS_FILE = Path(data_dir) / "q100_output" / current_run_being_analyzed / "results.jsonl"
+OUTPUT_FILE = Path(data_dir) / "q100_output" / current_run_being_analyzed / f"llm_judge_results_{current_time}.txt"
 
 # Number of top items to judge per query
 JUDGE_TOP_K = 10
@@ -162,9 +164,9 @@ async def main():
     query_results = load_query_results()
 
     # Create folder for problematic prompts (queries with 5+ irrelevant matches)
-    prompts_folder = Path(data_dir) / "q100_output" / "run_20251110_052004" / f"problematic_prompts_{current_time}"
+    prompts_folder = Path(data_dir) / "q100_output" / current_run_being_analyzed / f"problematic_prompts_{current_time}"
     prompts_folder.mkdir(parents=True, exist_ok=True)
-
+    
     # Store all results in order
     all_results = []
 

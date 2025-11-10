@@ -1,0 +1,6 @@
+{
+  "clip_image_index_score_multiplier": 0.0,
+  "bm25_tag_hooks_score_multiplier": 0.5,
+  "relevance_score_power": 1.0,
+  "rerank_strategy": "multiply"
+}
