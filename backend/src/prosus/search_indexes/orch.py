@@ -11,17 +11,20 @@ from prosus.api_wrappers.voyage_.voyage_api_wrapper import VoyageAIModelAPI, Voy
 from prosus.search_indexes.faiss_.faiss_ops import FaissIndex
 from prosus.search_indexes.bm25_.bm25_ import BM25Index
 from prosus.scripts.script_utils.combined_description_utils  import get_combined_descriptions_from_folder
-from prosus.constants import sentence_transformers_clip_model_name
+from prosus.constants import sentence_transformers_clip_image__model_name, sentence_transformers_clip_multilingual_text__model_name
 
 #! ---- config ----
-version_to_use = "v0"
+version_to_use = "v1"
 # combined_description_emb_file = "../../../data/embeddings_output/combined_description_embeddings/em_full_voyage-3.5-lite_20251109_182758/embeddings.jsonl"
 combined_description_emb_file = Path(embeddings_output_dir) / "combined_description_embeddings" / "em_full_voyage-3.5-lite_20251109_182758" / "embeddings.jsonl"
 
 # tags_and_hooks_emb_file = "../../../data/embeddings_output/tags_and_hooks_embeddings/tag_embeddings_voyage-3.5-lite_20251109_183615/embeddings.jsonl"
 tags_and_hooks_emb_file = Path(embeddings_output_dir) / "tags_and_hooks_embeddings" / "tag_embeddings_voyage-3.5-lite_20251109_183615" / "embeddings.jsonl"
 
-clip_emb_file = Path(clip_image_embeddings_dir) / "em_full_clip-ViT-B-32_20251110_025755" / "embeddings.jsonl"
+clip_emb_file = Path(clip_image_embeddings_dir) / "em_full_clip-ViT-B-32_20251110_025755" / "embeddings.jsonl" # this holds the image embedings
+
+if sentence_transformers_clip_image__model_name not in str(clip_emb_file):
+    raise ValueError(f"CLIP embeddings file {clip_emb_file} does not match the default CLIP model name {sentence_transformers_clip_image__model_name}")
 
 csv_ground_truth_path = "../../../data/5k_items_curated.csv"
 #! ---- config ----
@@ -362,15 +365,15 @@ def test_faiss_clip_image_index():
     print(f"\nFAISS CLIP image index: {faiss_index}")
     print(f"Total items indexed: {len(item_ids)}")
 
-    # Load the same CLIP model used for creating the image embeddings
+    # Load the multilingual CLIP model
     print("\nLoading CLIP model...")
-    clip_model = SentenceTransformer(sentence_transformers_clip_model_name)
+    clip_text_model = SentenceTransformer(sentence_transformers_clip_multilingual_text__model_name)
 
     test_query = "burger with cheese and lettuce"
     print(f"\nTest query: '{test_query}'")
 
     # Embed the text query using the CLIP model and normalize the embedding vector
-    query_embedding = clip_model.encode(test_query, normalize_embeddings=True)
+    query_embedding = clip_text_model.encode(test_query, normalize_embeddings=True)
     query_vector = np.array(query_embedding, dtype=np.float32)
 
     top_k = 30

@@ -7,7 +7,7 @@ from datetime import datetime
 from sentence_transformers import SentenceTransformer
 from PIL import Image
 from tqdm import tqdm
-from prosus.constants import sentence_transformers_clip_model_name
+from prosus.constants import sentence_transformers_clip_image__model_name
 
 #! ---------------------- READ DATA ----------------------
 def read_item_images_from_csv(csv_path: str, images_base_dir: str) -> list[dict]:
@@ -59,10 +59,10 @@ def read_item_images_from_csv(csv_path: str, images_base_dir: str) -> list[dict]
 
 #! ---------------------- EMBED ----------------------
 
-def embed_description_and_images_using_clip(
+def embed_images_using_clip(
         original_csv_path: str,
         save_dir: str,
-        model_name: str = sentence_transformers_clip_model_name,
+        model_name: str = sentence_transformers_clip_image__model_name,
         images_base_dir: str | None = None,
         cap_items: int | None = None
     ):
@@ -204,7 +204,7 @@ def run_embed_description_and_images_using_clip():
     
     cap_items_to_use = None
     
-    embed_description_and_images_using_clip(
+    embed_images_using_clip(
         original_csv_path=original_csv_path,
         save_dir=save_dir,
         cap_items=cap_items_to_use  # Set to an integer for testing with fewer items

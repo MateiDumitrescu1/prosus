@@ -15,7 +15,7 @@ from prosus.api_wrappers.voyage_.voyage_api_wrapper import VoyageAIModelAPI, Voy
 from datetime import datetime
 from enum import StrEnum
 from sentence_transformers import SentenceTransformer
-from prosus.constants import sentence_transformers_clip_model_name
+from prosus.constants import sentence_transformers_clip_multilingual_text__model_name
 
 class RerankStrategy(StrEnum):
     MULTIPLY = "multiply" # the final score is: aggregated_score * relevance_score
@@ -25,16 +25,19 @@ class RerankStrategy(StrEnum):
 ground_truth_item_data = "../../data/5k_items_new_format@v1.jsonl" # we use this to get the tags and hooks for items
 clip_image_index_score_multiplier = 0.75
 bm25_tag_hooks_score_multiplier = 0.5
+
+relevance_score_power = 1.0 # when using the MULTIPLY strategy, raise the relevance score to this power before multiplying. this helps to emphasize the reranker's relevance score more.
+# set to 1.5 or 2.0 to penalize low relevance scores more heavily
 #! config
 
 @cache
-def get_clip_model():
+def get_clip_text_model():
     """
     Load and cache the CLIP model for text encoding.
     Returns the SentenceTransformer CLIP model instance.
     """
-    print(f"Loading CLIP model: {sentence_transformers_clip_model_name}...")
-    model = SentenceTransformer(sentence_transformers_clip_model_name)
+    print(f"Loading CLIP model: {sentence_transformers_clip_multilingual_text__model_name}...")
+    model = SentenceTransformer(sentence_transformers_clip_multilingual_text__model_name)
     print(f"CLIP model loaded. Embedding dimension: {model.get_sentence_embedding_dimension()}")
     return model
 
@@ -130,7 +133,7 @@ async def match_query(query:str, rerank_strategy: RerankStrategy = RerankStrateg
     query_embedding_array = np.array(query_embedding[0], dtype=np.float32)
 
     # Generate CLIP query embedding for image search
-    clip_model = get_clip_model()
+    clip_model = get_clip_text_model()
     clip_query_embedding = clip_model.encode(query, convert_to_tensor=False, normalize_embeddings=True)
     clip_query_embedding_array = np.array([clip_query_embedding], dtype=np.float32)
 
@@ -363,7 +366,7 @@ async def match_query(query:str, rerank_strategy: RerankStrategy = RerankStrateg
 
     # Call the reranker
     print(f"Reranking with Voyage AI (strategy: {rerank_strategy})...")
-    voyage_api = VoyageAIModelAPI(model_name=VoyageAIModels.RERANK_2_LITE)
+    voyage_api = VoyageAIModelAPI(model_name=VoyageAIModels.RERANK_2_5)
 
     reranked_results = await voyage_api.arerank_documents(
         query=query,
@@ -381,8 +384,8 @@ async def match_query(query:str, rerank_strategy: RerankStrategy = RerankStrateg
 
         # Apply reranking strategy
         if rerank_strategy == RerankStrategy.MULTIPLY:
-            # Multiply aggregated score with relevance score
-            final_score = aggregated_score * relevance_score
+            # Multiply aggregated score with relevance score raised to a power
+            final_score = aggregated_score * (relevance_score ** relevance_score_power)
         elif rerank_strategy == RerankStrategy.REPLACE:
             # Use reranker's relevance score as the final score
             final_score = relevance_score

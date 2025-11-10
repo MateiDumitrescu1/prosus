@@ -31,4 +31,5 @@ test_documents = [
     "The periodic table organizes chemical elements by atomic structure."
 ]
 
-sentence_transformers_clip_model_name = "clip-ViT-B-32"
+sentence_transformers_clip_image__model_name = "clip-ViT-B-32"
+sentence_transformers_clip_multilingual_text__model_name = "clip-ViT-B-32-multilingual-v1"
