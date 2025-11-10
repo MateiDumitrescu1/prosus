@@ -108,7 +108,8 @@ async def evaluate_query(query: str, item_ids: List[str], items_db: Dict[str, Di
     {items_text}
     Categorize each item into one of three categories:
     1. RELEVANT: The item is a good match for the query
-    2. SOMEWHAT RELEVANT: The item's description or name mentions at least 1 detail or keyword from the query (e.g., "korean spicy chicken" and "Cup Noodles instant noodles in a cup, chicken flavor" share "chicken", so it's somewhat relevant)
+    2. SOMEWHAT RELEVANT: The item's description or name mentions at least 1 detail or keyword from the query 
+    (e.g., "korean spicy chicken" and "Cup Noodles instant noodles in a cup, chicken flavor" share "chicken", so it's somewhat relevant)
     The keyword doesn't have to be an exact match. For example, "sandwich" and "burger" can be considered similar enough for this criteria.
     3. IRRELEVANT: The item doesn't match the query whatsoever and has nothing in common.
 
