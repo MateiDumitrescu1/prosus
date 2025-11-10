@@ -29,6 +29,10 @@ problematic_prompts*/
 # files > 100MB
 backend/data/embeddings_output/tags_and_hooks_embeddings/tag_embeddings_voyage-3.5-lite_20251109_183615/embeddings.jsonl
 
+!5k_items_curated.csv
+!food_item_ids.csv
+!queries.csv
+
 #! -------------------------------- common stuff --------------------------------
 # Byte-compiled / optimized / DLL files
 __pycache__/
