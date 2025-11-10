@@ -1,0 +1,27 @@
+Query: "Tigela de grãos de vegetais assados"
+
+    Items returned by the search system:
+    1. 50 - Salgados Assados - Salgadinhos Assados feitos com massa macia e recheios frescos, assados na hora para garantir o máximo sabor. Na imagem, aparecem como pequenos itens dourados por fora, pesando entre 20 e 30 g cada.
+2. Seleta Legumes Pratigel 300g - Seleta de Legumes Pratigel, embalagem de 300 g, com batata, cenoura e ervilha. A imagem mostra o produto em embalagem com o logo Pratigel e um mix de legumes em cubos. Descrição para busca: seleta de legumes, batata cenoura ervilha, Pratigel, 300 g, pacote de legumes variados.
+3. Arroz branco ( serve uma pessoa ) - Arroz branco cozido em porção individual. Grãos soltos e macios, de cor branca, servido em tigela branca com uma guarnição de salsa fresca por cima. Acompanhamento básico de refeições.
+4. Feijao Carioca Vapza 500g - Feijão carioca Vapza, cozido no vapor, em embalagem de caixa com 500 g (contém 2 porções de 250 g cada). Grãos de feijão carioca de cor bege com manchas marrons, apresentados na embalagem com imagem de feijão cozido em tigela.
+5. Chia Grãos Orgânica Vitalin 120g - Chia – grãos orgânicos Vitalin, embalagem de 120 g. Embalagem branca com o rótulo "CHIA" em roxo e o selo "ORGÂNICO" no topo, exibindo imagem de sementes de chia em uma tigela. Produto alimentar feito de sementes de chia orgânicas, peso líquido 120 g.
+6. Arroz branco (180g) - Porção de arroz branco (180g) apresentada em tigela branca. Grãos cozidos e soltos formam uma bola de arroz, com uma pequena folha verde no topo como guarnição. Descrição para busca: arroz branco, porção, 180g, grãos soltinhos, alimento básico, acompanhamento culinário.
+7. Ração para Cães Adultos 12 Meses a 7 Anos Raças Minis e Pequenas Sabor Carne e Vegetais Pedigree 900g - Ração Pedigree para Cães Adultos (12 Meses a 7 Anos) de Raças Minis e Pequenas, sabor Carne e Vegetais, embalagem de 900 g. A embalagem amarela exibe um cão e uma tigela com ração, destacando o sabor Carne e Vegetais. Indicada para cães adultos de raças pequenas, para alimentação diária.
+8. Arroz Tipo 1 Broto Legal 1k - Arroz branco tipo 1, Broto Legal, em pacote de 1 kg. Embalagem preta com o logo Broto Legal em branco e vermelho e imagem de uma tigela com arroz cozido; os grãos brancos são visíveis pela embalagem.
+9. Feijão - Feijão cozido em molho espesso de tonalidade alaranjada, com grãos brancos visíveis na porção. Apresenta sabor rico e reconfortante, ideal como acompanhamento para diversas refeições. A apresentação acontece em uma tigela preta, destacando a textura densa do feijão no caldo.
+10. Arroz Solito 1kg Integral - Arroz Solito Integral 1kg, em pacote plástico com rótulo verde destacando "Integral". Grãos de arroz de cor marrom, típicos do arroz integral, são retratados na embalagem ao lado de uma tigela com arroz. Peso: 1 kg.
+
+    Categorize each item into one of three categories:
+    1. RELEVANT: The item is a good match for the query
+    2. SOMEWHAT RELEVANT: The item's description or name mentions at least 1 detail or keyword from the query (e.g., "korean spicy chicken" and "Cup Noodles instant noodles in a cup, chicken flavor" share "chicken", so it's somewhat relevant)
+    The keyword doesn't have to be an exact match. For example, "sandwich" and "burger" can be considered similar enough for this criteria.
+    3. IRRELEVANT: The item doesn't match the query whatsoever and has nothing in common.
+
+    Some queries are very specific, don't be too strict in your judgment.
+    For example, if the query is "Carne assada lentamente com acompanhamentos", results of meat dishes with sides should be considered relevant.
+
+    Answer ONLY with three numbers separated by spaces: relevant_count somewhat_relevant_count irrelevant_count
+    Example: "5 2 3" means 5 relevant, 2 somewhat relevant, and 3 irrelevant.
+    Do not include any explanation or other text.
+    

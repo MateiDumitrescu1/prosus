@@ -1,0 +1,27 @@
+Query: "Prato de inspiração amazônica"
+
+    Items returned by the search system:
+    1. Calabresa Acebolada - Linguiça calabresa acebolada (aprox 120 g) fatiada, servida com arroz branco, feijão, batata frita e salada de alface americana com tomate. No prato, as rodelas de calabresa aparecem ao lado do arroz, com o feijão e as batatas fritas crocantes compondo a refeição. Palavras-chave de busca: calabresa acebolada, linguiça calabresa, arroz, feijão, batata frita, salada de alface com tomate.
+2. Geladinho Gourmet de Morango com Brigadeiro - Geladinho Gourmet de Morango com Brigadeiro é um picolé artesanal que combina morango com brigadeiro. O interior aparece em camadas cremosas em tons marrom claro e marrom, visíveis através da embalagem plástica translúcida. Descrição voltada para busca: geladinho, picolé, morango, brigadeiro, sobremesa fria brasileira.
+3. Farinha para Empanar Panko Kenko 200g - Farinha para empanar Panko Kenko, 200 g, breadcrumbs de estilo oriental para empanar alimentos. Embalagem amarela exibe o logotipo Kenko e uma imagem de pedaços empanados dourados, sugerindo crocância ao fritar. Ideal para empanar com a textura crocante característica do Panko em preparações de inspiração oriental.
+4. Isca de Frango Empanada c/ Catupiry - Isca de Frango Empanada c/ Catupiry: pedaços de frango empanados e fritos com recheio cremoso de Catupiry, apresentando casquinha dourada e crocante. A porção vem com alface, limão e molho para acompanhar. Ideal como lanche ou entrada, com textura crocante por fora e interior cremoso.
+5. Yakissoba de carne e frango - Yakissoba de carne e frango: macarrão de yakissoba com tiras de carne e frango e legumes em molho. A apresentação mostra noodles envolvidos em molho escuro com pedaços de carne e vegetais, guarnecidos por folhas verdes. Ingredientes principais: carne, frango, legumes e molho; prato asiático de noodles com proteína animal e vegetais.
+6. File de frango grelhado - Filé de frango grelhado em dois pedaços, com marcas de grelha visíveis e superfície dourada, decorado com ervas. Acompanha arroz branco, feijão, fritas e farofa especial tipo tropeiro. Alto teor de proteína.
+7. Tilápia a Moda - Prato com 700 gramas de tilápia preparada na moda, acompanhada de arroz branco, salada fresca e purê cremoso. Refeição balanceada, rica em proteínas provenientes do peixe, com acompanhamento de baixo teor de carboidratos e vegetais. Serve duas pessoas.
+8. Lanche de frango cremoso - Lanche de frango cremoso com filé de frango, tomate e Catupiry, apresentado em pão enrolado com recheio cremoso e queijo derretido visível ao corte. O recheio combina pedaços de tomate e Catupiry, conferindo textura macia e sabor cremoso. Acompanha batata chips e maionese temperada.
+9. Açaí no Copo 500 ml - Açaí no copo 500 ml com base de açaí cremoso, acompanhado de banana, morango, kiwi e manga. Toppings incluem granola crocante, leite condensado, leite em pó e chocolate, com confeitos coloridos visíveis na cobertura. Visualmente apresenta o roxo intenso do açaí contrastando com as cores das frutas e dos toppings mentidos nos copos.
+10. 26 - frango, queijo, milho, Catupiry, presunto, salada - Sanduíche de frango com presunto, queijo e Catupiry, com milho e salada. Recheio cremoso de Catupiry com queijo, combinado ao frango, alface e tomate, servido em pão macio.
+
+    Categorize each item into one of three categories:
+    1. RELEVANT: The item is a good match for the query
+    2. SOMEWHAT RELEVANT: The item's description or name mentions at least 1 detail or keyword from the query (e.g., "korean spicy chicken" and "Cup Noodles instant noodles in a cup, chicken flavor" share "chicken", so it's somewhat relevant)
+    The keyword doesn't have to be an exact match. For example, "sandwich" and "burger" can be considered similar enough for this criteria.
+    3. IRRELEVANT: The item doesn't match the query whatsoever and has nothing in common.
+
+    Some queries are very specific, don't be too strict in your judgment.
+    For example, if the query is "Carne assada lentamente com acompanhamentos", results of meat dishes with sides should be considered relevant.
+
+    Answer ONLY with three numbers separated by spaces: relevant_count somewhat_relevant_count irrelevant_count
+    Example: "5 2 3" means 5 relevant, 2 somewhat relevant, and 3 irrelevant.
+    Do not include any explanation or other text.
+    

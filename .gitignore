@@ -5,6 +5,12 @@
 *.jpeg
 *.png
 
+!5k_items_new_format@v1.jsonl
+
+# Allow any .jsonl files in q100_output (including subdirectories)
+!backend/data/q100_output/
+!backend/data/q100_output/**/*.jsonl
+
 # Allow files that start with combined_descriptions
 !combined_descriptions*
 !**/combined_descriptions*

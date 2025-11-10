@@ -1,0 +1,27 @@
+Query: "Rolinhos primavera vietnamitas frescos"
+
+    Items returned by the search system:
+    1. 2 harumaki de camarão - 2 harumaki de camarão, uma especialidade da categoria 'Rolinho Primavera', com recheio de camarões frescos envoltos em massa fina e crocante. As peças apresentam crocância externa e recheio de camarão suculento no interior. Acompanhadas por molho escuro decorativo no prato.
+2. Massa de Papel Arroz Towa 340g - Papel de arroz Towa, massa para rolinhos primavera (spring roll skin). Embalagem de 340 g com discos brancos circulares de papel arroz, com rótulo que mostra "Papel de Arroz", "Spring Roll Skin" e o logotipo Towa. Produto alimentício utilizado como envoltório para rolinhos primavera, pronto para hidratar antes do uso.
+3. Primavera Mix Higienizada La Vita 250g - Primavera Mix Higienizada La Vita, 250 g: mistura de legumes higienizados em tiras coloridas (cenoura, repolho roxo e outros vegetais), pronta para uso em saladas. Pacote de 250 g com aspecto colorido e crocante, ideal como base ou guarnição de pratos.
+4. Osam Bulgogui - Osam Bulgogui é um prato que combina lula, panceta e legumes refogados ao molho apimentado tradicional coreano, com lula em pedaços, panceta dourada e vegetais cobertos pelo molho vermelho picante. Acompanha 2 porções de arroz oriental e cinco complementos do Dia. Na apresentação, destacam-se a cebolinha verde fresca e os pedaços de legumes visíveis no molho apimentado.
+5. Lemonade - Bebida gelada, típica nos Estados Unidos, preparada com suco de limão, água, gelo e base saborizante idêntica ao natural. Na imagem, aparece em cores distintas, com rodelas de limão e folhas verdes decorativas, servida em taças altas com canudos coloridos.
+6. Combo - 28 peças + 10 hot roll - Combo de sushi com 28 peças + 10 hot rolls, servido em bandeja preta. Inclui nigiri de salmão e uma seleção de maki e rolinhos com recheios variados, alguns cobertos com sementes de gergelim. À lateral direita há uma fileira de hot rolls crocantes (rolos quentes) para acompanhar.
+7. Bife à rolê - Bife à rolê: carne bovina enrolada cozida em molho, com pedaços dourados e ervas verdes por cima. Acompanha arroz, feijão e dois acompanhamentos. O prato é rico em proteína devido à carne bovina.
+8. Combo Toru 30 peças - Combo Toru 30 peças: mix de sashimi e sushi com salmão, incluindo 5 sashimis de salmão, 5 fatias de salmão flambado, 2 niguiris de salmão, 2 niguiris skin, 2 niguiris de salmão flambado, 4 joys variados, 5 uramakis de salmão Philadelphia e 6 hot rolls. Visualmente apresenta fatias de salmão sobre arroz, rolinhos com salmão e Philadelphia e peças com pele, distribuídas de forma colorida em prato único.
+9. Yakissoba Tradicional G 1 Kg - Yakissoba Tradicional G 1 Kg: macarrão chinês salteado com carne e frango, legumes (acelga, cebola, cenoura, pimentão vermelho, repolho, vagem, brócolis) e molho da casa. Sem champignon. Porção de 1 kg.
+10. Combinado Especial do mês 16 peças - Combinado Especial do mês (16 peças): 4 nigiris de salmão fresco com queijo, 4 hot rolls com crispy de couve, 4 uramakis de salmão skin e 4 nigiris de salmão fresco. Acompanha shoyu e hashi. A apresentação mostra fatias de salmão sobre arroz, rolinhos com cobertura cremosa, rolinhos com pele de salmão e rolinhos crocantes com couve, decorados com flores roxas. Alto teor de proteína devido ao salmão.
+
+    Categorize each item into one of three categories:
+    1. RELEVANT: The item is a good match for the query
+    2. SOMEWHAT RELEVANT: The item's description or name mentions at least 1 detail or keyword from the query (e.g., "korean spicy chicken" and "Cup Noodles instant noodles in a cup, chicken flavor" share "chicken", so it's somewhat relevant)
+    The keyword doesn't have to be an exact match. For example, "sandwich" and "burger" can be considered similar enough for this criteria.
+    3. IRRELEVANT: The item doesn't match the query whatsoever and has nothing in common.
+
+    Some queries are very specific, don't be too strict in your judgment.
+    For example, if the query is "Carne assada lentamente com acompanhamentos", results of meat dishes with sides should be considered relevant.
+
+    Answer ONLY with three numbers separated by spaces: relevant_count somewhat_relevant_count irrelevant_count
+    Example: "5 2 3" means 5 relevant, 2 somewhat relevant, and 3 irrelevant.
+    Do not include any explanation or other text.
+    

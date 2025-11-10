@@ -1,0 +1,27 @@
+Query: "Prato de churrasco defumado"
+
+    Items returned by the search system:
+    1. Gauchoo ( Gourmet ) - Gauchoo (Gourmet): hambúrguer gourmet Angus de 200 g com cheddar derretido e molho defumado, servido em pão Australiano. A montagem apresenta patty suculento, queijo cheddar amarelo derretido e molho cremoso entre um pão com sementes. Descrição para busca: hambúrguer Angus 200 g, cheddar, molho defumado, pão Australiano, prato gourmet, alto teor de proteína.
+2. Marmita g de churrasco - Marmita g de churrasco com fatias de carne grelhada como prato principal. Acompanha arroz, feijão, macarrão, farofa, maionese, creme de alho e salada de vinagrete, com vinagrete e molho de alho em potinhos separados. Na imagem, destacam-se as fatias de churrasco ao lado do macarrão e dos acompanhamentos descritos.
+3. Snack para Cães Bistequitos Churrasco Pacote 50g - Snack para cães com sabor churrasco, chamado Bistequitos Churrasco, em embalagem de 50 g. A embalagem é verde e traz a ilustração de um cão, com as fatias de bistequitos exibidas na frente. Trata-se de um snack canino no formato de bistequitos, com peso de 50 g.
+4. Linguiça Alho E Ervas Churrasco Seara 600g - Linguiça Alho e Ervas Churrasco Seara, embalagem de 600 g. Feita com 100% carne suína, com sabor alho e ervas e apresentada em linguiças dentro de embalagem selada. O rótulo nutricional indica presença de proteína, apropriada para preparo de churrasco.
+5. Snack Panetini Presunto Defumado Eqlibri 40g - Panetini Snack com sabor Presunto Defumado, embalagem de 40 g (marca eQlibri). Panetini crocantes com sabor defumado, ilustrados na embalagem com fatias de presunto. Lanche pronto para consumo, ideal como snack de 40 g com presunto defumado.
+6. Bacon Defumado Sadia - Bacon Defumado Sadia, comprado por peso. Embalagem selada com etiqueta da Sadia envolve o bacon, que apresenta tonalidade avermelhada típica do defumado.
+7. Mortadela Defumada Ouro Perdigão 200g - Mortadela Defumada Ouro Perdigão, 200 g. Embalagem com rótulo Ouro e informações nutricionais visíveis na etiqueta.
+8. Salgadinho Churrasco Torcida 100g - Salgadinho Torcida sabor churrasco, embalagem de 100 g. Snack salgado crocante com sabor churrasco, apresentado em pequenos pedaços irregulares. Embalagem roxa e amarela com o logo Torcida, destacando o peso de 100 g.
+9. Peito de peru cremosa Com Requeijão - Peito de Peru Cremoso com Requeijão é um prato que combina peito de peru defumado com requeijão cremoso, oferecendo sabor rico e uma textura suave. O recheio aparece cremoso e suculento, com um leve dourado na superfície. Na apresentação, há uma fatia de limão verde ao lado, realçando a aparência do prato.
+10. Linguiça Toscana Churrasco Seara 700g - Linguiça Toscana Churrasco Seara, embalagem de 700 g. Linguiça crua no estilo Toscana, destinada ao preparo em churrasco, apresentada em links na embalagem. O rótulo nutricional indica proteína elevada e baixo carboidrato.
+
+    Categorize each item into one of three categories:
+    1. RELEVANT: The item is a good match for the query
+    2. SOMEWHAT RELEVANT: The item's description or name mentions at least 1 detail or keyword from the query (e.g., "korean spicy chicken" and "Cup Noodles instant noodles in a cup, chicken flavor" share "chicken", so it's somewhat relevant)
+    The keyword doesn't have to be an exact match. For example, "sandwich" and "burger" can be considered similar enough for this criteria.
+    3. IRRELEVANT: The item doesn't match the query whatsoever and has nothing in common.
+
+    Some queries are very specific, don't be too strict in your judgment.
+    For example, if the query is "Carne assada lentamente com acompanhamentos", results of meat dishes with sides should be considered relevant.
+
+    Answer ONLY with three numbers separated by spaces: relevant_count somewhat_relevant_count irrelevant_count
+    Example: "5 2 3" means 5 relevant, 2 somewhat relevant, and 3 irrelevant.
+    Do not include any explanation or other text.
+    

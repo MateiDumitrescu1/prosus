@@ -1,0 +1,29 @@
+Query: "Petiscos gourmet"
+
+    Items returned by the search system:
+    1. Brigadeiro Gourmet - 30g - Brigadeiro Gourmet de 30 g, bolinha de chocolate coberta com confeitos em cubos de chocolate, disposta em forminha rosa. Descrição para busca: brigadeiro, brigadeiro gourmet, doce de chocolate, 30 g, cobertura com confeitos, cubos de chocolate, sobremesa, festa.
+2. Gauchoo ( Gourmet ) - Gauchoo (Gourmet): hambúrguer gourmet Angus de 200 g com cheddar derretido e molho defumado, servido em pão Australiano. A montagem apresenta patty suculento, queijo cheddar amarelo derretido e molho cremoso entre um pão com sementes. Descrição para busca: hambúrguer Angus 200 g, cheddar, molho defumado, pão Australiano, prato gourmet, alto teor de proteína.
+3. Linguiça de Pernil Com Queijo Coalho Seara Gourmet 500g - Linguiça de Pernil com Queijo Coalho Seara Gourmet, 500 g.  
+Da linha Gourmet da Seara, trata-se de linguiça de pernil com queijo coalho.  
+Na embalagem, são visíveis rodelas de linguiça e cubos de queijo coalho.
+4. Mini enroladinho de frango com requeijaodeliciosa - Mini enroladinho de frango com recheio cremoso de requeijão, apresentando uma massa dourada e levemente crocante por fora. Produto rico em proteínas devido ao frango e com textura suave e sabor delicado do requeijão. Ideal para petiscos ou acompanhamento em refeições.
+5. Hot-dog Calabresa - Bandeja - Hot-dog Calabresa - Bandeja: lanche em pão alongado com salsicha de calabresa, coberto por molho vermelho em zig-zag, servido em uma bandeja. A imagem enfatiza o formato compacto do hot dog e o logotipo Porco Doido na base da ilustração.
+6. Pet Petiscos para Gatos Natural Crisp 20g - Petiscos para gatos Natural Crisp, pacote de 20 g. Embalagem em sache com faixa rosa/vermelha, selo verde e janela transparente que revela pedaços crocantes de cor escura.
+7. Pepperoni Fatiado Seara Gourmet 100g - Pepperoni fatiado Seara Gourmet, embalagem de 100 g. Fatias finas de pepperoni com cor avermelhada e gordura branca visível, em embalagem preta com o selo Seara Gourmet. Informações nutricionais: Valor energético 150 kcal; proteínas 10 g; carboidratos 0 g; gorduras totais 12 g (saturadas 3,6 g); fibra 0 g; sódio 662 mg.
+8. Picerno Dog - Picerno Dog é um prato montado com pão e salsicha Sadia, coberto por molho de tomate e acompanhado de maionese, mostarda, catchup, milho verde, vinagrete, purê de batatas, frango desfiado, bacon assado, brócolis fresco, cheddar, alho frito, mussarela cremosa ao forno e orégano. A apresentação, em travessa branca, exibe brócolis verde ao redor da superfície com uma pimenta vermelha no centro sobre uma camada dourada de queijo. Combina proteína/meio carne com queijos cremosos e legumes, oferecendo textura cremosa com cobertura dourada.
+9. Palmito Piriquito Pupunha Inteiro 180g - Palmito Pupunha Inteiro em conserva, unidade de 180 g, em frasco de vidro. Palmito branco, com formato inteiro, conservado em líquido. Pronto para uso em saladas, pratos frios ou petiscos.
+10. Calabresa Acebolada - Linguiça calabresa acebolada (aprox 120 g) fatiada, servida com arroz branco, feijão, batata frita e salada de alface americana com tomate. No prato, as rodelas de calabresa aparecem ao lado do arroz, com o feijão e as batatas fritas crocantes compondo a refeição. Palavras-chave de busca: calabresa acebolada, linguiça calabresa, arroz, feijão, batata frita, salada de alface com tomate.
+
+    Categorize each item into one of three categories:
+    1. RELEVANT: The item is a good match for the query
+    2. SOMEWHAT RELEVANT: The item's description or name mentions at least 1 detail or keyword from the query (e.g., "korean spicy chicken" and "Cup Noodles instant noodles in a cup, chicken flavor" share "chicken", so it's somewhat relevant)
+    The keyword doesn't have to be an exact match. For example, "sandwich" and "burger" can be considered similar enough for this criteria.
+    3. IRRELEVANT: The item doesn't match the query whatsoever and has nothing in common.
+
+    Some queries are very specific, don't be too strict in your judgment.
+    For example, if the query is "Carne assada lentamente com acompanhamentos", results of meat dishes with sides should be considered relevant.
+
+    Answer ONLY with three numbers separated by spaces: relevant_count somewhat_relevant_count irrelevant_count
+    Example: "5 2 3" means 5 relevant, 2 somewhat relevant, and 3 irrelevant.
+    Do not include any explanation or other text.
+    

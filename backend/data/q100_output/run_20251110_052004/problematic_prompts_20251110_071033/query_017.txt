@@ -1,0 +1,27 @@
+Query: "Cachorro-quente estilo paulista"
+
+    Items returned by the search system:
+    1. Ração Úmida Sachê Carne Ao Molho para Cães Adultos de Raças Pequenas Pedigree 100g - Ração úmida em sachê de carne ao molho para cães adultos de raças pequenas, Pedigree, 100 g por sachê. Refeição 100% completa, sem conservantes, sem corantes e sem aromas artificiais, com pedacinhos suculentos cozidos a vapor, balanço ideal de fibras e presença de Ômega 6 e Zinco para a pelagem saudável. Embalagem amarela com imagem de cão e o logo Pedigree azul; guia alimentar da embalagem recomenda 4-6 sachês por dia para cães de raças pequenas.
+2. Ração Úmida Sachê Carne Ao Molho para Cães Adultos de Raças Pequenas Pedigree 100g - Ração úmida em sachê de 100 g para cães adultos de raças pequenas, sabor carne ao molho da Pedigree. Refeição 100% completa e balanceada, com ingredientes de alta qualidade, sem conservantes, sem corantes e sem aromas artificiais. Contém Ômega-6 e Zinco para pelo saudável, com pedacinhos cozidos a vapor e balanço ideal de fibras que ajudam a fezes firmes e fáceis de limpar.
+3. Special dog - Special dog é um cachorro-quente com pão macio, salsicha, alface, tomate e maionese. Acompanha milho, batata palha e purê, com cobertura de parmesão. A combinação traz cremosidade (maionese, purê) e crocância (batata palha), com vegetais visíveis e parmesão sobre o conjunto.
+4. Trio Dog Campineiro - Trio Dog Campineiro é um cachorro-quente com pão, salsicha, maionese, batata palha, purê, vinagrete e milho. Acompanha batata individual e lata de Coca-Cola.
+5. Ração Úmida Pedigree Sachê Cordeiro Ao Molho para Cães Adultos de Raças Pequenas 100 G - Ração úmida em sachê de 100 g para cães adultos de raças pequenas, sabor cordeiro ao molho. Oferece refeição 100% completa, sem conservantes, sem corantes e sem aromas artificiais, com pedacinhos suculentos cozidos a vapor, balanço ideal de fibras e fezes firmes e fáceis de limpar. Para pelo saudável, contém Ômega 6 e Zinco.
+6. Pão de Hot Dog - Pão de hot dog macio, em formato alongado, com crosta dourada e superfície levemente brilhante. Interior branco e fofinho, com textura macia. Pode ser usado como pão para cachorro-quente, ideal para acompanhar salsichas e toppings.
+7. Dog calabresa c/bacon e cheddar - Cachorro-quente com calabresa, bacon crocante e queijo cheddar derretido, acompanhado de salsicha, milho, ervilha, vinagrete, maionese, ketchup, mostarda e batata palha crocante. Combinação de sabores salgados e defumados com texturas cremosas e crocantes. Opção rica em proteínas pela presença das carnes e queijo.
+8. N 01 Simples - Cachorro-quente simples com salsicha, purê cremoso, molho de tomate, ketchup, mostarda e maionese, finalizado com crocantes batatas palha por cima. Combinação de sabores suaves e texturas variadas, incluindo o toque crocante da batata palha. Opção rica em proteínas pela presença da salsicha.
+9. Ração Úmida para Cães Filhotes Frango Ao Molho Pedigree 100g - Ração úmida Pedigree para cães filhotes, sabor Frango ao Molho, em embalagem de 100 g. Refeição 100% completa, sem conservantes, sem corantes e sem aromas artificiais, com pedacinhos suculentos cozidos a vapor. Fonte de cálcio e fósforo, balanço ideal de fibras; proporciona fezes firmes e fáceis de limpar e contribui para crescimento seguro e saudável.
+10. Lanche Churrasquinho do Candreva Especial - Churrasquinho Candreva Especial: filé mignon, queijo, bacon e ovo em sanduíche, acompanhado de batata chips e maionese temperada. Visivelmente apresenta carne grelhada com queijo derretido entre pão cortado em pedaços, com bacon visível, e batata chips crocantes ao lado.
+
+    Categorize each item into one of three categories:
+    1. RELEVANT: The item is a good match for the query
+    2. SOMEWHAT RELEVANT: The item's description or name mentions at least 1 detail or keyword from the query (e.g., "korean spicy chicken" and "Cup Noodles instant noodles in a cup, chicken flavor" share "chicken", so it's somewhat relevant)
+    The keyword doesn't have to be an exact match. For example, "sandwich" and "burger" can be considered similar enough for this criteria.
+    3. IRRELEVANT: The item doesn't match the query whatsoever and has nothing in common.
+
+    Some queries are very specific, don't be too strict in your judgment.
+    For example, if the query is "Carne assada lentamente com acompanhamentos", results of meat dishes with sides should be considered relevant.
+
+    Answer ONLY with three numbers separated by spaces: relevant_count somewhat_relevant_count irrelevant_count
+    Example: "5 2 3" means 5 relevant, 2 somewhat relevant, and 3 irrelevant.
+    Do not include any explanation or other text.
+    

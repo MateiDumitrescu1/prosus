@@ -1,0 +1,27 @@
+Query: "Pizza estilo vovó"
+
+    Items returned by the search system:
+    1. GRANDE 2 SABORES (8 PEDAÇOS) - Pizza grande com dois sabores, dividida em 8 pedaços. Coberta com queijo derretido, rodelas de tomate e folhas de manjericão, com as duas metades apresentando recheios distintos. Descrita para buscas por pizza grande, 8 pedaços, tomate, queijo e manjericão.
+2. Pizza : 4 queijos / Frango com Catupiry + Refri 2l - Pizza com 8 fatias, combinando 4 queijos e meia Frango com Catupiry, com borda cortesia, acompanhada de Refri 2L. Na aparência, a pizza apresenta queijo derretido com rodelas de tomate na superfície e borda dourada.
+3. Pizzas Doce 20cm (4 fatias) 2 Sabores - Pizza doce de 20 cm, cortada em 4 fatias, com dois sabores. Cobertura de chocolate com granulados de chocolate e uma cereja no centro, sobre massa de pizza assada. Ideal como sobremesa, destacando chocolate e cereja na apresentação.
+4. GRANDE 3 SABORES (8 PEDAÇOS) - Pizza grande com três sabores diferentes, composta por 8 pedaços. Cada fatia apresenta uma variedade distinta de ingredientes, combinando sabores e texturas variadas. Ideal para quem busca variedade em uma única pizza, com cobertura generosa e massa tradicional.
+5. Adicionar mais Requeijão - Requeijão cremoso para pizza, apresentado como complemento de cobertura. Textura suave e cremosa, de cor branca, conforme a imagem de porção de requeijão. Vendido apenas incluso na pizza.
+6. Pizza Pernil Doido - Pizza Pernil Doido é uma pizza com Pernil à Moda da Casa, mussarela, bacon, molho de alho, vinagrete, orégano e azeitona. A imagem mostra uma fatia de pizza com cobertura e toppings visíveis. Combina carne de porco com queijo e temperos, resultando em sabor salgado e aromático.
+7. Penne - Macarrão penne coberto com recheios exclusivos da Pizza Hut, com peso médio de aproximadamente 350 g por unidade. A imagem sugere embalagem típica da Pizza Hut para entrega. Palavras-chave: penne, macarrão penne, recheios exclusivos, Pizza Hut, 350 g, unidade, massa pronta.
+8. Pizza Brócolis (8 pedaços) - Pizza Brócolis (8 pedaços) com mussarela, brócolis, parmesão, champignon e alho, coberta com molho de tomate, orégano e azeitonas. Na imagem, destacam-se brócolis verde, cogumelos champignon e pedaços de pimentão sobre queijo derretido, com borda dourada.
+9. GRANDE 2 SABORES (8 PEDAÇOS) - Pizza grande com 8 pedaços, que combina dois sabores diferentes na mesma unidade. A pizza apresenta uma borda dourada e crocante, com cobertura variada que pode incluir ingredientes tradicionais e variados, proporcionando uma experiência saborosa e diversificada. Ideal para quem busca variedade em uma única pizza de tamanho grande.
+10. Pastel de pizza - Pastel de pizza com massa crocante e dourada, recheado com queijo derretido, pedaços de tomate e presunto. O interior é cremoso, lembrando o sabor de pizza, enquanto a massa externa permanece crocante por fora.
+
+    Categorize each item into one of three categories:
+    1. RELEVANT: The item is a good match for the query
+    2. SOMEWHAT RELEVANT: The item's description or name mentions at least 1 detail or keyword from the query (e.g., "korean spicy chicken" and "Cup Noodles instant noodles in a cup, chicken flavor" share "chicken", so it's somewhat relevant)
+    The keyword doesn't have to be an exact match. For example, "sandwich" and "burger" can be considered similar enough for this criteria.
+    3. IRRELEVANT: The item doesn't match the query whatsoever and has nothing in common.
+
+    Some queries are very specific, don't be too strict in your judgment.
+    For example, if the query is "Carne assada lentamente com acompanhamentos", results of meat dishes with sides should be considered relevant.
+
+    Answer ONLY with three numbers separated by spaces: relevant_count somewhat_relevant_count irrelevant_count
+    Example: "5 2 3" means 5 relevant, 2 somewhat relevant, and 3 irrelevant.
+    Do not include any explanation or other text.
+    

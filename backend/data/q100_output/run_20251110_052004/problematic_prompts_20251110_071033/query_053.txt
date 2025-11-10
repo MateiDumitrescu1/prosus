@@ -1,0 +1,27 @@
+Query: "Frango picante estilo búfalo"
+
+    Items returned by the search system:
+    1. X File de Frango Maionese Tabasco - X File de Frango Maionese Tabasco é um sanduíche com pão de hambúrguer macio, filé de frango, fatia de queijo e alface crocante, temperado com Maionese Tabasco. A maionese picante acompanha à parte. Sabor cremoso e picante, com alto teor de proteína do frango e a combinação de alface crocante e queijo.
+2. Caesar Wrap Peq - Caesar Wrap Peq com frango grelhado, muçarela de búfala, tomate, parmesão, croutons da casa e alface. O recheio apresenta frango grelhado, queijo de búfala, alface, tomate e crocantes croutons com notas de parmesão, visível no corte do wrap. Palavras-chave para busca: wrap Caesar, frango grelhado, muçarela de búfala, tomate, parmesão, croutons, alface, proteína.
+3. Macarrão Instantâneo Cup Noodles Galinha Picante 68g - Macarrão instantâneo Cup Noodles Galinha Picante, unidade de 68 g. Embalagem tipo copo com rótulo vermelho e imagem de macarrão com pedaços de frango e milho. Sabor picante de galinha, característico da linha Galinha Picante.
+4. Frango com Requeijão - Frango desfiado com tempero da casa e requeijão, apresentado com uma porção de requeijão cremoso ao lado. A imagem mostra um crocante retângulo frito de massa, acompanhado de tiras de frango desfiado e creme de requeijão.
+5. Lanche de frango cremoso - Lanche de frango cremoso com filé de frango, tomate e Catupiry, apresentado em pão enrolado com recheio cremoso e queijo derretido visível ao corte. O recheio combina pedaços de tomate e Catupiry, conferindo textura macia e sabor cremoso. Acompanha batata chips e maionese temperada.
+6. File de frango grelhado - Filé de frango grelhado em dois pedaços, com marcas de grelha visíveis e superfície dourada, decorado com ervas. Acompanha arroz branco, feijão, fritas e farofa especial tipo tropeiro. Alto teor de proteína.
+7. Frango com requeijão - Frango com requeijão: recheio cremoso de frango desfiado com requeijão, envolto em massa folhada crocante e assado até dourar. A peça apresenta massa dourada por fora com interior macio e cremoso, destacando o recheio de frango com requeijão.
+8. Frango c/ Catupiry - Pizza com mussarela derretida, frango desfiado, queijo Catupiry cremoso e azeitonas verdes, combinando sabores suaves e textura cremosa. Ideal para quem busca uma opção rica em proteínas e com toque levemente salgado das azeitonas. A massa é tradicional, levemente crocante nas bordas.
+9. 26 - frango, queijo, milho, Catupiry, presunto, salada - Sanduíche de frango com presunto, queijo e Catupiry, com milho e salada. Recheio cremoso de Catupiry com queijo, combinado ao frango, alface e tomate, servido em pão macio.
+10. Frango+bacon+ovo+Catupiry - Sanduíche em pão brioche com filé de frango grelhado, bacon, ovo e Catupiry, acompanhado de alface, tomate e maionese. As camadas exibem frango fatiado, bacon crocante, ovo e Catupiry cremoso entre o pão macio, com alface fresca e tomate. Alto teor de proteína devido ao frango e ao ovo; contém carboidratos do pão.
+
+    Categorize each item into one of three categories:
+    1. RELEVANT: The item is a good match for the query
+    2. SOMEWHAT RELEVANT: The item's description or name mentions at least 1 detail or keyword from the query (e.g., "korean spicy chicken" and "Cup Noodles instant noodles in a cup, chicken flavor" share "chicken", so it's somewhat relevant)
+    The keyword doesn't have to be an exact match. For example, "sandwich" and "burger" can be considered similar enough for this criteria.
+    3. IRRELEVANT: The item doesn't match the query whatsoever and has nothing in common.
+
+    Some queries are very specific, don't be too strict in your judgment.
+    For example, if the query is "Carne assada lentamente com acompanhamentos", results of meat dishes with sides should be considered relevant.
+
+    Answer ONLY with three numbers separated by spaces: relevant_count somewhat_relevant_count irrelevant_count
+    Example: "5 2 3" means 5 relevant, 2 somewhat relevant, and 3 irrelevant.
+    Do not include any explanation or other text.
+    

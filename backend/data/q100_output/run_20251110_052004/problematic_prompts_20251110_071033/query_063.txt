@@ -1,0 +1,27 @@
+Query: "Estilo ceviche de mercado fresco"
+
+    Items returned by the search system:
+    1. Ceviche de salmão com manga - Ceviche de salmão com manga, cubos de salmão fresco e manga, kani, fatias de cebola roxa, pimenta dedo-de-moça picada, gergelim e cebolinha em molho cítrico. Porção de 220 g. Alto teor de proteína, com sabor cítrico, doçura da manga e leve toque picante, apresentando textura macia do salmão e elementos crocantes dos vegetais.
+2. Causa acevichada - Causa acevichada é uma base fria de batata peruana, temperada com ají amarillo e limão. A montagem na imagem mostra camadas distintas: base amarela, camada verde de abacate e ceviche de peixe com cebola roxa por cima, acompanhados de um toque de molho amarelo ao lado. A proteína vem do ceviche e o abacate adiciona cremosidade, resultando em uma combinação de textura cremosa e fresca com cores contrastantes.
+3. Empanada Porteña - Empanada Porteña com recheio de dois queijos, tomate assado e manjericão fresco. A massa está assada, apresentando dourado na superfície e marcas de cozimento perceptíveis. Descrição útil para buscas por empanada de queijo, tomate assado e manjericão, estilo porteño.
+4. 10 Picolés - Conjunto de 10 picolés variados, com embalagens coloridas em diversas cores (vermelho, azul, verde e amarelo). Oferece uma seleção de sobremesa gelada com sabores variados. Ideal para quem busca adquirir 10 unidades de picolé em uma única compra.
+5. Picolé - Picolé de Frutas e Leite: picolé gelado que combina o sabor das frutas com a cremosidade do leite, oferecendo uma experiência refrescante. A imagem mostra uma seleção de picolés embalados individualmente, com cores diversas, incluindo opções de chocolate e sabores cítricos como limão. Ideal para dias quentes, é um doce gelado da categoria "Picolés Deliciosos" com sabor frutado e textura cremosa pelo leite.
+6. Coxinha da Asa de Frango - Coxinha da Asa de Frango – pedaços de asa (drumettes) cruas com pele, dispostos sobre superfície de madeira. Produto vendido por peso, sem tempero. Alto teor de proteína, carne de frango, adequado para preparações culinárias posteriores.
+7. Refrigerante Limão Siciliano Fys Lata 350ml - Refrigerante FYS Limão Siciliano, lata de 350 ml. Produto do grupo Heineken, com 50% menos açúcar em comparação à média de mercado. O rótulo mostra limões sicilianos com cores verde e amarelo e o logotipo FYS.
+8. Frango c/ Catupiry - Pizza com mussarela derretida, frango desfiado, queijo Catupiry cremoso e azeitonas verdes, combinando sabores suaves e textura cremosa. Ideal para quem busca uma opção rica em proteínas e com toque levemente salgado das azeitonas. A massa é tradicional, levemente crocante nas bordas.
+9. Yakissoba Tradicional G 1 Kg - Yakissoba Tradicional G 1 Kg: macarrão chinês salteado com carne e frango, legumes (acelga, cebola, cenoura, pimentão vermelho, repolho, vagem, brócolis) e molho da casa. Sem champignon. Porção de 1 kg.
+10. Churrasquinho de calabresa - Churrasquinho de calabresa servido em baguete, com fatias de linguiça calabresa, queijo, vinagrete e rúcula. O sanduíche é apresentado em pão tipo baguete, com camadas de calabresa, queijo e vinagrete sobre rúcula.
+
+    Categorize each item into one of three categories:
+    1. RELEVANT: The item is a good match for the query
+    2. SOMEWHAT RELEVANT: The item's description or name mentions at least 1 detail or keyword from the query (e.g., "korean spicy chicken" and "Cup Noodles instant noodles in a cup, chicken flavor" share "chicken", so it's somewhat relevant)
+    The keyword doesn't have to be an exact match. For example, "sandwich" and "burger" can be considered similar enough for this criteria.
+    3. IRRELEVANT: The item doesn't match the query whatsoever and has nothing in common.
+
+    Some queries are very specific, don't be too strict in your judgment.
+    For example, if the query is "Carne assada lentamente com acompanhamentos", results of meat dishes with sides should be considered relevant.
+
+    Answer ONLY with three numbers separated by spaces: relevant_count somewhat_relevant_count irrelevant_count
+    Example: "5 2 3" means 5 relevant, 2 somewhat relevant, and 3 irrelevant.
+    Do not include any explanation or other text.
+    

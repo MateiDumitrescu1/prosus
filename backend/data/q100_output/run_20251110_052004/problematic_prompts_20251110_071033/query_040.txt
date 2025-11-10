@@ -1,0 +1,27 @@
+Query: "Prato de carnes grelhadas argentinas"
+
+    Items returned by the search system:
+    1. Rodeio Duplo - Rodeio Duplo é um hambúrguer com duas carnes bovinas grelhadas em pão com gergelim, com queijo derretido entre as carnes. Inclui onion rings crocantes, molho barbecue e maionese BK. Possui alto teor de proteína, com sabor cremoso do queijo e crocância dos onion rings.
+2. Calabresa Acebolada - Linguiça calabresa acebolada (aprox 120 g) fatiada, servida com arroz branco, feijão, batata frita e salada de alface americana com tomate. No prato, as rodelas de calabresa aparecem ao lado do arroz, com o feijão e as batatas fritas crocantes compondo a refeição. Palavras-chave de busca: calabresa acebolada, linguiça calabresa, arroz, feijão, batata frita, salada de alface com tomate.
+3. Combo Stacker Duplo Bacon - Combo Stacker Duplo Bacon: hambúrguer com duas carnes bovinas grelhadas de 57 g, pão com gergelim, queijo derretido, fatias de bacon crocante e molho BK Stacker. Acompanha batata frita e bebida (refrigerante Pepsi).
+4. Combo Stacker Duplo Bacon - Combo Stacker Duplo Bacon: hambúrguer com duas carnes bovinas grelhadas de 57g, pão com gergelim, queijo derretido, fatias de bacon crocantes e o molho BK Stacker. Acompanha batata frita e bebida Pepsi. Alto teor de proteína, com sabor cremoso do queijo e crocante do bacon.
+5. Filé de frango grelhado - Filé de frango grelhado, proteína magra, servido com arroz branco e legumes variados (cenoura e pimentão). Acompanha um quadrado amarelo de acompanhamento, com uma pequena erva por cima. Descrição para busca: alto teor de proteína, prato de frango grelhado com arroz e vegetais, refeição balanceada.
+6. File de frango grelhado - Filé de frango grelhado em dois pedaços, com marcas de grelha visíveis e superfície dourada, decorado com ervas. Acompanha arroz branco, feijão, fritas e farofa especial tipo tropeiro. Alto teor de proteína.
+7. Combo Whopper Duplo - Combo Whopper Duplo: hambúrguer com duas carnes bovinas grelhadas de 113 g, pão com gergelim, queijo derretido, picles e salada fresca (alface, cebola, tomate), com ketchup e maionese BK. Acompanha batatas fritas e bebida, conforme a imagem, com uma lata de refrigerante ao lado. Palavras-chave para busca: combo de fast food, hambúrguer duplo, duas carnes, queijo, vegetais (alface, tomate, cebola), picles, molhos BK, batatas fritas, bebida, pão com gergelim.
+8. Marmita Filé de Frango Grelhado - Marmita de filé de frango grelhado, acompanhada de arroz e feijão, com opção de legumes ou batata frita, aprox 600 g. Os filés aparecem dourados com marcas de grelha, servidos com legumes coloridos como pepino, tomate e pimentão. Alto teor de proteína, com carboidratos do arroz e feijão e vegetais para equilíbrio nutricional.
+9. File de Frango Grelhado - Filé de frango grelhado fatiado sobre arroz branco, acompanhado de feijão e fatias de banana-da-terra frita. A combinação oferece proteína magra, carboidratos do arroz e fibra do feijão, com o toque crocante da banana frita.
+10. Picanha Bovina Bassi Kg - Picanha bovina sem osso, carne resfriada, da marca Bassi. Peça com marmoreio visível e camada de gordura externa, conforme embalagem com etiqueta preta. Produto vendido por peso (compra por peso).
+
+    Categorize each item into one of three categories:
+    1. RELEVANT: The item is a good match for the query
+    2. SOMEWHAT RELEVANT: The item's description or name mentions at least 1 detail or keyword from the query (e.g., "korean spicy chicken" and "Cup Noodles instant noodles in a cup, chicken flavor" share "chicken", so it's somewhat relevant)
+    The keyword doesn't have to be an exact match. For example, "sandwich" and "burger" can be considered similar enough for this criteria.
+    3. IRRELEVANT: The item doesn't match the query whatsoever and has nothing in common.
+
+    Some queries are very specific, don't be too strict in your judgment.
+    For example, if the query is "Carne assada lentamente com acompanhamentos", results of meat dishes with sides should be considered relevant.
+
+    Answer ONLY with three numbers separated by spaces: relevant_count somewhat_relevant_count irrelevant_count
+    Example: "5 2 3" means 5 relevant, 2 somewhat relevant, and 3 irrelevant.
+    Do not include any explanation or other text.
+    

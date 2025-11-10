@@ -1,0 +1,29 @@
+Query: "Prato compartilhado tamanho família"
+
+    Items returned by the search system:
+    1. Strogonoff  de Frango Tamanho Família - Strogonoff de Frango Tamanho Família traz 3 filézinhos de frango cortados em cubos com cogumelos champignon picados, cobertos por molho de 450 gramas. Acompanha arroz caseiro 500 gramas e batata palha crocante 75 gramas, oferecendo uma refeição caseira com sabor único.
+2. Chocolate Ao Leite Em Barra Tamanho Família Lacta 145g - Chocolate ao leite em barra tamanho família da Lacta, embalagem azul com o selo Tamanho Família. A barra é segmentada em quadradinhos e mostra o chocolate ao leite tradicional em cada peça. Peso 145 g, ideal para consumo direto ou compartilhamento.
+3. Chocolate Ao Leite Em Barra Tamanho Família Lacta 145g - Chocolate ao leite em barra Tamanho Família Lacta, 145 g. Embalagem azul com o logotipo Lacta em branco e a etiqueta “Tamanho Família”, ilustrando uma barra de chocolate ao leite. Produto de chocolate ao leite em formato de barra, da marca Lacta, peso 145 g.
+4. Porção Na Caixa- Tilápia+ fritas+ Polenta Especial 35cm (Serve 4 pessoas) - Porção na caixa de 35 cm com tilápia frita, batata frita e polenta frita, acompanhada de molho especial. A porção apresenta tilápia em tiras fritas, batata frita dourada e polenta frita, com o molho especial incluído. Serve 4 pessoas.
+5. Combo Familía! - Combo Família com 3 Box(es) G e 1 Refrigerante de 2 Litros.  
+As embalagens vermelhas exibem o rótulo Ital In House.  
+Conteúdo descrito: 3 caixas tamanho G e 1 refrigerante de 2 litros, conforme a imagem.
+6. (Combo 10%) 2 Frangos Inteiro Atropelado+Batatas+Farofa Média 400g Cortesia - Combo com 2 frangos inteiros atropelados (desossados e espalmados), apresentando pele dourada. Acompanha batatas assadas e Farofa Média de 400 g cortesia. Rende aproximadamente 8 pessoas.
+7. Tilápia a Moda - Prato com 700 gramas de tilápia preparada na moda, acompanhada de arroz branco, salada fresca e purê cremoso. Refeição balanceada, rica em proteínas provenientes do peixe, com acompanhamento de baixo teor de carboidratos e vegetais. Serve duas pessoas.
+8. Promo Meio a Meio Marguerita Clássica ou Calabresa Seara + Coca-Cola 1l - Pizza grande de 8 pedaços com opção meio a meio: marguerita clássica (molho de tomate 100% natural, mussarela especial, fatias de tomate e manjericão fresco) de um lado e calabresa Seara coberta com cebolas do outro. Pode ser meio a meio ou inteira, você escolhe, e é preparada artesanalmente. Serve de 3 a 4 pessoas e acompanha Coca-Cola 1L.
+9. Dois amores - Dois amores é uma massa de chocolate com recheio de dois amores (Ninho e brigadeiro). A apresentação apresenta cobertura dupla: metade com chocolate escuro e metade com cobertura clara, decorada com granulados. Serve 4 pessoas.
+10. Pizza : Bacon Especial / Chocolate + Refri 2l - Pizza de 8 fatias com duas metades distintas: meia Bacon Especial e meia Chocolate. A metade Bacon Especial vem com cobertura de bacon sobre queijo; a metade Chocolate tem cobertura de chocolate. Acompanha refrigerante 2L (cortesia).
+
+    Categorize each item into one of three categories:
+    1. RELEVANT: The item is a good match for the query
+    2. SOMEWHAT RELEVANT: The item's description or name mentions at least 1 detail or keyword from the query (e.g., "korean spicy chicken" and "Cup Noodles instant noodles in a cup, chicken flavor" share "chicken", so it's somewhat relevant)
+    The keyword doesn't have to be an exact match. For example, "sandwich" and "burger" can be considered similar enough for this criteria.
+    3. IRRELEVANT: The item doesn't match the query whatsoever and has nothing in common.
+
+    Some queries are very specific, don't be too strict in your judgment.
+    For example, if the query is "Carne assada lentamente com acompanhamentos", results of meat dishes with sides should be considered relevant.
+
+    Answer ONLY with three numbers separated by spaces: relevant_count somewhat_relevant_count irrelevant_count
+    Example: "5 2 3" means 5 relevant, 2 somewhat relevant, and 3 irrelevant.
+    Do not include any explanation or other text.
+    

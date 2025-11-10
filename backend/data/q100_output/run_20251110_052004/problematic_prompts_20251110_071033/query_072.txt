@@ -1,0 +1,27 @@
+Query: "Pão achatado recheado enrolado"
+
+    Items returned by the search system:
+    1. Enrolado De Frango C/Requeijao Assado - Enrolado de Frango com Requeijão Assado: pão enrolado assado recheado com frango desfiado e requeijão, coberto com ervas secas por cima. Ao cortar, revela interior cremoso de frango e queijo dentro de uma massa macia e dourada pela assadura.
+2. Pão francês com presunto e queijo - Pão francês com presunto e queijo: sanduíche feito com pão francês tostado, recheado com fatias de presunto e queijo amarelo. O pão tem crosta dourada e interior macio, apresentado em duas metades sobre prato branco. Proteinaceous pelo presunto e pelo queijo, oferecendo proteína proveniente do recheio.
+3. Mini enroladinho de frango com requeijaodeliciosa - Mini enroladinho de frango com recheio cremoso de requeijão, apresentando uma massa dourada e levemente crocante por fora. Produto rico em proteínas devido ao frango e com textura suave e sabor delicado do requeijão. Ideal para petiscos ou acompanhamento em refeições.
+4. Pão sírio 20cm - Dois pães sírios de 20 cm, redondos, com superfície dourada e marcas de assado. Pão sírio de formato circular, macio por dentro, apresentado em duas unidades de 20 cm.
+5. Carne, queijo e ovos - Rolos de tortilla recheados com carne, cobertos com molho vermelho e queijo ralado. O nome indica carne, queijo e ovos como ingredientes principais, sugerindo alto teor de proteína. Visualmente, o prato apresenta duas porções cobertas por molho vermelho e queijo ralado por cima.
+6. Pão doce creme c /coco - Pão doce com creme de coco: pão macio com camada de creme de coco na superfície, aparência intensa e dourada. Formato oval/alongado, com cobertura cremosa visível. Produto de padaria doce, com recheio de creme de coco que confere sabor doce e textura cremosa, típico de sobremesas de confeitaria.
+7. #62 Nozes - (aprox. 8 a 10 fatias de 100 gramas ) - Bolo branco em fatias de aproximadamente 100 g (8 a 10 fatias por peça), com recheio de creme gelado e doce de leite com nozes. Cobertura de marshmallow, nozes e cerejas, com camadas de bolo branco e recheios cremosos entre as camadas.
+8. Pão Bisnaga Artesano Pullman 300g - Pão Bisnaga Artesano Pullman, embalagem 300 g. Linha Artesano, pães bisnaga em formato de pequenas baguetes, conforme o pacote. A embalagem exibe pães de aspecto claro com motivos de trigo no design.
+9. Promoção da casa - Promoção da casa: sanduíche com pão de brioche macio, recheado com frango desfiado, bacon crocante e queijo prato derretido, acrescido de milho doce, Catupiry cremoso, alface crocante, tomate fresco e uma camada generosa de maionese. Não possui hambúrguer.
+10. Pão de Forma Tradicional sem Casca Pullman 450g - Pão de Forma Pullman Sem Casca Tradicional, pão branco fatiado em embalagem de 450 g. Fatias sem casca em formato tradicional, com rótulo azul e mascote de cão branco na embalagem.
+
+    Categorize each item into one of three categories:
+    1. RELEVANT: The item is a good match for the query
+    2. SOMEWHAT RELEVANT: The item's description or name mentions at least 1 detail or keyword from the query (e.g., "korean spicy chicken" and "Cup Noodles instant noodles in a cup, chicken flavor" share "chicken", so it's somewhat relevant)
+    The keyword doesn't have to be an exact match. For example, "sandwich" and "burger" can be considered similar enough for this criteria.
+    3. IRRELEVANT: The item doesn't match the query whatsoever and has nothing in common.
+
+    Some queries are very specific, don't be too strict in your judgment.
+    For example, if the query is "Carne assada lentamente com acompanhamentos", results of meat dishes with sides should be considered relevant.
+
+    Answer ONLY with three numbers separated by spaces: relevant_count somewhat_relevant_count irrelevant_count
+    Example: "5 2 3" means 5 relevant, 2 somewhat relevant, and 3 irrelevant.
+    Do not include any explanation or other text.
+    

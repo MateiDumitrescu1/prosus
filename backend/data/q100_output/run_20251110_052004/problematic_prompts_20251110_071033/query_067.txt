@@ -1,0 +1,27 @@
+Query: "Comida de rua do nordeste brasileiro"
+
+    Items returned by the search system:
+    1. Morango do Nordeste - Morango do Nordeste: morango inteiro empanado no Brigadeiro de Laka e coberto com chocolate ao leite. Caixa com 2 unidades, cada unidade pesando cerca de 60 g. Visual: morango vermelho com recheio cremoso de tom amarelo claro visível no corte, envolto por chocolate ao leite.
+2. Tempero em Pó Nordeste Sazón 60g - Tempero em pó Nordeste Sazón, sachê de 60 g. Condimento em pó da marca Sazón Nordeste, apresentado em embalagem tipo sachê de 60 g. A embalagem roxa com o logo Sazón Nordeste exibe uma imagem de prato com molho, sugerindo uso para temperar preparações nordestinas.
+3. Feijoada - Feijoada é um ensopado brasileiro de feijão preto com carne, cozidos lentamente em caldo escuro. Na imagem, o prato aparece em panela de barro com grãos pretos, pedaços de carne e arroz branco ao lado. Descrição para busca: feijoada, feijão preto, prato brasileiro, carne, arroz branco; alimento com alto teor de proteína.
+4. 610 - Saint Peter à Vilalva - Saint Peter à Vilalva: filé de peixe Saint Peter coberto por molho cremoso de queijo, acompanhado de arroz à grega com legumes e batata frita. Proteína 160 g. Prato de almoço ou jantar com sabor brasileiro, prato do dia e comida caseira.
+5. Calabresa Acebolada - Linguiça calabresa acebolada (aprox 120 g) fatiada, servida com arroz branco, feijão, batata frita e salada de alface americana com tomate. No prato, as rodelas de calabresa aparecem ao lado do arroz, com o feijão e as batatas fritas crocantes compondo a refeição. Palavras-chave de busca: calabresa acebolada, linguiça calabresa, arroz, feijão, batata frita, salada de alface com tomate.
+6. Linguiça Inteira Tradicional - Linguiça inteira tradicional artesanal, sabor característico e textura firme, servida com acompanhamentos típicos como arroz, farofa crocante e vinagrete fresco. Prato completo de comida caseira brasileiro, ideal para até 4 pessoas, rico em proteína e com combinação equilibrada de sabores salgados e levemente temperados.
+7. Morango do Nordeste - Morango do Nordeste é morango fresco coberto por brigadeiro branco cremosíssimo e banhado no chocolate ao leite. A imagem mostra o doce apresentado em prato branco, com a cobertura de chocolate ao leite envolvendo o morango e o interior vermelho parcialmente visível pela dobra da cobertura. Palavras-chave para busca: morango, brigadeiro branco, chocolate ao leite, Morango do Nordeste, sobremesa, doce.
+8. Alcatra do Agreste com Baião de Dois - Tiras de Miolo de Alcatra regadas com melaço de cana e amendoim crocante cobrem o Baião De Dois (arroz com feijão de corda verde, bacon, calabresa, carne seca, manteiga de garrafa, queijo coalho e toque de coentro). Visualmente, o prato apresenta o revestimento doce e crocante sobre o baião de dois, com carne em pedaços suculentos e queijo coalho visíveis. Combinação com proteína proveniente da carne acompanhada dos carboidratos do baião de dois, oferecendo contraste de sabores doce-salgado e texturas crocantes.
+9. Feijoada - Feijoada: prato brasileiro tradicional de feijão preto cozido, apresentado em panela de barro. Acompanha arroz branco ou integral, mandioca, couve e farofa, formando uma combinação típica brasileira. O feijão escuro aparece em ensopado denso, cercado pelos acompanhamentos indicados.
+10. File de frango grelhado - Filé de frango grelhado em dois pedaços, com marcas de grelha visíveis e superfície dourada, decorado com ervas. Acompanha arroz branco, feijão, fritas e farofa especial tipo tropeiro. Alto teor de proteína.
+
+    Categorize each item into one of three categories:
+    1. RELEVANT: The item is a good match for the query
+    2. SOMEWHAT RELEVANT: The item's description or name mentions at least 1 detail or keyword from the query (e.g., "korean spicy chicken" and "Cup Noodles instant noodles in a cup, chicken flavor" share "chicken", so it's somewhat relevant)
+    The keyword doesn't have to be an exact match. For example, "sandwich" and "burger" can be considered similar enough for this criteria.
+    3. IRRELEVANT: The item doesn't match the query whatsoever and has nothing in common.
+
+    Some queries are very specific, don't be too strict in your judgment.
+    For example, if the query is "Carne assada lentamente com acompanhamentos", results of meat dishes with sides should be considered relevant.
+
+    Answer ONLY with three numbers separated by spaces: relevant_count somewhat_relevant_count irrelevant_count
+    Example: "5 2 3" means 5 relevant, 2 somewhat relevant, and 3 irrelevant.
+    Do not include any explanation or other text.
+    

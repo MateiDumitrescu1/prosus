@@ -1,0 +1,27 @@
+Query: "Caixa de proteína rápida e saudável"
+
+    Items returned by the search system:
+    1. Monte seu Wrap - Monte seu Wrap: opção rápida, prática e saudável, com tortilla integral. O recheio, conforme a imagem, traz base de folhas com legumes frescos (alface, pepino, tomate e cebola roxa), proteína à escolha, 3 ingredientes, 1 queijo, 1 molho e 1 acompanhamento, tudo enrolado.
+2. Contra Filé Bovino Oba - Contra Filé Bovino Oba é um corte bovino cru apresentado em peças com leve marmoreio. Na imagem, as peças são acompanhadas por folhas de salsa e tomate-cereja, destacando a apresentação da carne. Vendido por peso.
+3. Bebida Láctea Uht Whey 23g Piracanjuba Zero Lactose Amendoim Tetra Pak 250ml - Bebida láctea UHT com whey, 23 g de proteínas e lactose zero, sabor amendoim, da Piracanjuba Pro Force. Embalagem Tetra Pak de 250 ml com tampa preta, em tons laranja/preto e com imagem de amendoim na embalagem. Descrição para buscas: bebida proteica sem lactose, 23 g proteína, amendoim, Piracanjuba Pro Force, embalagem 250 ml.
+4. Whey Protein Concentrado Sabor Chocolate Dux Nutrition 450g - Whey Protein Concentrado Sabor Chocolate Dux Nutrition, embalagem de 450 g. Proteína de soro de leite concentrada em pó com sabor chocolate, destinada a suplementação proteica. A embalagem preta possui detalhes vermelhos e o rótulo mostra o texto "Whey Protein Concentrado".
+5. Chocolate Ao Leite com Amendoim Shot Lacta 80g - Chocolate ao leite com amendoim Lacta Shot, barra de 80 g. Quadradinhos de chocolate ao leite com amendoim visíveis nas peças. Embalagem com o selo Cocoa Life, indicando a linha Shot da Lacta.
+6. Chocolate Ao Leite com Amendoim Shot Lacta 80g - Chocolate ao leite Lacta com amendoim, Shot, 80 g. Barra de chocolate ao leite com pedacinhos de amendoim, apresentada em embalagem amarela e azul com o logo Shot e selo Cocoa Life. Valor energético ~548 kcal por 100 g, com aproximadamente 52 g de carboidratos e 8,5 g de proteína por 100 g.
+7. Chocolate Ao Leite com Amendoim Shot Lacta 80g - Chocolate ao leite com amendoim da Lacta, versão Shot, em embalagem de 80 g. Barra de chocolate ao leite com amendoim, com quadrados estampados Lacta e pedacinhos de amendoim visíveis; apresenta o selo Cocoa Life na embalagem.
+8. Sachê Ração Úmida High Proteína Cães Adultos Carne E Frango Pedigree 85g - Sachê úmido Pedigree de 85 g para cães adultos, sabor carne e frango ao molho. Alimento 100% completo e balanceado com 35% mais proteína de alta qualidade, sem conservantes, corantes ou aromas artificiais. Contém ômega-6 para pele e pelo saudáveis e antioxidantes vitamina E e selênio, contribuindo para a manutenção de músculos e ossos fortes.
+9. Barra Proteica Dobro Creme Papaia 25g - Barra proteica Dobro Mini, sabor creme de papaia, unidade de 25 g. Produto plant-based com 7 proteínas por barra. Barra proteica de papaia cremosa, 25 g por unidade, snack proteico de origem vegetal.
+10. Brownie Belive Protein 6g Double Chocolate sem Glúten Embalagem 40g - Brownie Belive Protein com 6 g de proteína, sabor chocolate duplo, sem glúten. Embalagem de 40 g e zero açúcar. Snack proteico tipo brownie com sabor chocolate, sem glúten e embalagem individual de 40 g.
+
+    Categorize each item into one of three categories:
+    1. RELEVANT: The item is a good match for the query
+    2. SOMEWHAT RELEVANT: The item's description or name mentions at least 1 detail or keyword from the query (e.g., "korean spicy chicken" and "Cup Noodles instant noodles in a cup, chicken flavor" share "chicken", so it's somewhat relevant)
+    The keyword doesn't have to be an exact match. For example, "sandwich" and "burger" can be considered similar enough for this criteria.
+    3. IRRELEVANT: The item doesn't match the query whatsoever and has nothing in common.
+
+    Some queries are very specific, don't be too strict in your judgment.
+    For example, if the query is "Carne assada lentamente com acompanhamentos", results of meat dishes with sides should be considered relevant.
+
+    Answer ONLY with three numbers separated by spaces: relevant_count somewhat_relevant_count irrelevant_count
+    Example: "5 2 3" means 5 relevant, 2 somewhat relevant, and 3 irrelevant.
+    Do not include any explanation or other text.
+    

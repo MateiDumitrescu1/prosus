@@ -1,0 +1,27 @@
+Query: "Amostra de tapas ao estilo espanhol"
+
+    Items returned by the search system:
+    1. Churros Espanhol - Churros espanhol em palitos, 15 unidades, cobertos com açúcar na superfície. Acompanhados por dois molhos à escolha.
+2. Salame Serrano Espanhol Casa Basca 100g - Salame Serrano Espanhol, Casa Basca, 100 g, fatiado e embalado. Fatias finas de salame com tonalidade rosada e veios de gordura branca, visíveis através da embalagem.
+3. Promoção 10 Esfihas de Queijo - Promoção 10 esfihas de queijo. Esfiha de queijo assada com massa dourada e queijo derretido visível na cobertura, conforme o visual da imagem. Contém 10 unidades.
+4. Tekitos Tradicional Seara 300g - Tekitos Tradicional Seara 300g é um snack empanado à base de frango, apresentado na embalagem vermelha com o selo Tradicional. Contém pedaços crocantes de frango empanado, na porção de 300 g. Pode ser preparado na Air Fryer, forno ou fritadeira, conforme indicado na embalagem.
+5. Churrasquinho de calabresa - Churrasquinho de calabresa servido em baguete, com fatias de linguiça calabresa, queijo, vinagrete e rúcula. O sanduíche é apresentado em pão tipo baguete, com camadas de calabresa, queijo e vinagrete sobre rúcula.
+6. Tábua de Calabresa e Carne + 1 Acompanhamento - Tabua com carne em tiras (240 g) e calabresa fatiada (280 g) acompanhada de fritas (280 g). A apresentação traz tiras de carne e rodelas de calabresa ao lado de uma porção de batatas fritas douradas. Oferece opções de molho para acompanhar: barbecue, ranch ou maionese com ervas (70 g).
+7. Rondelli - Pequenos discos de rondelli de presunto e queijo, com queijo derretido por cima e molho de tomate visível ao redor. A porção principal é uma Marmitex média de rondelli de presunto e queijo, acompanhada por uma Marmitex mini de arroz e palha.
+8. Carne Moída de Frango Swift Congelado 500g - Carne Moída de Frango Swift Congelado 500 g. Embalagem plástica amarela com o logotipo Swift e janela translúcida na parte inferior que revela carne moída de frango em aparência granulado. Produto congelado, pronto para descongelar e usar em preparações que requerem carne moída de frango.
+9. Calabresa Acebolada - Linguiça calabresa acebolada (aprox 120 g) fatiada, servida com arroz branco, feijão, batata frita e salada de alface americana com tomate. No prato, as rodelas de calabresa aparecem ao lado do arroz, com o feijão e as batatas fritas crocantes compondo a refeição. Palavras-chave de busca: calabresa acebolada, linguiça calabresa, arroz, feijão, batata frita, salada de alface com tomate.
+10. Salsicha e frango (304) - Pão recheado com três salsichas e frango, coberto com queijo ralado visível na superfície. Acompanha catchup, mostarda, vinagrete, milho, ervilha, molho quente, purê e palha, com alto teor de proteína devido às salsichas e ao frango.
+
+    Categorize each item into one of three categories:
+    1. RELEVANT: The item is a good match for the query
+    2. SOMEWHAT RELEVANT: The item's description or name mentions at least 1 detail or keyword from the query (e.g., "korean spicy chicken" and "Cup Noodles instant noodles in a cup, chicken flavor" share "chicken", so it's somewhat relevant)
+    The keyword doesn't have to be an exact match. For example, "sandwich" and "burger" can be considered similar enough for this criteria.
+    3. IRRELEVANT: The item doesn't match the query whatsoever and has nothing in common.
+
+    Some queries are very specific, don't be too strict in your judgment.
+    For example, if the query is "Carne assada lentamente com acompanhamentos", results of meat dishes with sides should be considered relevant.
+
+    Answer ONLY with three numbers separated by spaces: relevant_count somewhat_relevant_count irrelevant_count
+    Example: "5 2 3" means 5 relevant, 2 somewhat relevant, and 3 irrelevant.
+    Do not include any explanation or other text.
+    

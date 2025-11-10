@@ -1,0 +1,27 @@
+Query: "Sanduíche de café da manhã com abacate"
+
+    Items returned by the search system:
+    1. Egg Cheese Bacon - Promo Mcd - Egg Cheese Bacon – Promo McD: sanduíche com ovo frito, queijo derretido e bacon entre pão macio, trazendo o sabor de café da manhã. Visualmente, o ovo com gema amarela aparece sobre o queijo, com fatias de bacon ao redor. Palavras-chave para busca: ovo, queijo, bacon, café da manhã, sanduíche, McD, proteína.
+2. Frango+bacon+ovo+Catupiry - Sanduíche em pão brioche com filé de frango grelhado, bacon, ovo e Catupiry, acompanhado de alface, tomate e maionese. As camadas exibem frango fatiado, bacon crocante, ovo e Catupiry cremoso entre o pão macio, com alface fresca e tomate. Alto teor de proteína devido ao frango e ao ovo; contém carboidratos do pão.
+3. Promoção da casa - Promoção da casa: sanduíche com pão de brioche macio, recheado com frango desfiado, bacon crocante e queijo prato derretido, acrescido de milho doce, Catupiry cremoso, alface crocante, tomate fresco e uma camada generosa de maionese. Não possui hambúrguer.
+4. Fatia de abacaxi com raspas de limão - Fatia generosa de abacaxi apresentada em formato cúbico, com raspas de limão espalhadas sobre a superfície. A fruta exibe cor amarela clara e textura macia, sugerindo sabor fresco e doce-ácido. No topo, guarnição de morango em formato de flor adiciona contraste visual.
+5. Sanduíche Quente de Frango Desfiado - Sanduíche quente de frango desfiado com cream cheese e mussarela, servido em pão ciabatta. Recheio com alface, rúcula, cebola roxa e tomate, com molho. Aproximadamente 355 g; alto teor de proteína devido ao frango desfiado e aos queijos, com textura cremosa do cream cheese e vegetais frescos.
+6. Pão francês com presunto e queijo - Pão francês com presunto e queijo: sanduíche feito com pão francês tostado, recheado com fatias de presunto e queijo amarelo. O pão tem crosta dourada e interior macio, apresentado em duas metades sobre prato branco. Proteinaceous pelo presunto e pelo queijo, oferecendo proteína proveniente do recheio.
+7. Ovo mexido - Dois ovos mexidos sobre uma fatia de pãozinho francês, com os ovos em pedaços brancos e amarelos sobre o pão. O prato apresenta ovos com textura fofinha cobrindo a fatia de pão francês, sem acompanhamentos visíveis. Possui alto teor de proteína devido aos ovos, com carboidratos provenientes do pão francês.
+8. Cesta de Mccafé da Manhã - Cesta de Mccafé da Manhã com 1 Suco Del Valle, 1 Egg Cheese Bacon, 1 Queijo Quente Bacon, 1 Torta e 1 bebida de sua preferência (na visualização aparece um café McCafé). A composição oferece proteína proveniente de ovo, queijo e bacon, combinando itens salgados com uma torta para o café da manhã. Na imagem, é possível ver o copo de suco Del Valle, os sanduíches, a torta e um copo amarelo de café McCafé ao lado.
+9. Abacaxi - Sorvete cremoso de abacaxi, com sabor tropical, vibrante e refrescante. Possui textura aveludada e cor amarelo-claro típica do abacaxi, apresentado em bolas sobre uma tigela, como visto na imagem.
+10. Queijo Quente Bacon - Queijo Quente Bacon é um sanduíche de pão tostado com queijo derretido e fatias de bacon crocante. A imagem mostra pão branco tostado, queijo amarelo derretido e tiras de bacon crocantes entre as fatias. É uma opção de café da manhã com queijo quente e bacon crocante.
+
+    Categorize each item into one of three categories:
+    1. RELEVANT: The item is a good match for the query
+    2. SOMEWHAT RELEVANT: The item's description or name mentions at least 1 detail or keyword from the query (e.g., "korean spicy chicken" and "Cup Noodles instant noodles in a cup, chicken flavor" share "chicken", so it's somewhat relevant)
+    The keyword doesn't have to be an exact match. For example, "sandwich" and "burger" can be considered similar enough for this criteria.
+    3. IRRELEVANT: The item doesn't match the query whatsoever and has nothing in common.
+
+    Some queries are very specific, don't be too strict in your judgment.
+    For example, if the query is "Carne assada lentamente com acompanhamentos", results of meat dishes with sides should be considered relevant.
+
+    Answer ONLY with three numbers separated by spaces: relevant_count somewhat_relevant_count irrelevant_count
+    Example: "5 2 3" means 5 relevant, 2 somewhat relevant, and 3 irrelevant.
+    Do not include any explanation or other text.
+    

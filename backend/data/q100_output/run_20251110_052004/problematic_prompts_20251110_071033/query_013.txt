@@ -1,0 +1,27 @@
+Query: "Tigela de arroz crocante com proteína"
+
+    Items returned by the search system:
+    1. Arroz Solito 1kg Integral - Arroz Solito Integral, pacote de 1 kg. Embalagem de papel com rótulo verde destacando a palavra Integral e o logotipo Solito, com imagem de uma tigela de arroz integral.
+2. Arroz branco (180g) - Porção de arroz branco (180g) apresentada em tigela branca. Grãos cozidos e soltos formam uma bola de arroz, com uma pequena folha verde no topo como guarnição. Descrição para busca: arroz branco, porção, 180g, grãos soltinhos, alimento básico, acompanhamento culinário.
+3. Feijoada (executivo) - Feijoada (executivo) com arroz branco, couve refogada, farofa, vinagrete e torresmo. A apresentação mostra feijão preto cozido com carne ao lado de arroz branco, couve verde, farofa amarela e torresmo crocante, com vinagrete ao lado. Refeição rica em proteína pela feijoada e pelo torresmo, com carboidratos do arroz e fibras da couve, oferecendo variação de texturas entre macio e crocante.
+4. Arroz branco ( serve uma pessoa ) - Arroz branco cozido em porção individual. Grãos soltos e macios, de cor branca, servido em tigela branca com uma guarnição de salsa fresca por cima. Acompanhamento básico de refeições.
+5. Arroz Solito 1kg Integral - Arroz Solito Integral 1kg, em pacote plástico com rótulo verde destacando "Integral". Grãos de arroz de cor marrom, típicos do arroz integral, são retratados na embalagem ao lado de uma tigela com arroz. Peso: 1 kg.
+6. Bowl Arroz Integral com Faláfel (vegano) - Bowl vegano com arroz integral, faláfel, salada de grão-de-bico, brócolis, cenoura e milho crocante, servido com molho árabe. Contém soja. Prato quente, completo e nutritivo, adequado como refeição balanceada e rápida.
+7. File de Peixe (Tilápia)+arroz primavera+purê batata - Filé de tilápia empanado e crocante, acompanhado de purê de batata e arroz primavera com legumes coloridos. Acompanha uma fatia de limão para toque cítrico. O prato oferece proteína magra da tilápia com carboidratos provenientes do purê e do arroz, apresentando textura crocante no peixe, purê suave e arroz colorido.
+8. Arroz Tipo 1 Broto Legal 1k - Arroz branco tipo 1, Broto Legal, em pacote de 1 kg. Embalagem preta com o logo Broto Legal em branco e vermelho e imagem de uma tigela com arroz cozido; os grãos brancos são visíveis pela embalagem.
+9. Arroz Tipo 1 Serrazul 5kg - Arroz branco tipo 1 Serrazul, embalagem de 5 kg. Embalagem azul com a marca Serrazul e imagem de uma tigela com arroz branco, conteúdo indicado como 5 kg. Descrição para busca: arroz, tipo 1, Serrazul, 5kg, pacote, arroz branco para preparo culinário.
+10. Strogonoff  de Frango Tamanho Família - Strogonoff de Frango Tamanho Família traz 3 filézinhos de frango cortados em cubos com cogumelos champignon picados, cobertos por molho de 450 gramas. Acompanha arroz caseiro 500 gramas e batata palha crocante 75 gramas, oferecendo uma refeição caseira com sabor único.
+
+    Categorize each item into one of three categories:
+    1. RELEVANT: The item is a good match for the query
+    2. SOMEWHAT RELEVANT: The item's description or name mentions at least 1 detail or keyword from the query (e.g., "korean spicy chicken" and "Cup Noodles instant noodles in a cup, chicken flavor" share "chicken", so it's somewhat relevant)
+    The keyword doesn't have to be an exact match. For example, "sandwich" and "burger" can be considered similar enough for this criteria.
+    3. IRRELEVANT: The item doesn't match the query whatsoever and has nothing in common.
+
+    Some queries are very specific, don't be too strict in your judgment.
+    For example, if the query is "Carne assada lentamente com acompanhamentos", results of meat dishes with sides should be considered relevant.
+
+    Answer ONLY with three numbers separated by spaces: relevant_count somewhat_relevant_count irrelevant_count
+    Example: "5 2 3" means 5 relevant, 2 somewhat relevant, and 3 irrelevant.
+    Do not include any explanation or other text.
+    

@@ -1,0 +1,27 @@
+Query: "Frutos do mar de inspiração portuguesa"
+
+    Items returned by the search system:
+    1. Sashimi de Vieira (110g) - Sashimi de Vieira (110 g) com 6 fatias de vieira, temperado com salsa trufada e raspas de limão. As fatias aparecem cobertas por topping de ovas laranjas e pequenas ervas, apresentadas em arranjo circular. Alimento de alto teor proteico e baixo carboidrato, típico de frutos do mar.
+2. Combo Porção Mix Peixe Empanado e Frito - Porção combinada de peixe empanado e frito, com salmão e tilápia em pedaços crocantes. Acompanha rodelas de limão, folhas de alface e um molho para mergulho à parte. Porção de aproximadamente 500 gramas, com alto teor de proteína típico de frutos do mar.
+3. Temaki Salmão, Atum Frozen, Camarão Completo - Temaki com salmão, atum frozen e camarão, arroz, cream cheese e cebolinha, envolto em alga nori. A apresentação em formato cone de nori exibe pedaços de peixe rosado e camarão, com creme de queijo e arroz, cobertos por sementes de gergelim. Palavras-chave para busca: temaki, salmão, atum frozen, camarão, arroz, cream cheese, cebolinha, nori, gergelim; prato de frutos do mar com alto teor de proteína.
+4. Esfiha portuguesa - Esfiha portuguesa com massa assada, recheada com presunto, ervilha, cebola e ovo. Apresenta formato pequeno e redondo, com cobertura clara e pedacinhos de presunto e ovo visíveis no recheio. Palavras-chave para busca: esfiha portuguesa, esfiha de presunto com ovo, presunto, ervilha, cebola, ovo, massa assada.
+5. Pêra Rocha Portuguesa - Pêra Rocha Portuguesa, fruta fresca vendida por peso. A imagem mostra pêras com casca amarela‑castanha, uma unidade inteira ao lado de outra cortada ao meio, revelando polpa clara e sementes escuras, com o caule e uma folha verde visíveis.
+6. Pizza : Portuguesa - Pizza artesanal Portuguesa, em 8 fatias, recheada com molho de tomate e mussarela, presunto, ovo, milho, ervilha, tomate e cebola, com borda cheddar ou requeijão similar. A cobertura destaca ovos em rodelas sobre o queijo derretido, acompanhado de milho, ervilha e pedaços de presunto. Mantém a combinação tradicional de ingredientes da Portuguesa.
+7. Tempero Oriental Peixe Bonito Hondashi 60g - Tempero Oriental de Peixe Bonito Hondashi, embalagem de 60 g. Pacote vermelho com o logo Hondashi em amarelo e ilustração de peixe azul sobre um círculo amarelo. Indicado como tempero de peixe bonito, apropriado para peixes, frutos do mar e pratos orientais; embalagem especifica 60 g.
+8. Empanada Lusa - Empanada Lusa é uma versão da Pizza Portuguesa, com recheio de queijo muçarela, queijo Canastra, presunto, tomate, ovo cozido, cebola dourada, azeitona verde e orégano. Na imagem, a massa assada apresenta bordas crimpadas, superfície dourada e pequenas marcas de cozimento. Descrição para busca: empanada, versão portuguesa, recheio de queijos, presunto, tomate, ovo, cebola, azeitona verde e orégano.
+9. Linguiça Portuguesa Defumada Perdigão - Linguiça Portuguesa Defumada Perdigão, vendida por peso, em peça única curvada e defumada. Embalagem plástica transparente com etiqueta laranja da Perdigão exibindo o nome do produto.
+10. Salmão Defumado Damm Fatiado Embalagem 80g - Salmão defumado fatiado da marca Damm, embalagem de 80 g. Fatias de salmão com cor laranja-rosada visíveis através da embalagem, pronto para consumo frio. Produto de peixe defumado com alto teor de proteína e baixo teor de carboidratos, adequado para sanduíches, saladas e pratos frios.
+
+    Categorize each item into one of three categories:
+    1. RELEVANT: The item is a good match for the query
+    2. SOMEWHAT RELEVANT: The item's description or name mentions at least 1 detail or keyword from the query (e.g., "korean spicy chicken" and "Cup Noodles instant noodles in a cup, chicken flavor" share "chicken", so it's somewhat relevant)
+    The keyword doesn't have to be an exact match. For example, "sandwich" and "burger" can be considered similar enough for this criteria.
+    3. IRRELEVANT: The item doesn't match the query whatsoever and has nothing in common.
+
+    Some queries are very specific, don't be too strict in your judgment.
+    For example, if the query is "Carne assada lentamente com acompanhamentos", results of meat dishes with sides should be considered relevant.
+
+    Answer ONLY with three numbers separated by spaces: relevant_count somewhat_relevant_count irrelevant_count
+    Example: "5 2 3" means 5 relevant, 2 somewhat relevant, and 3 irrelevant.
+    Do not include any explanation or other text.
+    

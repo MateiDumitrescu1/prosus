@@ -1,0 +1,27 @@
+Query: "Envoltório estilo Califórnia"
+
+    Items returned by the search system:
+    1. Uramaki califórnia - Uramaki Califórnia com 8 unidades, recheado de kani, manga e pepino. Coberto por arroz com sementes de gergelim na superfície e cortado em peças, com o recheio visível de kani, manga e pepino.
+2. Combinado 20 (20 Unidades) + 1 Refri Lata - Combinado 20 (20 Unidades) + 1 Refri Lata: 2 niguiri salmão, 2 niguiri skin, 4 uramaki califórnia, 8 sakemaki e 4 kanimaki, acompanha 1 refrigerante lata 350 ml. Este combinado não pode ter sua composição alterada. A apresentação mostra bandeja preta com peças de sushi variadas (niguiri de salmão, niguiri skin, uramaki califórnia, sakemaki e kanimaki) e uma lata de refrigerante ao lado.
+3. Macarrão Instantâneo Cup Noodles Galinha Picante 68g - Macarrão instantâneo Cup Noodles Galinha Picante, unidade de 68 g. Embalagem tipo copo com rótulo vermelho e imagem de macarrão com pedaços de frango e milho. Sabor picante de galinha, característico da linha Galinha Picante.
+4. Massa de Papel Arroz Towa 340g - Papel de arroz Towa, massa para rolinhos primavera (spring roll skin). Embalagem de 340 g com discos brancos circulares de papel arroz, com rótulo que mostra "Papel de Arroz", "Spring Roll Skin" e o logotipo Towa. Produto alimentício utilizado como envoltório para rolinhos primavera, pronto para hidratar antes do uso.
+5. Máximo clássico - Máximo clássico é um picolé de baunilha coberto com chocolate Premium. A embalagem escura apresenta estrelas e o rótulo Máximo, destacando a combinação de baunilha com cobertura de chocolate.
+6. Carne, queijo e ovos - Rolos de tortilla recheados com carne, cobertos com molho vermelho e queijo ralado. O nome indica carne, queijo e ovos como ingredientes principais, sugerindo alto teor de proteína. Visualmente, o prato apresenta duas porções cobertas por molho vermelho e queijo ralado por cima.
+7. Chocolate Branco Galak 80g - Chocolate Branco Galak 80 g, da Nestlé, embalado em envoltório amarelo com o logo azul Galak e o selo "mais cremoso". Barra de chocolate branco com quadradinhos visíveis, apresentada na embalagem. Informações nutricionais por porção de 25 g: valor energético 136 kcal, com carboidratos, açúcares, proteínas, gorduras totais, gorduras saturadas e sódio.
+8. Caesar Wrap Peq - Caesar Wrap Peq com frango grelhado, muçarela de búfala, tomate, parmesão, croutons da casa e alface. O recheio apresenta frango grelhado, queijo de búfala, alface, tomate e crocantes croutons com notas de parmesão, visível no corte do wrap. Palavras-chave para busca: wrap Caesar, frango grelhado, muçarela de búfala, tomate, parmesão, croutons, alface, proteína.
+9. Ichi - 16 Pçs - Assortimento de sushi com 16 peças, incluindo sashimis de salmão e peixe branco, nigiri de salmão e de pele, hot roll salmão, hossomaki de salmão com cream cheese, hossomaki de pepino, hossomaki de kani, uramaki Califórnia, uramaki de pele, uramaki de salmão com cream cheese e jyo salmão. Apresentação com variedade de sushis (sashimi, nigiri e rolos) em prato escuro. Não acompanha molhos, favor solicitar à parte.
+10. Biscoito Coberto com Chocolate Calipso 130g - Biscoito coberto com chocolate Calipso, da Nestlé, em embalagem vermelha de 130 g. O produto é um biscoito com cobertura de chocolate, com o logotipo Calipso destacado na embalagem. Peso líquido 130 g.
+
+    Categorize each item into one of three categories:
+    1. RELEVANT: The item is a good match for the query
+    2. SOMEWHAT RELEVANT: The item's description or name mentions at least 1 detail or keyword from the query (e.g., "korean spicy chicken" and "Cup Noodles instant noodles in a cup, chicken flavor" share "chicken", so it's somewhat relevant)
+    The keyword doesn't have to be an exact match. For example, "sandwich" and "burger" can be considered similar enough for this criteria.
+    3. IRRELEVANT: The item doesn't match the query whatsoever and has nothing in common.
+
+    Some queries are very specific, don't be too strict in your judgment.
+    For example, if the query is "Carne assada lentamente com acompanhamentos", results of meat dishes with sides should be considered relevant.
+
+    Answer ONLY with three numbers separated by spaces: relevant_count somewhat_relevant_count irrelevant_count
+    Example: "5 2 3" means 5 relevant, 2 somewhat relevant, and 3 irrelevant.
+    Do not include any explanation or other text.
+    

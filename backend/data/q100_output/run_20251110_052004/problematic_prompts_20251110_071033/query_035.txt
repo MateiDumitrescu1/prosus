@@ -1,0 +1,27 @@
+Query: "tigela de curry japonesa"
+
+    Items returned by the search system:
+    1. Sunomono - 200g - Sunomono - 200g: salada japonesa de pepino com fatias finas, temperadas com molho leve e salpicadas de sementes de gergelim. Porção de 200g apresentada em tigela escura, destacando pepinos verde-claro com aparência fresca e crocante.
+2. Sache molho shoyu - Sache de molho shoyu, um condimento líquido à base de soja fermentada, com cor marrom escura e textura líquida. Utilizado para dar sabor salgado e umami aos pratos, especialmente em preparações asiáticas. Produto sem adição de ingredientes visuais distintos, tradicional na culinária japonesa e brasileira. Ideal para temperar arroz, carnes, legumes e sushi.
+3. Poke Shimeji - Poke Shimeji é uma tigela que mistura mix de folhas, quinoa, shimeji, espaguete de abobrinha, sunomono, cenoura, manga, chips de batata doce e nori, com molho à escolha. Visualmente apresenta cogumelos shimeji sobre a base de quinoa, com tiras de manga, cenoura, espaguete de abobrinha, sunomono, nori e fatias de chips de batata doce crocantes. A quinoa contribui com proteína, e as chips de batata doce adicionam crocância ao prato.
+4. Curry de grão de bico - Curry de grão de bico com leite de coco, acompanhado de arroz integral e legumes no vapor. Prato congelado, rico em proteínas vegetais e fibras, com textura cremosa e sabor levemente apimentado. Ideal para refeições práticas e nutritivas.
+5. Gyoza Dobro - Gyoza Dobro: porção de 6 gyozas fritos de carne bovina. As unidades apresentam casquinha dourada e textura crocante por fora, alinhadas em linha sobre um prato retangular escuro.
+6. Bento Shimeji - Bento Shimeji: arroz japonês branco com sementes de gergelim, acompanhado de 200 g de shimeji. Inclui salada sunomono e dois harumaki — um queijo e um legumes — servido em bandeja com compartimentos.
+7. Jeyuk Dupbap - Jeyuk Dupbap é um prato coreano picante feito com copa lombo suíno fatiada em tiras macias, envolta em um molho de pimenta caseiro. É servido sobre arroz branco, com guarnição de cebolinha picada e sementes de gergelim visíveis sobre a carne. Visualmente, apresenta carne em tom avermelhado, molho brilhante e o contraste com o arroz, oferecendo alto teor de proteína e carboidratos provenientes do arroz.
+8. Parmegiana de Frango - Parmegiana de frango à milanesa, coberta por muçarela derretida e molho de tomate preparado com tomate, vinho branco, erva de provence, pimenta do reino e azeite. Acompanha arroz branco e batata chips; peso aproximado: 515 g.
+9. Festival Kaizen Sushi Premium - Para 2 pessoas - Festival Kaizen Sushi Premium para 2 pessoas, conjunto de sushi e sashimi (44 unidades) em embalagem colorida de festival para casa. Inclui 4 niguirizushi de barriga de salmão trufada com lascas de limão siciliano; 2 niguirizushi de peixe da época; 2 niguirizushi de atum; 4 gunkanjows de salmão; 4 uramakis variados; 8 sashimis de salmão; 5 sashimis de peixe da época; 5 sashimis de atum; e 10 sashimis salmon tartuffo lemon. Conjunto variado de preparo com sushi, sashimi e nigiri, apresentando combinações de salmão, atum e peixe da época.
+10. Teppanyaki salmão (100g) com shimeji (200g) - Teppanyaki de salmão (100 g) com shimeji (200 g). Filé de salmão grelhado na chapa com molho, acompanhado de cogumelos shimeji e guarnecido com cebolinha. Na imagem, arroz branco aparece ao fundo, mantendo as porções de 100 g de salmão e 200 g de shimeji.
+
+    Categorize each item into one of three categories:
+    1. RELEVANT: The item is a good match for the query
+    2. SOMEWHAT RELEVANT: The item's description or name mentions at least 1 detail or keyword from the query (e.g., "korean spicy chicken" and "Cup Noodles instant noodles in a cup, chicken flavor" share "chicken", so it's somewhat relevant)
+    The keyword doesn't have to be an exact match. For example, "sandwich" and "burger" can be considered similar enough for this criteria.
+    3. IRRELEVANT: The item doesn't match the query whatsoever and has nothing in common.
+
+    Some queries are very specific, don't be too strict in your judgment.
+    For example, if the query is "Carne assada lentamente com acompanhamentos", results of meat dishes with sides should be considered relevant.
+
+    Answer ONLY with three numbers separated by spaces: relevant_count somewhat_relevant_count irrelevant_count
+    Example: "5 2 3" means 5 relevant, 2 somewhat relevant, and 3 irrelevant.
+    Do not include any explanation or other text.
+    

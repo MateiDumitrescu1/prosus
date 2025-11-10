@@ -1,0 +1,27 @@
+Query: "Combo de lanches à beira-mar"
+
+    Items returned by the search system:
+    1. Combo com 2 Lanches + Batata Grande + Refrigerante 1 Litro - Combo com 2 lanches: dois hambúrgueres com pão brioche, carne bovina e queijo derretido, apresentados lado a lado. Acompanha Batata Grande e Refrigerante 1 Litro, conforme a descrição do pedido. Visual mostra pães dourados e queijo derretido visível nas camadas dos lanches.
+2. Combo de 4 Lanches + 1 refri 2l Grátis! - Combo de 4 hambúrgueres com queijo derretido, alface, tomate e molho, servidos em pães com sementes de gergelim. Acompanha uma garrafa de refrigerante Fanta Laranja de 2L, grátis. Ideal para quem busca um conjunto de lanches com bebida grande para compartilhar.
+3. Combo Lays Rústica Cream Cheese Lays - Combo de pacotes de batata Lay's Rústica no sabor Cream Cheese. Chips de corte rústico com sabor cremoso de queijo, oferecendo crocância e textura robusta. Conjunto de embalagens com o logo Lay's, indicando um kit de snacks de batata chips.
+4. Combo Toru 30 peças - Combo Toru 30 peças: mix de sashimi e sushi com salmão, incluindo 5 sashimis de salmão, 5 fatias de salmão flambado, 2 niguiris de salmão, 2 niguiris skin, 2 niguiris de salmão flambado, 4 joys variados, 5 uramakis de salmão Philadelphia e 6 hot rolls. Visualmente apresenta fatias de salmão sobre arroz, rolinhos com salmão e Philadelphia e peças com pele, distribuídas de forma colorida em prato único.
+5. Combo Chutoro - Combo Chutoro: bandeja variada de sushi com chutoro, incluindo 2 temakis, 15 sashimis, 10 uramakis, 8 hossomakis, 6 nigiris, 4 Luizinho Salmão e 10 Uni De Hot. A apresentação mostra fatias de salmão em tom laranja, rolos com recheios variados e peças de peixe cru, formando um mix colorido de sushis. Rico em proteína pela presença dos peixes, com carboidratos moderados devido ao arroz.
+6. Combo 2 (50 peças) - Combo 2 (50 peças) com 12 hot holl, 08 huramaki, 08 hossomaki, 06 niguiri de salmão, 07 sashimi e 03 niguiri skin. As peças estão dispostas em uma bandeja preta, apresentando cores laranja, branco e o contraste do preto das algas, com variedade de rolinhos e fatias de peixe. Inclui diferentes formas de preparo: huramaki, hossomaki, niguiri de salmão, niguiri skin e sashimi, além de hot holl.
+7. Combo salmão - Combo salmão com variedade de sushi: 10 sashimis de salmão, 8 hossomaki, 4 uramaki de salmão, 4 niguiris de salmão e 10 hot rolls. A apresentação é em bandeja em formato de barco, com fatias de salmão laranja, rolinhos com salmão e abacate e nigiri sobre arroz. Inclui itens de sashimi, maki (hossomaki e uramaki), nigiri e hot rolls, sugeridos para buscas por combo de salmão.
+8. Combo Toru 50 peças - Combo Toru 50 peças: mix de sushi com 25 peças de salmão (10 fatias de salmão, 5 niguiris salmão e 5 joys de salmão) e 25 peças de atum (10 fatias de atum, 5 niguiris atum e 5 joys de pepino com atum). O arranjo apresenta fatias de salmão laranja, atum rosado, nigiri sobre arroz e rolinhos com pepino, exibidos em uma bandeja colorida. Descrição para busca: sushi, sashimi, nigiri, rolls, salmão, atum, combo 50 peças; alto teor de proteína e variedade de peças.
+9. Lanche de Linguiça Especial - Lanche de Linguiça Especial é um sanduíche com linguiça saborosamente aberta, alface fresca e crocante, vinagrete suculento, cream cheese cremoso e mussarela derretida, servido em pão francês crocante e dourado ou pão de hambúrguer macio e esponjoso. A combinação oferece sabores salgados e cremosos com texturas distintas, destacando a cremosidade do cream cheese e a mussarela derretida aliadas à alface e ao vinagrete. Possui alto teor de proteína devido à linguiça e à mussarela.
+10. Combo Namorados  (60 peças) - Combo Namorados (60 peças) com 18 sashimis de salmão; 06 jyo salmão; 06 jyo shimeji; 06 jyo pepino; 06 jyo ebitem; 06 jyo couve; 06 trouxinha c/shimeji; 06 trouxinha c/couve. Apresentação em bandeja/barco com variedade de peças, destacando salmão, pepino, cogumelos shimeji e couve, além de trouxinhas recheadas com shimeji e com couve.
+
+    Categorize each item into one of three categories:
+    1. RELEVANT: The item is a good match for the query
+    2. SOMEWHAT RELEVANT: The item's description or name mentions at least 1 detail or keyword from the query (e.g., "korean spicy chicken" and "Cup Noodles instant noodles in a cup, chicken flavor" share "chicken", so it's somewhat relevant)
+    The keyword doesn't have to be an exact match. For example, "sandwich" and "burger" can be considered similar enough for this criteria.
+    3. IRRELEVANT: The item doesn't match the query whatsoever and has nothing in common.
+
+    Some queries are very specific, don't be too strict in your judgment.
+    For example, if the query is "Carne assada lentamente com acompanhamentos", results of meat dishes with sides should be considered relevant.
+
+    Answer ONLY with three numbers separated by spaces: relevant_count somewhat_relevant_count irrelevant_count
+    Example: "5 2 3" means 5 relevant, 2 somewhat relevant, and 3 irrelevant.
+    Do not include any explanation or other text.
+    

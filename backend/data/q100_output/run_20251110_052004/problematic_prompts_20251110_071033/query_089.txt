@@ -1,0 +1,27 @@
+Query: "Pastel de café da manhã saboroso"
+
+    Items returned by the search system:
+    1. Pastel de Frango com Catupiry - Pastel de Frango com Catupiry, recheado com frango desfiado temperado e Catupiry cremoso. A massa é dourada e crocante, envolvendo um recheio saboroso de frango e queijo. Termos-chave para busca: pastel de frango, Catupiry, recheio cremoso, massa crocante, pastel frito.
+2. Egg Cheese Bacon - Promo Mcd - Egg Cheese Bacon – Promo McD: sanduíche com ovo frito, queijo derretido e bacon entre pão macio, trazendo o sabor de café da manhã. Visualmente, o ovo com gema amarela aparece sobre o queijo, com fatias de bacon ao redor. Palavras-chave para busca: ovo, queijo, bacon, café da manhã, sanduíche, McD, proteína.
+3. Cesta de Mccafé da Manhã - Cesta de Mccafé da Manhã com 1 Suco Del Valle, 1 Egg Cheese Bacon, 1 Queijo Quente Bacon, 1 Torta e 1 bebida de sua preferência (na visualização aparece um café McCafé). A composição oferece proteína proveniente de ovo, queijo e bacon, combinando itens salgados com uma torta para o café da manhã. Na imagem, é possível ver o copo de suco Del Valle, os sanduíches, a torta e um copo amarelo de café McCafé ao lado.
+4. Leite Fermentado Café da Manhã Morango Banana e Linhaça Activia 170g - Leite fermentado para café da manhã com sabor morango, banana e linhaça, Activia. Embalagem de 170 g em copo com tampa verde, com ilustrações de morango, banana e linhaça no rótulo.
+5. Pastel de palmito com requeijão - Pastel de Palmito com Requeijão: massa leve e crocante, recheio de palmito suculento e requeijão cremoso. O molho especial, de receita exclusiva, envolve o palmito, potencializando o sabor e a textura cremosa do interior. Visualmente apresenta crosta dourada e crocante, com o recheio cremoso visível ao cortar.
+6. Palmito - Pastel frito de palmito, com recheio de palmito e massa crocante dourada. Possui formato retangular e é apresentado sobre uma tábua de madeira, destacando a textura crocante da massa.
+7. Açai 300ml(banana + leite em pó +leite condensado) + Pastel queijo - Açaí em 300 ml com banana fatiada, leite em pó e leite condensado, apresentado com camada roxa cremosa e pedacinhos de banana na borda. Acompanha pastel de queijo, pastel frito com massa dourada e recheio de queijo visível.
+8. Café Premium Coado 200ml - Café coado premium, 200 ml, servido bem quente. Combinação de aromas e sabores intensos de grãos selecionados. Apresentado em copo descartável amarelo com o logotipo McCafé, destacando o café escuro no interior.
+9. Bolo de pote de chocolate com recheio de chocolate,uva,amendoim - Bolo no pote com recheio de chocolate, sabor de uva e amendoim, apresentado em pote plástico roxo com tampa translúcida. No topo, uvas verdes inteiras cobrem a superfície, com pedacinhos de amendoim sobre a camada de chocolate.
+10. Bolo de Pote Nutellino - Bolo de Pote Nutellino é um bolo de pote caseiro, composto por duas camadas de bolo de leite com recheio e cobertura de creme Nutellino. A cobertura de creme Nutellino confere um acabamento cremoso de sabor chocolateado. Apresentado em formato de pote, facilitando porcionamento individual.
+
+    Categorize each item into one of three categories:
+    1. RELEVANT: The item is a good match for the query
+    2. SOMEWHAT RELEVANT: The item's description or name mentions at least 1 detail or keyword from the query (e.g., "korean spicy chicken" and "Cup Noodles instant noodles in a cup, chicken flavor" share "chicken", so it's somewhat relevant)
+    The keyword doesn't have to be an exact match. For example, "sandwich" and "burger" can be considered similar enough for this criteria.
+    3. IRRELEVANT: The item doesn't match the query whatsoever and has nothing in common.
+
+    Some queries are very specific, don't be too strict in your judgment.
+    For example, if the query is "Carne assada lentamente com acompanhamentos", results of meat dishes with sides should be considered relevant.
+
+    Answer ONLY with three numbers separated by spaces: relevant_count somewhat_relevant_count irrelevant_count
+    Example: "5 2 3" means 5 relevant, 2 somewhat relevant, and 3 irrelevant.
+    Do not include any explanation or other text.
+    

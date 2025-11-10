@@ -15,6 +15,7 @@ open_router_providers = {
 class OpenRouterModel(StrEnum):
     """Available OpenRouter models"""
     GPT_OSS_120B = "openai/gpt-oss-120b"
+    KIMI_K2 = "moonshotai/kimi-k2-0905"
 
 load_dotenv()
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")

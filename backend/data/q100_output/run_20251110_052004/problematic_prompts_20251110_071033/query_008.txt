@@ -1,0 +1,27 @@
+Query: "Sanduíche de bagel estilo Nova York"
+
+    Items returned by the search system:
+    1. Sanduíche Quente de Frango Desfiado - Sanduíche quente de frango desfiado com cream cheese e mussarela, servido em pão ciabatta. Recheio com alface, rúcula, cebola roxa e tomate, com molho. Aproximadamente 355 g; alto teor de proteína devido ao frango desfiado e aos queijos, com textura cremosa do cream cheese e vegetais frescos.
+2. Pão francês com presunto e queijo - Pão francês com presunto e queijo: sanduíche feito com pão francês tostado, recheado com fatias de presunto e queijo amarelo. O pão tem crosta dourada e interior macio, apresentado em duas metades sobre prato branco. Proteinaceous pelo presunto e pelo queijo, oferecendo proteína proveniente do recheio.
+3. Frango+bacon+ovo+Catupiry - Sanduíche em pão brioche com filé de frango grelhado, bacon, ovo e Catupiry, acompanhado de alface, tomate e maionese. As camadas exibem frango fatiado, bacon crocante, ovo e Catupiry cremoso entre o pão macio, com alface fresca e tomate. Alto teor de proteína devido ao frango e ao ovo; contém carboidratos do pão.
+4. Promoção da casa - Promoção da casa: sanduíche com pão de brioche macio, recheado com frango desfiado, bacon crocante e queijo prato derretido, acrescido de milho doce, Catupiry cremoso, alface crocante, tomate fresco e uma camada generosa de maionese. Não possui hambúrguer.
+5. 03 - Churrasquinho - Churrasquinho em pão baguete (Boquinha De Anjo) com Contra Filet, Mussarela e Vinagrete. O pão baguete aparece fatiado em porções, revelando o recheio de carne, mussarela e vinagrete.
+6. Green Bacon - Green Bacon é um hambúrguer com 80 g de Ultra Smash, queijo americano derretido, molho de ervas, tomate, alface americana, cebola roxa e bacon crocante, montado em pão macio. As camadas incluem queijo derretido sobre a carne, bacon crocante e vegetais (alface, tomate e cebola roxa) sob o molho de ervas. Pode adicionar batata crinkle ou nuggets.
+7. Fórmula Infantil 1 Premium Aptamil 800g - Fórmula infantil 1 Premium Aptamil, lata de 800 g. Embalagem nova com a mesma fórmula, identificada pelo rótulo "Nova embalagem, mesma fórmula", com o número 1 indicando a etapa 1 da linha Aptamil Premium.
+8. Pão Integral 50 gr - Pão integral em unidade de 50 g, formato alongado. Crosta dourada com textura rústica típica do pão integral.
+9. X Bacon - Sanduíche X Bacon feito com pão de hambúrguer macio, hambúrguer de carne bovina de 100g, queijo prato derretido e fatias crocantes de bacon. Combinação rica em proteínas devido à carne e bacon, com textura que une o suculento do hambúrguer ao sabor defumado do bacon. Ideal para quem busca um lanche saboroso e consistente.
+10. 26 - frango, queijo, milho, Catupiry, presunto, salada - Sanduíche de frango com presunto, queijo e Catupiry, com milho e salada. Recheio cremoso de Catupiry com queijo, combinado ao frango, alface e tomate, servido em pão macio.
+
+    Categorize each item into one of three categories:
+    1. RELEVANT: The item is a good match for the query
+    2. SOMEWHAT RELEVANT: The item's description or name mentions at least 1 detail or keyword from the query (e.g., "korean spicy chicken" and "Cup Noodles instant noodles in a cup, chicken flavor" share "chicken", so it's somewhat relevant)
+    The keyword doesn't have to be an exact match. For example, "sandwich" and "burger" can be considered similar enough for this criteria.
+    3. IRRELEVANT: The item doesn't match the query whatsoever and has nothing in common.
+
+    Some queries are very specific, don't be too strict in your judgment.
+    For example, if the query is "Carne assada lentamente com acompanhamentos", results of meat dishes with sides should be considered relevant.
+
+    Answer ONLY with three numbers separated by spaces: relevant_count somewhat_relevant_count irrelevant_count
+    Example: "5 2 3" means 5 relevant, 2 somewhat relevant, and 3 irrelevant.
+    Do not include any explanation or other text.
+    

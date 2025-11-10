@@ -1,0 +1,27 @@
+Query: "Pão rústico do campo"
+
+    Items returned by the search system:
+    1. Alface Americana Campo Alegre Higiênizado 250g - Alface Americana higienizada, embalagem de 250 g da marca Campo Alegre. Folhas verdes acondicionadas em saco plástico transparente com o rótulo Campo Alegre e o wording higienizado na embalagem. Produto pronto para consumo, ideal para saladas.
+2. Pão sírio 20cm - Dois pães sírios de 20 cm, redondos, com superfície dourada e marcas de assado. Pão sírio de formato circular, macio por dentro, apresentado em duas unidades de 20 cm.
+3. Iogurte Desnatado Sabor Pêssego Verde Campo Natural Whey 170g - Iogurte desnatado com sabor pêssego da Verde Campo, na linha Natural Whey, embalagem de 170 g. O rótulo destaca o sabor pêssego, o conceito Natural Whey e a marca Verde Campo na embalagem branca.
+4. Iogurte Desnatado Natural Zero Lactose Verde Campo Lacfree 500g - Iogurte desnatado natural zero lactose da Verde Campo (LacFree), acondicionado em garrafa de 500 g. Embalagem azul turquesa com o rótulo LacFree e o logo Verde Campo. Produto com baixo teor de gordura e lactose removida, adequado para dietas sem lactose.
+5. Suco Integral Campo Largo 900ml Tangerina/Maca - Suco Integral Campo Largo 900 ml, sabor Tangerina/Maca. Cor laranja dourado típica de suco de fruta, com rótulo verde Campo Largo e destaque para a indicação Tangerina na etiqueta. Há uma etiqueta em formato de coração presa ao gargalo da garrafa.
+6. Pão do Forno Na Chapa Wickbold 500g - Pão do Forno Na Chapa Wickbold, embalagem 500 g. Pão em formato de loaf com crosta dourada, apresentado em embalagem plástica com etiqueta amarela da Wickbold. Produto de pão de forno para uso diário, adequado para torradas e sanduíches.
+7. Pão de Forma Tradicional sem Casca Pullman 450g - Pão de Forma Pullman Sem Casca Tradicional, pão branco fatiado em embalagem de 450 g. Fatias sem casca em formato tradicional, com rótulo azul e mascote de cão branco na embalagem.
+8. Pão de Queijo Unidade - Pão de Queijo Unidade: bolinha de pão de queijo com superfície dourada, apresentada como peça única (1un). Palavras-chave para busca: pão de queijo, unidade, bolinha, queijo, snack brasileiro.
+9. Pão de Milho Seven Boys 450g - Pão de Milho Seven Boys, embalagem de 450 g. Pão de milho pronto para consumo, com rótulo que apresenta milho na frente e cores amarelas, brancas e azul na embalagem.
+10. Kibe cru 150g Hortelã e cebola . Não campanha pão sírio. - Kibe cru de 150 g com hortelã e cebola. Carne crua moída temperada, coberta por folhas de hortelã fresca e rodelas de cebola, com pedaços visíveis de carne. Servido sem pão sírio.
+
+    Categorize each item into one of three categories:
+    1. RELEVANT: The item is a good match for the query
+    2. SOMEWHAT RELEVANT: The item's description or name mentions at least 1 detail or keyword from the query (e.g., "korean spicy chicken" and "Cup Noodles instant noodles in a cup, chicken flavor" share "chicken", so it's somewhat relevant)
+    The keyword doesn't have to be an exact match. For example, "sandwich" and "burger" can be considered similar enough for this criteria.
+    3. IRRELEVANT: The item doesn't match the query whatsoever and has nothing in common.
+
+    Some queries are very specific, don't be too strict in your judgment.
+    For example, if the query is "Carne assada lentamente com acompanhamentos", results of meat dishes with sides should be considered relevant.
+
+    Answer ONLY with three numbers separated by spaces: relevant_count somewhat_relevant_count irrelevant_count
+    Example: "5 2 3" means 5 relevant, 2 somewhat relevant, and 3 irrelevant.
+    Do not include any explanation or other text.
+    

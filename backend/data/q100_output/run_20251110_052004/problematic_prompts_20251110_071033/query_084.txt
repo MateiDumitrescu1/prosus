@@ -1,0 +1,27 @@
+Query: "Envoltório de giroscópio estilo carrinho de rua"
+
+    Items returned by the search system:
+    1. Massa de Papel Arroz Towa 340g - Papel de arroz Towa, massa para rolinhos primavera (spring roll skin). Embalagem de 340 g com discos brancos circulares de papel arroz, com rótulo que mostra "Papel de Arroz", "Spring Roll Skin" e o logotipo Towa. Produto alimentício utilizado como envoltório para rolinhos primavera, pronto para hidratar antes do uso.
+2. Chocolate Branco Galak 80g - Chocolate Branco Galak 80 g, da Nestlé, embalado em envoltório amarelo com o logo azul Galak e o selo "mais cremoso". Barra de chocolate branco com quadradinhos visíveis, apresentada na embalagem. Informações nutricionais por porção de 25 g: valor energético 136 kcal, com carboidratos, açúcares, proteínas, gorduras totais, gorduras saturadas e sódio.
+3. Trufa Artesanal Grancherie Cereja ao Licor 30g - Trufa artesanal Grancherie Cereja ao Licor, 30 g. Trufa de chocolate ao leite com recheio de cereja ao licor, apresentando um centro vermelho visível envolto por cobertura de chocolate. O bombom apresenta embrulho escuro nas extremidades, típico de trufas artesanais.
+4. Pizza Pernil Doido - Pizza Pernil Doido é uma pizza com Pernil à Moda da Casa, mussarela, bacon, molho de alho, vinagrete, orégano e azeitona. A imagem mostra uma fatia de pizza com cobertura e toppings visíveis. Combina carne de porco com queijo e temperos, resultando em sabor salgado e aromático.
+5. Combo Lays Rústica Cream Cheese Lays - Combo de pacotes de batata Lay's Rústica no sabor Cream Cheese. Chips de corte rústico com sabor cremoso de queijo, oferecendo crocância e textura robusta. Conjunto de embalagens com o logo Lay's, indicando um kit de snacks de batata chips.
+6. 00-Big Frangonete+refri - Big Frangonete com mussarela, frango, requeijão e batata palha. A cobertura apresenta queijo derretido com batata palha por cima, em formato circular. Ingredientes principais para busca: mussarela, frango, requeijão e batata palha.
+7. Chocolate Branco E Meio Amargo Recheio Negresco Garoto Chocotrio Pacote 90g - Wafer coberto de chocolate da Garoto, linha Chocotrio, pacote 90 g. Recheio com chocolate branco e chocolate meio amargo no estilo Negresco.
+8. Guardanapo 23,5x23,5cm Pequeno Snob 50un - Guardanapo de papel Snob, tamanho 23,5 x 23,5 cm, formato pequeno, com folha dupla. Pacote com 50 unidades. Embalagem branca com design preto e dourado, apresentando a marca Snob e o slogan Beleza e Distinção.
+9. Pão de Alho Mezzani Tradicional Pacote 310g - Pão de Alho Mezzani Tradicional, pacote de 310 g. Embalagem azul com detalhes verdes e ilustração de pães de alho, reforçando o estilo tradicional do produto.
+10. Escova de Dente Zig Zag Carvão Ativado Colgate 2un - 
+
+    Categorize each item into one of three categories:
+    1. RELEVANT: The item is a good match for the query
+    2. SOMEWHAT RELEVANT: The item's description or name mentions at least 1 detail or keyword from the query (e.g., "korean spicy chicken" and "Cup Noodles instant noodles in a cup, chicken flavor" share "chicken", so it's somewhat relevant)
+    The keyword doesn't have to be an exact match. For example, "sandwich" and "burger" can be considered similar enough for this criteria.
+    3. IRRELEVANT: The item doesn't match the query whatsoever and has nothing in common.
+
+    Some queries are very specific, don't be too strict in your judgment.
+    For example, if the query is "Carne assada lentamente com acompanhamentos", results of meat dishes with sides should be considered relevant.
+
+    Answer ONLY with three numbers separated by spaces: relevant_count somewhat_relevant_count irrelevant_count
+    Example: "5 2 3" means 5 relevant, 2 somewhat relevant, and 3 irrelevant.
+    Do not include any explanation or other text.
+    

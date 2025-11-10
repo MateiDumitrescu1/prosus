@@ -1,0 +1,27 @@
+Query: "Ensopado reconfortante cozido lentamente"
+
+    Items returned by the search system:
+    1. Feijão - Feijão cozido em molho espesso de tonalidade alaranjada, com grãos brancos visíveis na porção. Apresenta sabor rico e reconfortante, ideal como acompanhamento para diversas refeições. A apresentação acontece em uma tigela preta, destacando a textura densa do feijão no caldo.
+2. Rabada - Rabada: carne de rabo de boi cozida lentamente em molho espesso de cor marrom, com pedaços de batata visíveis no caldo. A imagem mostra rabada suculenta com batatas em cubos, em ensopado aromático. Este prato costuma incluir arroz, feijão, batata frita, macarrão e farofa como acompanhamentos.
+3. Feijoada - Feijoada: prato brasileiro tradicional de feijão preto cozido, apresentado em panela de barro. Acompanha arroz branco ou integral, mandioca, couve e farofa, formando uma combinação típica brasileira. O feijão escuro aparece em ensopado denso, cercado pelos acompanhamentos indicados.
+4. Feijoada - Feijoada é um ensopado brasileiro de feijão preto com carne, cozidos lentamente em caldo escuro. Na imagem, o prato aparece em panela de barro com grãos pretos, pedaços de carne e arroz branco ao lado. Descrição para busca: feijoada, feijão preto, prato brasileiro, carne, arroz branco; alimento com alto teor de proteína.
+5. Combo Feijoada - Combo Feijoada com aproximadamente 250 g de feijoada cremosa, preparada em processo lento com carnes nobres e temperos especiais. Acompanha arroz, couve, farofa e torresmo, além de refrigerante em lata. Visual: prato com feijão preto e carne em pedaços, arroz branco, farofa dourada e folhas de couve ao lado.
+6. Presunto Cozido sem Capa Aurora 180g - Presunto cozido sem capa da marca Aurora, embalagem de 180 g. Fatias de presunto rosado aparecem na embalagem, que exibe uma imagem de sanduíche com o presunto. Carne suína fatiada, pronta para uso em lanches.
+7. Arroz branco ( serve uma pessoa ) - Arroz branco cozido em porção individual. Grãos soltos e macios, de cor branca, servido em tigela branca com uma guarnição de salsa fresca por cima. Acompanhamento básico de refeições.
+8. Farofa temperada da casa - Porção pequena de farofa temperada de farinha de mandioca, preparada com manteiga e azeite de dendê. Contém salsinha, alho e cebola, conferindo sabor, aroma e cor dourada. A textura é granulosa, com grânulos de mandioca visíveis.
+9. Lombo á moda da casa - 2 pessoas - Lombo à moda da casa - 2 pessoas, acompanhado de arroz birobiro, farofa e vinagrete. Prato coberto com mussarela derretida, tomate, bacon e azeitona preta, com ervas visíveis sobre o queijo. A apresentação mostra o lombo com queijo derretido por cima, criando uma camada cremosa e dourada nas bordas.
+10. Carne, queijo e ovos - Rolos de tortilla recheados com carne, cobertos com molho vermelho e queijo ralado. O nome indica carne, queijo e ovos como ingredientes principais, sugerindo alto teor de proteína. Visualmente, o prato apresenta duas porções cobertas por molho vermelho e queijo ralado por cima.
+
+    Categorize each item into one of three categories:
+    1. RELEVANT: The item is a good match for the query
+    2. SOMEWHAT RELEVANT: The item's description or name mentions at least 1 detail or keyword from the query (e.g., "korean spicy chicken" and "Cup Noodles instant noodles in a cup, chicken flavor" share "chicken", so it's somewhat relevant)
+    The keyword doesn't have to be an exact match. For example, "sandwich" and "burger" can be considered similar enough for this criteria.
+    3. IRRELEVANT: The item doesn't match the query whatsoever and has nothing in common.
+
+    Some queries are very specific, don't be too strict in your judgment.
+    For example, if the query is "Carne assada lentamente com acompanhamentos", results of meat dishes with sides should be considered relevant.
+
+    Answer ONLY with three numbers separated by spaces: relevant_count somewhat_relevant_count irrelevant_count
+    Example: "5 2 3" means 5 relevant, 2 somewhat relevant, and 3 irrelevant.
+    Do not include any explanation or other text.
+    

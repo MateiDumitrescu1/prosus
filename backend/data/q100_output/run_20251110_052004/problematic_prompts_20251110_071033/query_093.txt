@@ -1,0 +1,27 @@
+Query: "Prato de proteína mista"
+
+    Items returned by the search system:
+    1. Marmita Mista Tamanho M + Coca-Cola sem açúcar 350ml - Marmita Mista Tamanho M com arroz branco, feijão, macarrão ao molho, bife e filé de frango. Acompanhamento: Coca-Cola sem açúcar 350ml. Visual: prato com arroz, feijão, macarrão, fatias de bife e filé de frango, ao lado de uma lata de Coca-Cola sem açúcar 350ml.
+2. Salada (M) Alface, Tomate e Cebola - Salada (M) Alface, Tomate e Cebola é uma porção média da categoria Salada Mista, com folhas de alface crocantes, tomates suculentos e cebola fatiada. A apresentação mostra folhas verdes vivas com pequenos tomatinhos vermelhos, conferindo textura crocante e colorido ao prato. Opção leve e nutritiva, ideal como acompanhamento ou refeição rápida, com sabor fresco e natural.
+3. Linguiça Mista Congelada Nobre 700g - Linguiça Mista Congelada Nobre, embalagem de 700 g. Embalagem plástica com painel amarelo na parte superior e o logotipo Nobre, exibindo linguiças mistas cruas. Na imagem, as linguiças estão alinhadas sobre uma tábua de madeira.
+4. Ração Seca Royal Canin Pomeranian para Cães Adultos da Raça Lulu da Pomerânia 2,5kg - Ração seca Royal Canin para cães adultos da raça Pomerânia (Lulu da Pomerânia), embalagem de 2,5 kg. Croquete pequeno exclusivo, adaptado à mandíbula pequena da raça. Proporciona suporte à saúde digestiva com psyllium e proteínas de elevada digestibilidade, além de benefícios para pele e pelagem e para ossos e articulações, com EPA/DHA.
+5. Sachê Ração Úmida High Proteína Cães Adultos Carne E Frango Pedigree 85g - Sachê úmido Pedigree de 85 g para cães adultos, sabor carne e frango ao molho. Alimento 100% completo e balanceado com 35% mais proteína de alta qualidade, sem conservantes, corantes ou aromas artificiais. Contém ômega-6 para pele e pelo saudáveis e antioxidantes vitamina E e selênio, contribuindo para a manutenção de músculos e ossos fortes.
+6. Farofa Pronta Kisabor 400g - Farofa Pronta Kisabor, feita com farinha de mandioca temperada, em embalagem de 400g. Na imagem, a farofa dourada aparece com textura granulada, servida ao lado de pedaços de carne. Palavras-chave de busca: farofa pronta, Kisabor, farinha de mandioca temperada, embalagem 400g, acompanhamento para churrasco.
+7. Gostosa  - 500gr - Gostosa 500gr – Prato executivo com proteína à escolha, acompanhado de 2 guarnições e com arroz e feijão. Na imagem, destaque para ovo frito, cebola crocante e vegetais como cenoura, pepino e alface ao lado de fatias de proteína escolhida. Descrição para busca: prato executivo proteico com arroz e feijão, proteína à escolha, guarnições variadas, vegetais frescos e ovo frito; alto teor proteico.
+8. Seleta Legumes Pratigel 300g - Seleta de Legumes Pratigel, embalagem de 300 g, com batata, cenoura e ervilha. A imagem mostra o produto em embalagem com o logo Pratigel e um mix de legumes em cubos. Descrição para busca: seleta de legumes, batata cenoura ervilha, Pratigel, 300 g, pacote de legumes variados.
+9. Filet de Frango Grelhado + Arroz ( Complementos cobrados a parte ) - Filé de Frango Grelhado + Arroz apresenta filés de frango grelhados, dourados com marcas de grelha e suculentos, acompanhados de arroz aromático cozido à perfeição. O prato permite personalização com complementos à escolha, cobrados à parte. Em embalagem marmitex econômica, oferece refeição prática e acessível.
+10. Barra Proteica Dobro Creme Papaia 25g - Barra proteica Dobro Mini, sabor creme de papaia, unidade de 25 g. Produto plant-based com 7 proteínas por barra. Barra proteica de papaia cremosa, 25 g por unidade, snack proteico de origem vegetal.
+
+    Categorize each item into one of three categories:
+    1. RELEVANT: The item is a good match for the query
+    2. SOMEWHAT RELEVANT: The item's description or name mentions at least 1 detail or keyword from the query (e.g., "korean spicy chicken" and "Cup Noodles instant noodles in a cup, chicken flavor" share "chicken", so it's somewhat relevant)
+    The keyword doesn't have to be an exact match. For example, "sandwich" and "burger" can be considered similar enough for this criteria.
+    3. IRRELEVANT: The item doesn't match the query whatsoever and has nothing in common.
+
+    Some queries are very specific, don't be too strict in your judgment.
+    For example, if the query is "Carne assada lentamente com acompanhamentos", results of meat dishes with sides should be considered relevant.
+
+    Answer ONLY with three numbers separated by spaces: relevant_count somewhat_relevant_count irrelevant_count
+    Example: "5 2 3" means 5 relevant, 2 somewhat relevant, and 3 irrelevant.
+    Do not include any explanation or other text.
+    

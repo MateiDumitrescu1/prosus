@@ -1,0 +1,27 @@
+Query: "Monte sua própria tigela de poke"
+
+    Items returned by the search system:
+    1. Monte seu Poke Frango ou Ovo de codorna - Monte seu Poke: Frango ou Ovo de Codorna como proteína, com até 2 bases, até 2 proteínas, 1 molho, até 3 toppings, até 2 crunches e 1 nut. Na imagem, a tigela traz base de folhas verdes, frango desfiado, cebola roxa, cubos de manga, tomate e ervas, finalizada com sementes tostadas por cima. Descrição para busca: poke personalizável com alto teor de proteína (frango), texturas que combinam macio e crocante, adequado para consultas sobre bases, proteínas, molhos e acompanhamentos.
+2. Monte seu Poke - Monte seu Poke é um bowl de poke personalizável onde você escolhe os ingredientes e finaliza como desejar, com o peso do prato variando conforme a seleção. A imagem apresenta base de arroz com coberturas como algas, tiras de ovo/omelete, palitos de surimi (kani/crab sticks) e vegetais, além de chips crocantes. Palavras-chave para busca: poke, poke bowl, monte seu poke, personalizado, arroz, algas, ovo, crab sticks, kani, toppings, porção variável.
+3. Monte Seu Poke Nui - (450/550g) - Monte Seu Poke Nui - porção de aproximadamente 450/550 g, com proteína em cubos e ingredientes selecionados para montar seu poke. A apresentação visual inclui batatas fritas crocantes, brócolis, pimentões vermelhos, castanhas de caju e um molho cremoso com sementes de gergelim sobre a proteína. Este prato combina proteína com vegetais variados e toppings crocantes, oferecendo textura e sabor marcante em uma refeição de poke.
+4. Combo poke salmão fresco mais Del Valle - Combo poke salmão fresco em cubos (70 g) com Del Valle. A tigela contém manga em cubos, tomate cereja, cebola roxa, milho e sunomono, acompanhadas de folhas verdes. Descrição para busca: poke bowl de salmão com manga, tomate cereja, cebola roxa, milho e sunomono, servido com Del Valle; alimento com alto teor de proteína devido ao salmão.
+5. Cream Cheese Original Philadelphia 150g - Queijo creme cremoso Original Philadelphia, 150 g. Pote branco com rótulo azul da marca Philadelphia, apresentando a versão Original de cream cheese, embalagem de 150 g.
+6. Pote 1 Litro - Pote 1 Litro com sobremesa montada: creme branco com pedaços de fruta no interior e morangos fatiados sobre o topo. Montado e enviado com os complementos dentro do pote, conforme descrição. Embalagem em copo plástico translúcido que mostra o creme e as frutas.
+7. Chocolate Quente Cremoso - Chocolate Quente Cremoso é preparado com puro chocolate Belga Callebaut, usando apenas ingredientes de alta qualidade e sem espessantes. A bebida aparece cremosa em xícara de cerâmica, com porção de 300 g, acompanhada de cubos de chocolate na tábua ao lado conforme a imagem. Pode ser consumido quente ou frio, pode reaquecer no micro-ondas na temperatura desejada e é enviado em garrafinha plástica.
+8. Pudim de Nutella - Pudim de Nutella, sobremesa individual de chocolate com o sabor inconfundível da Nutella. Possui textura cremosa e acabamento brilhante, apresentado em formato de anel com furo central. Na imagem, o pudim está sobre prato branco, com um pote de Nutella ao fundo, destacando o sabor Nutella.
+9. Hot holl kani 12 und - Rolinho de sushi empanado crocante com recheio de kani (surimi) visível no centro, apresentando interior branco com leve traço rosado. Cobertura externa dourada e crocante. Disponível em embalagem de 12 unidades (Hot holl kani 12 und).
+10. Brigadeiro de chocolate - Brigadeiro de chocolate, doce brasileiro tradicional com cobertura de granulados de chocolate e interior cremoso. Apresentado na forma esférica de pequeno tamanho, com superfície coberta por granulado e embalagem plástica translúcida. Descrição para busca: brigadeiro chocolate, doce caseiro, granulado, porção individual, sobremesa brasileira.
+
+    Categorize each item into one of three categories:
+    1. RELEVANT: The item is a good match for the query
+    2. SOMEWHAT RELEVANT: The item's description or name mentions at least 1 detail or keyword from the query (e.g., "korean spicy chicken" and "Cup Noodles instant noodles in a cup, chicken flavor" share "chicken", so it's somewhat relevant)
+    The keyword doesn't have to be an exact match. For example, "sandwich" and "burger" can be considered similar enough for this criteria.
+    3. IRRELEVANT: The item doesn't match the query whatsoever and has nothing in common.
+
+    Some queries are very specific, don't be too strict in your judgment.
+    For example, if the query is "Carne assada lentamente com acompanhamentos", results of meat dishes with sides should be considered relevant.
+
+    Answer ONLY with three numbers separated by spaces: relevant_count somewhat_relevant_count irrelevant_count
+    Example: "5 2 3" means 5 relevant, 2 somewhat relevant, and 3 irrelevant.
+    Do not include any explanation or other text.
+    

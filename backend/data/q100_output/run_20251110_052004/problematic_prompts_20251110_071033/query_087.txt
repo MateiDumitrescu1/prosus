@@ -1,0 +1,27 @@
+Query: "tigela estilo sudoeste"
+
+    Items returned by the search system:
+    1. Polenta Frita - Polenta Frita (200 g) em tiras de cor laranja, frita e servida em uma tigela branca. A imagem mostra palitos alongados de polenta frita dispostos na tigela.
+2. Gyoza Dobro - Gyoza Dobro: porção de 6 gyozas fritos de carne bovina. As unidades apresentam casquinha dourada e textura crocante por fora, alinhadas em linha sobre um prato retangular escuro.
+3. Monte seu Açaí - Açaí cremoso servido em uma tigela branca, apresentado em espiral roxo intenso. A textura suave e densa é visível na roseta no topo. Descrição voltada para buscas por açaí, açaí cremoso, tigela de açaí e apresentação em espiral.
+4. Iscas de carne acebolada - Iscas de carne acebolada são tiras de carne bovina fritas com cebola, apresentadas sobre arroz branco com feijão. A imagem também mostra batatas fritas como acompanhamento, compondo o prato com carboidratos adicionais. Em termos de perfil nutricional, a carne fornece proteína, enquanto arroz, feijão e batata fornecem carboidratos.
+5. Pizza Pernil Doido - Pizza Pernil Doido é uma pizza com Pernil à Moda da Casa, mussarela, bacon, molho de alho, vinagrete, orégano e azeitona. A imagem mostra uma fatia de pizza com cobertura e toppings visíveis. Combina carne de porco com queijo e temperos, resultando em sabor salgado e aromático.
+6. Marmita M de churrasco - Marmita M de churrasco com arroz, feijão, maionese, molho de alho e farofa, contendo contra filé fatiado e linguiça. Visual: fatias de carne bovina rosadas sobre arroz branco, acompanhadas de farofa amarela e maionese, apresentado em uma tigela de refeição.
+7. Combo ( 2 Temakis De Salmão Grelhado + 20 Uramakis Salmão Grelhado) - Combo com 2 Temakis de Salmão Grelhado e 20 Uramakis de Salmão Grelhado. Os uramakis são rolinhos de arroz com salmão grelhado, cobertos por sementes de gergelim na superfície. Os temakis apresentam salmão grelhado envolto em alga, em formato de cone. Este conjunto oferece alto teor de proteína devido ao salmão grelhado.
+8. Carne, queijo e ovos - Rolos de tortilla recheados com carne, cobertos com molho vermelho e queijo ralado. O nome indica carne, queijo e ovos como ingredientes principais, sugerindo alto teor de proteína. Visualmente, o prato apresenta duas porções cobertas por molho vermelho e queijo ralado por cima.
+9. Tilápia a Moda - Prato com 700 gramas de tilápia preparada na moda, acompanhada de arroz branco, salada fresca e purê cremoso. Refeição balanceada, rica em proteínas provenientes do peixe, com acompanhamento de baixo teor de carboidratos e vegetais. Serve duas pessoas.
+10. Executivo picanha grelhada. - Executivo picanha grelhada, porção de picanha bovina grelhada. Acompanha arroz, tutu de feijão ou feijão, salada de alface, cenoura e tomate e fritas.
+
+    Categorize each item into one of three categories:
+    1. RELEVANT: The item is a good match for the query
+    2. SOMEWHAT RELEVANT: The item's description or name mentions at least 1 detail or keyword from the query (e.g., "korean spicy chicken" and "Cup Noodles instant noodles in a cup, chicken flavor" share "chicken", so it's somewhat relevant)
+    The keyword doesn't have to be an exact match. For example, "sandwich" and "burger" can be considered similar enough for this criteria.
+    3. IRRELEVANT: The item doesn't match the query whatsoever and has nothing in common.
+
+    Some queries are very specific, don't be too strict in your judgment.
+    For example, if the query is "Carne assada lentamente com acompanhamentos", results of meat dishes with sides should be considered relevant.
+
+    Answer ONLY with three numbers separated by spaces: relevant_count somewhat_relevant_count irrelevant_count
+    Example: "5 2 3" means 5 relevant, 2 somewhat relevant, and 3 irrelevant.
+    Do not include any explanation or other text.
+    

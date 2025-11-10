@@ -1,0 +1,27 @@
+Query: "Sanduíche artesanal de fermento natural"
+
+    Items returned by the search system:
+    1. Sanduíche Quente de Frango Desfiado - Sanduíche quente de frango desfiado com cream cheese e mussarela, servido em pão ciabatta. Recheio com alface, rúcula, cebola roxa e tomate, com molho. Aproximadamente 355 g; alto teor de proteína devido ao frango desfiado e aos queijos, com textura cremosa do cream cheese e vegetais frescos.
+2. Iogurte Natural Integral Danone 160g - Danone iogurte natural integral, embalagem de 160 g. Feito com leite integral e fermento vivo, com sabor natural.
+3. Frango+bacon+ovo+Catupiry - Sanduíche em pão brioche com filé de frango grelhado, bacon, ovo e Catupiry, acompanhado de alface, tomate e maionese. As camadas exibem frango fatiado, bacon crocante, ovo e Catupiry cremoso entre o pão macio, com alface fresca e tomate. Alto teor de proteína devido ao frango e ao ovo; contém carboidratos do pão.
+4. Promoção da casa - Promoção da casa: sanduíche com pão de brioche macio, recheado com frango desfiado, bacon crocante e queijo prato derretido, acrescido de milho doce, Catupiry cremoso, alface crocante, tomate fresco e uma camada generosa de maionese. Não possui hambúrguer.
+5. Pão francês com presunto e queijo - Pão francês com presunto e queijo: sanduíche feito com pão francês tostado, recheado com fatias de presunto e queijo amarelo. O pão tem crosta dourada e interior macio, apresentado em duas metades sobre prato branco. Proteinaceous pelo presunto e pelo queijo, oferecendo proteína proveniente do recheio.
+6. 03 - Churrasquinho - Churrasquinho em pão baguete (Boquinha De Anjo) com Contra Filet, Mussarela e Vinagrete. O pão baguete aparece fatiado em porções, revelando o recheio de carne, mussarela e vinagrete.
+7. Big White Sauce - Big White Sauce é um hambúrguer com pão de hambúrguer com gergelim. A carne artesanal suculenta de 130 g vem com requeijão cremoso e queijo mussarela derretido, complementada por um molho da casa à base de parmesão. O pão dourado com gergelim envolve as camadas, com o queijo derretido visível e o molho cremoso aparecendo entre elas.
+8. Fermento em Pó Quimico Tradicional Dona Benta 100g - Fermento em Pó Químico Tradicional Dona Benta, 100 g. Fermento químico utilizado para o crescimento de massas, ideal para preparações doces e salgadas. Embalagem azul com o logotipo Dona Benta e a inscrição Fermento Químico, com selo que indica "Ótimo para massas".
+9. Fermento Biológico Fleischmann Fresco Embalagem 15g X 4 Un - Fermento Biológico Fresco da marca Fleischmann, embalado em 4 unidades de 15 g (total 60 g). Fermento para panificação, apresentado em embalagem amarela com o logotipo Fleischmann.
+10. Gauchoo ( Gourmet ) - Gauchoo (Gourmet): hambúrguer gourmet Angus de 200 g com cheddar derretido e molho defumado, servido em pão Australiano. A montagem apresenta patty suculento, queijo cheddar amarelo derretido e molho cremoso entre um pão com sementes. Descrição para busca: hambúrguer Angus 200 g, cheddar, molho defumado, pão Australiano, prato gourmet, alto teor de proteína.
+
+    Categorize each item into one of three categories:
+    1. RELEVANT: The item is a good match for the query
+    2. SOMEWHAT RELEVANT: The item's description or name mentions at least 1 detail or keyword from the query (e.g., "korean spicy chicken" and "Cup Noodles instant noodles in a cup, chicken flavor" share "chicken", so it's somewhat relevant)
+    The keyword doesn't have to be an exact match. For example, "sandwich" and "burger" can be considered similar enough for this criteria.
+    3. IRRELEVANT: The item doesn't match the query whatsoever and has nothing in common.
+
+    Some queries are very specific, don't be too strict in your judgment.
+    For example, if the query is "Carne assada lentamente com acompanhamentos", results of meat dishes with sides should be considered relevant.
+
+    Answer ONLY with three numbers separated by spaces: relevant_count somewhat_relevant_count irrelevant_count
+    Example: "5 2 3" means 5 relevant, 2 somewhat relevant, and 3 irrelevant.
+    Do not include any explanation or other text.
+    

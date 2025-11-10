@@ -1,0 +1,27 @@
+Query: "Burrito de café da manhã recheado"
+
+    Items returned by the search system:
+    1. Promo da Quarta - Burrito Classic - Promo da Quarta - Burrito Classic: tortilla de trigo recheada com chili con carne (molho de carne com feijão), bacon crocante, cheddar, barbecue, alface, tomate, pimenta jalapeño e molho de pimenta. O burrito aparece enrolado e apresentado em papel com estampa de jornal, com o recheio visível de alface, tomate e cheddar. Imagem meramente ilustrativa; não acompanha guacamole nem sour cream; pode ser uma opção sem lactose se pedir sem cheddar.
+2. Burrito El Chancho - Pernil - Burrito El Chancho - Pernil é um burrito recheado com pernil desfiado macio, envolto em tortilla macia. O recheio traz queijos derretidos, sour cream, chutney de manga, cebola roxa e agrião, oferecendo cremosidade com um toque doce e fresco. Ao cortar, o interior revela o pernil desfiado junto às folhas de agrião, destacando uma mistura de texturas cremosas e crocantes.
+3. Cesta de Mccafé da Manhã - Cesta de Mccafé da Manhã com 1 Suco Del Valle, 1 Egg Cheese Bacon, 1 Queijo Quente Bacon, 1 Torta e 1 bebida de sua preferência (na visualização aparece um café McCafé). A composição oferece proteína proveniente de ovo, queijo e bacon, combinando itens salgados com uma torta para o café da manhã. Na imagem, é possível ver o copo de suco Del Valle, os sanduíches, a torta e um copo amarelo de café McCafé ao lado.
+4. Egg Cheese Bacon - Promo Mcd - Egg Cheese Bacon – Promo McD: sanduíche com ovo frito, queijo derretido e bacon entre pão macio, trazendo o sabor de café da manhã. Visualmente, o ovo com gema amarela aparece sobre o queijo, com fatias de bacon ao redor. Palavras-chave para busca: ovo, queijo, bacon, café da manhã, sanduíche, McD, proteína.
+5. Leite Fermentado Café da Manhã Morango Banana e Linhaça Activia 170g - Leite fermentado para café da manhã com sabor morango, banana e linhaça, Activia. Embalagem de 170 g em copo com tampa verde, com ilustrações de morango, banana e linhaça no rótulo.
+6. Pão de Leite - 3 unidades - Pão de Leite - 3 unidades, especialidade da categoria Pães e Broas. A massa é fofinha e aveludada, que quase derrete na boca, com crosta dourada visível na imagem. Perfeito para acompanhar manteiga ou patê, ideal para café da manhã reforçado ou lanche da tarde.
+7. Omelete com Queijo - Omelete com Queijo enrolada, com exterior dourado e queijo derretido visível no interior. Feita com ovos e queijo, oferece textura macia por dentro. Alto teor de proteína; prato proteico comum para café da manhã ou lanche.
+8. Frango+bacon+ovo+Catupiry - Sanduíche em pão brioche com filé de frango grelhado, bacon, ovo e Catupiry, acompanhado de alface, tomate e maionese. As camadas exibem frango fatiado, bacon crocante, ovo e Catupiry cremoso entre o pão macio, com alface fresca e tomate. Alto teor de proteína devido ao frango e ao ovo; contém carboidratos do pão.
+9. Omelete de frios - Omelete de frios recheada com queijo mussarela e presunto, temperada com orégano. Apresenta superfície dourada com cobertura de ervas verdes picadas. Marmitex acompanha arroz branquinho, feijão carioquinha, farofa, macarrão ao alho e óleo e abobrinha refogada.
+10. Promoção da casa - Promoção da casa: sanduíche com pão de brioche macio, recheado com frango desfiado, bacon crocante e queijo prato derretido, acrescido de milho doce, Catupiry cremoso, alface crocante, tomate fresco e uma camada generosa de maionese. Não possui hambúrguer.
+
+    Categorize each item into one of three categories:
+    1. RELEVANT: The item is a good match for the query
+    2. SOMEWHAT RELEVANT: The item's description or name mentions at least 1 detail or keyword from the query (e.g., "korean spicy chicken" and "Cup Noodles instant noodles in a cup, chicken flavor" share "chicken", so it's somewhat relevant)
+    The keyword doesn't have to be an exact match. For example, "sandwich" and "burger" can be considered similar enough for this criteria.
+    3. IRRELEVANT: The item doesn't match the query whatsoever and has nothing in common.
+
+    Some queries are very specific, don't be too strict in your judgment.
+    For example, if the query is "Carne assada lentamente com acompanhamentos", results of meat dishes with sides should be considered relevant.
+
+    Answer ONLY with three numbers separated by spaces: relevant_count somewhat_relevant_count irrelevant_count
+    Example: "5 2 3" means 5 relevant, 2 somewhat relevant, and 3 irrelevant.
+    Do not include any explanation or other text.
+    

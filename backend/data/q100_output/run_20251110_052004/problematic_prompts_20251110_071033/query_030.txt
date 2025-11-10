@@ -1,0 +1,27 @@
+Query: "Tigela de proteína vegetariana"
+
+    Items returned by the search system:
+    1. Contra Filé Bovino Oba - Contra Filé Bovino Oba é um corte bovino cru apresentado em peças com leve marmoreio. Na imagem, as peças são acompanhadas por folhas de salsa e tomate-cereja, destacando a apresentação da carne. Vendido por peso.
+2. Chili Cheese Vegetariano (sem carne) - Chili vegetariano sem carne, preparado com proteína de soja texturizada, mix de feijões, pimentão e tomate, temperado com especiarias e pimenta de ardência leve. É coberto com queijo derretido e acompanha uma porção de nachos (60 g). Alto teor de proteína, sabor picante e prato de origem vegetariana.
+3. Bowl Arroz Integral com Faláfel (vegano) - Bowl vegano com arroz integral, faláfel, salada de grão-de-bico, brócolis, cenoura e milho crocante, servido com molho árabe. Contém soja. Prato quente, completo e nutritivo, adequado como refeição balanceada e rápida.
+4. Seleta Legumes Pratigel 300g - Seleta de Legumes Pratigel, embalagem de 300 g, com batata, cenoura e ervilha. A imagem mostra o produto em embalagem com o logo Pratigel e um mix de legumes em cubos. Descrição para busca: seleta de legumes, batata cenoura ervilha, Pratigel, 300 g, pacote de legumes variados.
+5. Berinjela á parmegiana - Berinjela à parmegiana: fatias de berinjela assadas, cobertas com molho de tomate e uma generosa camada de queijo parmesão derretido, gratinadas até dourar. Pequenas ervas aromáticas salpicadas por cima completam o prato, apresentando uma opção vegetariana com sabor intenso. A textura combina berinjela macia com a cobertura cremosa de queijo, resultando em um prato clássico da culinária vegetariana.
+6. Tilápia a Moda - Prato com 700 gramas de tilápia preparada na moda, acompanhada de arroz branco, salada fresca e purê cremoso. Refeição balanceada, rica em proteínas provenientes do peixe, com acompanhamento de baixo teor de carboidratos e vegetais. Serve duas pessoas.
+7. Marmita P Tilápia grelhada c/ Mix de Legumes - Marmita P Tilápia grelhada com Mix de Legumes, acompanha arroz, feijão, farofa e legumes. Na imagem, filé de tilápia grelhado acompanha um mix de legumes coloridos, apresentando uma refeição visualmente balanceada. Possui alto teor de proteína típico de peixes, com formato compacto de tamanho P.
+8. Bebida À Base de Soja Sabor Pêssego Ades 200ml - Bebida à base de soja sabor pêssego, com suco de pêssego, em embalagem cartonada de 200 ml da marca Ades. A embalagem amarelo-alaranjada exibe o logotipo Ades e fatias de pêssego, com a informação de vitaminas e zinco. Conteúdo: bebida de soja com sabor pêssego, 200 ml, vitaminas e zinco.
+9. Feijoada - Feijoada: prato brasileiro tradicional de feijão preto cozido, apresentado em panela de barro. Acompanha arroz branco ou integral, mandioca, couve e farofa, formando uma combinação típica brasileira. O feijão escuro aparece em ensopado denso, cercado pelos acompanhamentos indicados.
+10. Pasta De Amendoim Buenissimo 250g Dr. Peanut - Dr. Peanut Pasta de Amendoim Buenissimo, embalagem de 250 g, com whey protein. Pasta de amendoim com proteína (whey) e sem adição de açúcar. Produto proteico à base de amendoim, 250 g, Buenissimo, da linha Dr. Peanut.
+
+    Categorize each item into one of three categories:
+    1. RELEVANT: The item is a good match for the query
+    2. SOMEWHAT RELEVANT: The item's description or name mentions at least 1 detail or keyword from the query (e.g., "korean spicy chicken" and "Cup Noodles instant noodles in a cup, chicken flavor" share "chicken", so it's somewhat relevant)
+    The keyword doesn't have to be an exact match. For example, "sandwich" and "burger" can be considered similar enough for this criteria.
+    3. IRRELEVANT: The item doesn't match the query whatsoever and has nothing in common.
+
+    Some queries are very specific, don't be too strict in your judgment.
+    For example, if the query is "Carne assada lentamente com acompanhamentos", results of meat dishes with sides should be considered relevant.
+
+    Answer ONLY with three numbers separated by spaces: relevant_count somewhat_relevant_count irrelevant_count
+    Example: "5 2 3" means 5 relevant, 2 somewhat relevant, and 3 irrelevant.
+    Do not include any explanation or other text.
+    

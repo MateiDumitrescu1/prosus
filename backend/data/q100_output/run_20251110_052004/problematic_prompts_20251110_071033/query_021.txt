@@ -1,0 +1,27 @@
+Query: "Macarrão cremoso com frutos do mar"
+
+    Items returned by the search system:
+    1. Combo Porção Mix Peixe Empanado e Frito - Porção combinada de peixe empanado e frito, com salmão e tilápia em pedaços crocantes. Acompanha rodelas de limão, folhas de alface e um molho para mergulho à parte. Porção de aproximadamente 500 gramas, com alto teor de proteína típico de frutos do mar.
+2. Bolinho Creme de Milho - Bolinho cremoso de milho, empanado com macarrão cabelo de anjo, levemente apimentado, 6 unidades. A crosta externa é formada por fios de macarrão cabelo de anjo fritos, dourados e crocantes, envolvendo um recheio macio de milho.
+3. Massa ao molho strogonoff de camarão - Massa tipo penne coberta por um molho cremoso de strogonoff de camarão, com pedaços de camarão visíveis em tonalidade alaranjada. Peso aproximado de 410 g e acompanha gratuitamente 01 sachê de queijo ralado de 10 g.
+4. Sashimi de Vieira (110g) - Sashimi de Vieira (110 g) com 6 fatias de vieira, temperado com salsa trufada e raspas de limão. As fatias aparecem cobertas por topping de ovas laranjas e pequenas ervas, apresentadas em arranjo circular. Alimento de alto teor proteico e baixo carboidrato, típico de frutos do mar.
+5. Tempero Oriental Peixe Bonito Hondashi 60g - Tempero Oriental de Peixe Bonito Hondashi, embalagem de 60 g. Pacote vermelho com o logo Hondashi em amarelo e ilustração de peixe azul sobre um círculo amarelo. Indicado como tempero de peixe bonito, apropriado para peixes, frutos do mar e pratos orientais; embalagem especifica 60 g.
+6. 2 harumaki de camarão - 2 harumaki de camarão, uma especialidade da categoria 'Rolinho Primavera', com recheio de camarões frescos envoltos em massa fina e crocante. As peças apresentam crocância externa e recheio de camarão suculento no interior. Acompanhadas por molho escuro decorativo no prato.
+7. Combo Namorados  (60 peças) - Combo Namorados (60 peças) com 18 sashimis de salmão; 06 jyo salmão; 06 jyo shimeji; 06 jyo pepino; 06 jyo ebitem; 06 jyo couve; 06 trouxinha c/shimeji; 06 trouxinha c/couve. Apresentação em bandeja/barco com variedade de peças, destacando salmão, pepino, cogumelos shimeji e couve, além de trouxinhas recheadas com shimeji e com couve.
+8. Temaki Salmão, Atum Frozen, Camarão Completo - Temaki com salmão, atum frozen e camarão, arroz, cream cheese e cebolinha, envolto em alga nori. A apresentação em formato cone de nori exibe pedaços de peixe rosado e camarão, com creme de queijo e arroz, cobertos por sementes de gergelim. Palavras-chave para busca: temaki, salmão, atum frozen, camarão, arroz, cream cheese, cebolinha, nori, gergelim; prato de frutos do mar com alto teor de proteína.
+9. Yakissoba Tradicional G 1 Kg - Yakissoba Tradicional G 1 Kg: macarrão chinês salteado com carne e frango, legumes (acelga, cebola, cenoura, pimentão vermelho, repolho, vagem, brócolis) e molho da casa. Sem champignon. Porção de 1 kg.
+10. Marmita Mista Tamanho M + Coca-Cola sem açúcar 350ml - Marmita Mista Tamanho M com arroz branco, feijão, macarrão ao molho, bife e filé de frango. Acompanhamento: Coca-Cola sem açúcar 350ml. Visual: prato com arroz, feijão, macarrão, fatias de bife e filé de frango, ao lado de uma lata de Coca-Cola sem açúcar 350ml.
+
+    Categorize each item into one of three categories:
+    1. RELEVANT: The item is a good match for the query
+    2. SOMEWHAT RELEVANT: The item's description or name mentions at least 1 detail or keyword from the query (e.g., "korean spicy chicken" and "Cup Noodles instant noodles in a cup, chicken flavor" share "chicken", so it's somewhat relevant)
+    The keyword doesn't have to be an exact match. For example, "sandwich" and "burger" can be considered similar enough for this criteria.
+    3. IRRELEVANT: The item doesn't match the query whatsoever and has nothing in common.
+
+    Some queries are very specific, don't be too strict in your judgment.
+    For example, if the query is "Carne assada lentamente com acompanhamentos", results of meat dishes with sides should be considered relevant.
+
+    Answer ONLY with three numbers separated by spaces: relevant_count somewhat_relevant_count irrelevant_count
+    Example: "5 2 3" means 5 relevant, 2 somewhat relevant, and 3 irrelevant.
+    Do not include any explanation or other text.
+    

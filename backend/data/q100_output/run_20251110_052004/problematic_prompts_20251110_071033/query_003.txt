@@ -1,0 +1,27 @@
+Query: "Sopa de macarrão feita à mão"
+
+    Items returned by the search system:
+    1. Sopinha de Feijão com Macarrão - Sopa cremosa de feijão com macarrão sem glúten, batida, com textura lisa e cor alaranjada. Contém feijão carioca e feijão vermelho, macarrão sem glúten, cebola, alho-poró, azeite de oliva, sal, alho, páprica defumada e salsa; superfície com pequenos pedaços de macarrão sem glúten visíveis. É vegana, sem lactose e sem glúten, com proteína vegetal proveniente dos feijões; a preparação é batida e não há pedaços de legumes.
+2. Yakiniku Yakissoba - Yakiniku Yakissoba é um prato que combina carne de yakiniku grelhada com macarrão Yakissoba japonês e legumes, servido em uma tigela. Na imagem, o prato principal é acompanhado por frango frito crocante, além de uma sopa e uma bebida ao fundo, evidenciando a refeição completa apresentada. Palavras-chave: yakiniku, yakisoba, macarrão japonês, carne grelhada, legumes, prato principal, acompanhamento.
+3. Macarrão Instantâneo Sabor Cheddar Cup Noodles 69g - Macarrão instantâneo em copo Cup Noodles, sabor queijo cheddar. Embalagem de 69 g com o rótulo CHEDDAR em destaque e imagem de macarrão com queijo no topo. Descrição voltada para buscas por macarrão instantâneo, cheddar, Cup Noodles e 69 g.
+4. Sopão de Carne com Legumes Maggi 200 g - Sopão de Carne com Legumes Maggi, embalagem de 200 g. Embalagem amarela com o logo Maggi e imagem de uma tigela de sopa quente com carne em cubos e legumes visíveis. Palavras‑chave: sopão, carne com legumes, Maggi, sopa instantânea, 200 g, refeição rápida.
+5. Yakissoba Tradicional G 1 Kg - Yakissoba Tradicional G 1 Kg: macarrão chinês salteado com carne e frango, legumes (acelga, cebola, cenoura, pimentão vermelho, repolho, vagem, brócolis) e molho da casa. Sem champignon. Porção de 1 kg.
+6. Macarrão Sêmolado Espaguete N8 Galo 500g - Macarrão de sêmola espaguete N8, 500 g, da marca Galo. Embalagem azul com faixa amarela central e o logotipo da Galo, apresentando o formato espaguete.
+7. Omelete de frios - Omelete de frios recheada com queijo mussarela e presunto, temperada com orégano. Apresenta superfície dourada com cobertura de ervas verdes picadas. Marmitex acompanha arroz branquinho, feijão carioquinha, farofa, macarrão ao alho e óleo e abobrinha refogada.
+8. Bolinho Creme de Milho - Bolinho cremoso de milho, empanado com macarrão cabelo de anjo, levemente apimentado, 6 unidades. A crosta externa é formada por fios de macarrão cabelo de anjo fritos, dourados e crocantes, envolvendo um recheio macio de milho.
+9. Macarrão Integral Spaghetti Taeq 500g - Macarrão Integral Spaghetti Taeq, 500 g, em embalagem branca com o logotipo Taeq. Espaguete de trigo integral é apresentado na embalagem, com imagem de rodelas de tomate ao lado. Descrição para busca: macarrão integral espaguete Taeq, embalagem 500 g.
+10. Sopão de Canja Galinha Maggi 200g - Canja de Galinha Maggi, sachê de 200 g, mistura para sopa em pó com sabor de galinha para preparo rápido. A embalagem ilustra uma sopa cremosa com arroz, pedaços de galinha e ervas, remetendo ao prato canja tradicional. Palavras-chave para busca: sopa de canja, galinha, Maggi, sachê 200 g, mistura para sopa, caldo de galinha.
+
+    Categorize each item into one of three categories:
+    1. RELEVANT: The item is a good match for the query
+    2. SOMEWHAT RELEVANT: The item's description or name mentions at least 1 detail or keyword from the query (e.g., "korean spicy chicken" and "Cup Noodles instant noodles in a cup, chicken flavor" share "chicken", so it's somewhat relevant)
+    The keyword doesn't have to be an exact match. For example, "sandwich" and "burger" can be considered similar enough for this criteria.
+    3. IRRELEVANT: The item doesn't match the query whatsoever and has nothing in common.
+
+    Some queries are very specific, don't be too strict in your judgment.
+    For example, if the query is "Carne assada lentamente com acompanhamentos", results of meat dishes with sides should be considered relevant.
+
+    Answer ONLY with three numbers separated by spaces: relevant_count somewhat_relevant_count irrelevant_count
+    Example: "5 2 3" means 5 relevant, 2 somewhat relevant, and 3 irrelevant.
+    Do not include any explanation or other text.
+    

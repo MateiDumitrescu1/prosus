@@ -1,0 +1,27 @@
+Query: "Crepe doce e salgado"
+
+    Items returned by the search system:
+    1. Crepe no Cone Muçarela, Peito de Peru e Tomate - Crepe em formato cone com recheio de muçarela, peito de peru e tomate, apresentando queijo derretido visível. Recheio proteico composto pela muçarela e pelo peito de peru, com pedaços de tomate. Crepe dourado ao redor do recheio, servindo como lanche proteico.
+2. 50 - Salgados Assados - Salgadinhos Assados feitos com massa macia e recheios frescos, assados na hora para garantir o máximo sabor. Na imagem, aparecem como pequenos itens dourados por fora, pesando entre 20 e 30 g cada.
+3. Pão doce creme c /coco - Pão doce com creme de coco: pão macio com camada de creme de coco na superfície, aparência intensa e dourada. Formato oval/alongado, com cobertura cremosa visível. Produto de padaria doce, com recheio de creme de coco que confere sabor doce e textura cremosa, típico de sobremesas de confeitaria.
+4. 100 Salgados(20g) + 25 Mini Churros (10g) + Refri  2l - Combo com 100 salgados de 20 g cada e 25 mini churros de 10 g cada, acompanhado de refrigerante de 2 L. As 25 unidades são fornecidas por sabor ou misto, sendo que, no modo misto, não é possível retirar sabor.
+5. Morango Selvagem Cítrico- 30g - Morango Selvagem Cítrico - 30g são doces em formato de morango com sabor de morango e toque cítrico, apresentando cores vermelha com topo verde. Cobertura açucarada confere textura granulada visível na imagem. Porção de 30 g (aproximadamente 5 unidades). Alérgenos: pode conter leite; não contém glúten.
+6. 30 Salgados Fritos Mistos - Assortimento de 30 salgados fritos mistos, com opções como coxinha, bolinha de queijo, croquete, kibe, salsicha, presunto e queijo e frango. As peças apresentam cor dourada com exterior crocante, em formatos de bolinha e unidades alongadas. Acompanha molho de pimenta de 30 ml; permite escolher os sabores e as quantidades de cada item.
+7. Salgadinho Crunchy Super Sabor Cheddar Cheetos 78g - Salgadinho de cheddar da linha Cheetos Crunchy, apresentado em embalagem de 78 g. Sabor cheddar intenso com crocância característica, com pacote em tons laranja e rosa exibindo o logo Cheetos Crunchy e o peso 78 g.
+8. 8220- creme de alho poró com gorgonzola - Creme de alho-poró com gorgonzola, sopa cremosa com sabor de alho-poró e queijo gorgonzola. Possui cor amarela suave e textura lisa na apresentação da imagem. Acompanha queijo ralado e pão.
+9. Pipoca Caramelo Flor de Sal Okoshi 50g - Pipoca pronta Okoshi, sabor caramelo com flor de sal, embalagem de 50 g. Snack crocante de milho estourado coberto com caramelo e toque de flor de sal. Embalagem branca com detalhes amarelos, pronta para consumo imediato.
+10. Pão francês com presunto e queijo - Pão francês com presunto e queijo: sanduíche feito com pão francês tostado, recheado com fatias de presunto e queijo amarelo. O pão tem crosta dourada e interior macio, apresentado em duas metades sobre prato branco. Proteinaceous pelo presunto e pelo queijo, oferecendo proteína proveniente do recheio.
+
+    Categorize each item into one of three categories:
+    1. RELEVANT: The item is a good match for the query
+    2. SOMEWHAT RELEVANT: The item's description or name mentions at least 1 detail or keyword from the query (e.g., "korean spicy chicken" and "Cup Noodles instant noodles in a cup, chicken flavor" share "chicken", so it's somewhat relevant)
+    The keyword doesn't have to be an exact match. For example, "sandwich" and "burger" can be considered similar enough for this criteria.
+    3. IRRELEVANT: The item doesn't match the query whatsoever and has nothing in common.
+
+    Some queries are very specific, don't be too strict in your judgment.
+    For example, if the query is "Carne assada lentamente com acompanhamentos", results of meat dishes with sides should be considered relevant.
+
+    Answer ONLY with three numbers separated by spaces: relevant_count somewhat_relevant_count irrelevant_count
+    Example: "5 2 3" means 5 relevant, 2 somewhat relevant, and 3 irrelevant.
+    Do not include any explanation or other text.
+    

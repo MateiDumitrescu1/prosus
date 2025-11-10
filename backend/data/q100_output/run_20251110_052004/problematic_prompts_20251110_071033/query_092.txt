@@ -1,0 +1,27 @@
+Query: "Comida de rua do mercado noturno"
+
+    Items returned by the search system:
+    1. Lanche Churrasquinho do Candreva Especial - Churrasquinho Candreva Especial: filé mignon, queijo, bacon e ovo em sanduíche, acompanhado de batata chips e maionese temperada. Visivelmente apresenta carne grelhada com queijo derretido entre pão cortado em pedaços, com bacon visível, e batata chips crocantes ao lado.
+2. Almôndegas - Almôndegas em molho servidas sobre arroz branco, prato típico de comida caseira. Marmita com lacre e saladas incluídas, conforme o cardápio.
+3. Rissole de carne - Rissole de carne, snack com massa dourada e crocante e recheio de carne moída temperada. Na imagem, o exterior é dourado e crocante, enquanto o interior revela o recheio de carne bem picada. Descrição para busca: rissole, carne, empanado, frito, lanche, petisco, comida frita, recheio de carne.
+4. Marmitex média de Moqueca de peixe - Marmitex média com moqueca de peixe (cação) acompanhada de arroz, feijão, legumes refogados e farofa. Visualmente, a moqueca apresenta pedaços de peixe em molho laranja-amarelado com pimentões, servido ao lado do arroz branco. Palavras-chave para busca: moqueca de peixe, marmitex, peixe, cação, arroz, feijão, legumes refogados, farofa, comida típica brasileira.
+5. Bife acebolado em tiras - Bife acebolado em tiras de contrafilé grelhado, com cebola, acompanhado de arroz, feijão, farofa da casa e macarrão. Porção aproximada de 500 g, indicada para 1 pessoa que gosta de comida caseira com tempero da casa, prato quente e reconfortante.
+6. Papinha de Frango para Cães Filhotes Pet Delícia 320g - Papinha de Frango para Cães Filhotes, lata de 320 g, da marca Pet Delícia. Comida úmida para filhotes com sabor frango; o rótulo rosa apresenta desenho de cachorro, com destaque verde "100% Natural" e faixa azul com "Papinha de Frango". Palavras-chave: papinha de frango, cães filhotes, lata 320g, Pet Delícia, comida úmida para cães.
+7. Refrigerante Limão Siciliano Fys Lata 350ml - Refrigerante FYS Limão Siciliano, lata de 350 ml. Produto do grupo Heineken, com 50% menos açúcar em comparação à média de mercado. O rótulo mostra limões sicilianos com cores verde e amarelo e o logotipo FYS.
+8. Linguiça Inteira Tradicional - Linguiça inteira tradicional artesanal, sabor característico e textura firme, servida com acompanhamentos típicos como arroz, farofa crocante e vinagrete fresco. Prato completo de comida caseira brasileiro, ideal para até 4 pessoas, rico em proteína e com combinação equilibrada de sabores salgados e levemente temperados.
+9. 610 - Saint Peter à Vilalva - Saint Peter à Vilalva: filé de peixe Saint Peter coberto por molho cremoso de queijo, acompanhado de arroz à grega com legumes e batata frita. Proteína 160 g. Prato de almoço ou jantar com sabor brasileiro, prato do dia e comida caseira.
+10. Coxinha da Asa de Frango - Coxinha da Asa de Frango – pedaços de asa (drumettes) cruas com pele, dispostos sobre superfície de madeira. Produto vendido por peso, sem tempero. Alto teor de proteína, carne de frango, adequado para preparações culinárias posteriores.
+
+    Categorize each item into one of three categories:
+    1. RELEVANT: The item is a good match for the query
+    2. SOMEWHAT RELEVANT: The item's description or name mentions at least 1 detail or keyword from the query (e.g., "korean spicy chicken" and "Cup Noodles instant noodles in a cup, chicken flavor" share "chicken", so it's somewhat relevant)
+    The keyword doesn't have to be an exact match. For example, "sandwich" and "burger" can be considered similar enough for this criteria.
+    3. IRRELEVANT: The item doesn't match the query whatsoever and has nothing in common.
+
+    Some queries are very specific, don't be too strict in your judgment.
+    For example, if the query is "Carne assada lentamente com acompanhamentos", results of meat dishes with sides should be considered relevant.
+
+    Answer ONLY with three numbers separated by spaces: relevant_count somewhat_relevant_count irrelevant_count
+    Example: "5 2 3" means 5 relevant, 2 somewhat relevant, and 3 irrelevant.
+    Do not include any explanation or other text.
+    

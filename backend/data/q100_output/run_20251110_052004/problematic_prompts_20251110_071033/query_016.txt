@@ -1,0 +1,27 @@
+Query: "Monte seu próprio refogado"
+
+    Items returned by the search system:
+    1. Bife acebolado tam P - Bife acebolado em porção P, com cebolas em tiras douradas sobre a carne. Acompanha arroz, feijão, farofa e refogado do Dia.
+2. Jantinha + Espeto De Frango - Jantinha com Espeto de Frango grelhado, acompanhado de Arroz Branco, Feijão, Farofa da Casa, Batata Frita Torresmo, Vinagrete e Refogado de Abóbora Cabotia. O prato apresenta o espeto de frango sobre arroz branco, com batata frita torresmo, vinagrete e refogado de abóbora cabotia, compondo uma refeição completa. Pelo frango, possui alto teor de proteína.
+3. Bife a milanesa - Bife à milanesa empanado com crosta dourada e crocante, feito de carne bovina. Acompanha arroz, feijão, macarrão, farofa e refogado do Dia.
+4. Monte seu Poke - Monte seu Poke é um bowl de poke personalizável onde você escolhe os ingredientes e finaliza como desejar, com o peso do prato variando conforme a seleção. A imagem apresenta base de arroz com coberturas como algas, tiras de ovo/omelete, palitos de surimi (kani/crab sticks) e vegetais, além de chips crocantes. Palavras-chave para busca: poke, poke bowl, monte seu poke, personalizado, arroz, algas, ovo, crab sticks, kani, toppings, porção variável.
+5. Poke de camarão refogado.+Del Valle de pêssego - Poke de camarão refogado com shari (arroz de sushi), manga, tomate-cereja, cebola rocha e sunomono, com proteína de camarão de 70 g. A bebida Del Valle de pêssego aparece na imagem ao lado.
+6. Monte o seu! - Pastel personalizável que permite escolher os ingredientes para montar o recheio conforme o gosto do usuário. A imagem mostra um pastel retangular com tons alaranjados, sobre fundo preto, com o texto "MONTE SEU PASTEL" em branco. Enfatiza a liberdade de criar combinações de recheios e personalizar o pastel de acordo com a preferência.
+7. Filé à parmegiana (Meio ou inteiro) - Filé à parmegiana (meio ou inteiro): filé mignon à milanesa, coberto por queijo mussarela derretido e molho de tomate. Acompanha espaguete no próprio molho.
+8. Vinho Tinto D.O.C Dão Monte da Castinha 750ml - Vinho Tinto D.O.C Dão Monte da Castinha, garrafa de 750 ml. Rótulo Monte da Castinha sobre garrafa de vidro escuro com tampa vermelha. Produto para maiores de 18 anos.
+9. Monte seu Wrap - Monte seu Wrap: opção rápida, prática e saudável, com tortilla integral. O recheio, conforme a imagem, traz base de folhas com legumes frescos (alface, pepino, tomate e cebola roxa), proteína à escolha, 3 ingredientes, 1 queijo, 1 molho e 1 acompanhamento, tudo enrolado.
+10. Monte seu Acai - Monte seu Açaí: açaí puro em copo de 300g, 400g ou 500g com complementos à parte. O copo apresenta camadas de açaí roxo com pedaços de morango e kiwi visíveis, formando um mix de fruta no topo.
+
+    Categorize each item into one of three categories:
+    1. RELEVANT: The item is a good match for the query
+    2. SOMEWHAT RELEVANT: The item's description or name mentions at least 1 detail or keyword from the query (e.g., "korean spicy chicken" and "Cup Noodles instant noodles in a cup, chicken flavor" share "chicken", so it's somewhat relevant)
+    The keyword doesn't have to be an exact match. For example, "sandwich" and "burger" can be considered similar enough for this criteria.
+    3. IRRELEVANT: The item doesn't match the query whatsoever and has nothing in common.
+
+    Some queries are very specific, don't be too strict in your judgment.
+    For example, if the query is "Carne assada lentamente com acompanhamentos", results of meat dishes with sides should be considered relevant.
+
+    Answer ONLY with three numbers separated by spaces: relevant_count somewhat_relevant_count irrelevant_count
+    Example: "5 2 3" means 5 relevant, 2 somewhat relevant, and 3 irrelevant.
+    Do not include any explanation or other text.
+    

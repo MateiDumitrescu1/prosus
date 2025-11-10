@@ -1,0 +1,29 @@
+Query: "Desinfetante Uso Geral Lavanda Lysoform"
+
+    Items returned by the search system:
+    1. Desinfetante Perfumado Lavanda Pinho Sol Com 500ml - Embalagem 500ml
+2. Pedra Sanitária de Lavanda Harpic Oferta 25g - Embalagem 25g
+3. Arroz Branco Tipo 1 Camil 5kg - Arroz Branco Tipo 1 da marca Camil, em embalagem de 5 kg. Arroz branco de uso geral, tipo 1, adequado para diversas preparações culinárias. A embalagem azul com o logo Camil identifica o produto e o peso de 5 kg.
+4. Farinha de Trigo Farina 5kg - Farinha de trigo tradicional, marca Farina, embalagem de 5 kg. A embalagem branca com detalhes vermelhos destaca a textura branquinha, fininha e soltinha, ideal para todas as receitas. Indicada para uso culinário geral, incluindo panificação e confeitaria.
+5. Farinha de Trigo Rosa Branca 1kg - Farinha de Trigo Rosa Branca, embalagem de 1 kg, tipo 1, enriquecida com ferro e ácido fólico. Embalagem plástica branca com faixas curvas azuis e vermelhas e o logotipo Rosa Branca. Peso líquido indicado: 1 kg; uso culinário geral.
+6. Soro Fisiologico Ever Care 500ml - Embalagem 500ml
+7. Massa para Tapioca Terrinha 1kg - Massa para Tapioca Terrinha, embalagem de 1kg. Produto 100% natural, não contém glúten e não contém conservantes, conforme embalagem. Indicado para o preparo de tapioca.
+8. Massa para Tapioca Terrinha 1kg - Massa para Tapioca Terrinha, embalagem de 1 kg. Produto para o preparo de tapioca, da marca Terrinha. Embalagem branca com o logotipo colorido e ilustração de menina, com faixa laranja na base.
+9. Alisante Guanidina Regular Salon Line 218g - Embalagem 218g
+10. Tempero Sabor a Mi 300g Alho e Sal - Tempero de alho e sal Sabor a Mi, embalagem de 300 g.  
+Pote com tampa roxa e rótulo roxo, com o logotipo Sabor a Mi e imagem de alho no rótulo.  
+Rótulo exibe o texto "Tempero de alho e sal".
+
+    Categorize each item into one of three categories:
+    1. RELEVANT: The item is a good match for the query
+    2. SOMEWHAT RELEVANT: The item's description or name mentions at least 1 detail or keyword from the query (e.g., "korean spicy chicken" and "Cup Noodles instant noodles in a cup, chicken flavor" share "chicken", so it's somewhat relevant)
+    The keyword doesn't have to be an exact match. For example, "sandwich" and "burger" can be considered similar enough for this criteria.
+    3. IRRELEVANT: The item doesn't match the query whatsoever and has nothing in common.
+
+    Some queries are very specific, don't be too strict in your judgment.
+    For example, if the query is "Carne assada lentamente com acompanhamentos", results of meat dishes with sides should be considered relevant.
+
+    Answer ONLY with three numbers separated by spaces: relevant_count somewhat_relevant_count irrelevant_count
+    Example: "5 2 3" means 5 relevant, 2 somewhat relevant, and 3 irrelevant.
+    Do not include any explanation or other text.
+    

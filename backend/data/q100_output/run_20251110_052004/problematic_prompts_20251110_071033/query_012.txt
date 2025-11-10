@@ -1,0 +1,27 @@
+Query: "Prato de mezze mediterrâneo"
+
+    Items returned by the search system:
+    1. Queijo Prato Fatiado Soltíssimo Sadia 150g - Queijo Prato Fatiado Soltíssimo Sadia, bandeja de 150 g. Em embalagem predominantemente amarela com faixa vermelha, as fatias de queijo prato são visíveis pela embalagem.
+2. 2 Ovos - Porção de 2 ovos fritos, com claras firmes e gemas levemente moles, apresentando gemas de tom alaranjado. Prato simples e rápido de preparar, ideal para acompanhar o prato.
+3. Abruzzo - Pizza Abruzzo com massa assada, molho de tomate, mussarela e parmesão, coberta por nozes, azeitonas pretas e folhas de manjericão, com alho e orégano. Visualmente, apresenta borda dourada e queijo derretido, com azeitonas e manjericão distribuídos sobre o topo. Principais ingredientes: tomate, mussarela, parmesão, nozes, manjericão, alho, orégano e azeitonas.
+4. Berinjela á parmegiana - Berinjela à parmegiana: fatias de berinjela assadas, cobertas com molho de tomate e uma generosa camada de queijo parmesão derretido, gratinadas até dourar. Pequenas ervas aromáticas salpicadas por cima completam o prato, apresentando uma opção vegetariana com sabor intenso. A textura combina berinjela macia com a cobertura cremosa de queijo, resultando em um prato clássico da culinária vegetariana.
+5. A.s. President Queijo Prato Gran Reserva 150g - Queijo prato Gran Reserva Président, fatiado, 150 g, em embalagem selada. Fatias de queijo prato amarelo-claro com rótulo Gran Reserva na embalagem, adequado para sanduíches.
+6. 3 Queijos (Gratinado) - 3 Queijos (Gratinado) é um prato assado com três queijos derretidos, apresentando cobertura dourada e bordas levemente crocantes. A superfície é salpicada com orégano, conferindo aroma e visual característicos do gratinado. A apresentação é em formato retangular, servido em bandeja branca.
+7. Frango c/ Catupiry - Pizza com mussarela derretida, frango desfiado, queijo Catupiry cremoso e azeitonas verdes, combinando sabores suaves e textura cremosa. Ideal para quem busca uma opção rica em proteínas e com toque levemente salgado das azeitonas. A massa é tradicional, levemente crocante nas bordas.
+8. Tábua de Calabresa e Carne + 1 Acompanhamento - Tabua com carne em tiras (240 g) e calabresa fatiada (280 g) acompanhada de fritas (280 g). A apresentação traz tiras de carne e rodelas de calabresa ao lado de uma porção de batatas fritas douradas. Oferece opções de molho para acompanhar: barbecue, ranch ou maionese com ervas (70 g).
+9. Queijo Prato 100g - Queijo prato em bloco de 100 g, de tom amarelo-claro, com fatias finas ao lado. Descrição para busca: queijo prato, bloco de queijo, 100 g, fatias, compra por peso.
+10. X-Burguer - X-Burguer (Lanche X- Burguer) com pão, hambúrguer artesanal de 150 g, queijo prato e maionese da casa. Na imagem, o pão aparece dourado e macio, com o queijo prato derretido sobre o hambúrguer. Descrição para busca: X-Burguer, hambúrguer artesanal 150 g, queijo prato, maionese da casa, pão.
+
+    Categorize each item into one of three categories:
+    1. RELEVANT: The item is a good match for the query
+    2. SOMEWHAT RELEVANT: The item's description or name mentions at least 1 detail or keyword from the query (e.g., "korean spicy chicken" and "Cup Noodles instant noodles in a cup, chicken flavor" share "chicken", so it's somewhat relevant)
+    The keyword doesn't have to be an exact match. For example, "sandwich" and "burger" can be considered similar enough for this criteria.
+    3. IRRELEVANT: The item doesn't match the query whatsoever and has nothing in common.
+
+    Some queries are very specific, don't be too strict in your judgment.
+    For example, if the query is "Carne assada lentamente com acompanhamentos", results of meat dishes with sides should be considered relevant.
+
+    Answer ONLY with three numbers separated by spaces: relevant_count somewhat_relevant_count irrelevant_count
+    Example: "5 2 3" means 5 relevant, 2 somewhat relevant, and 3 irrelevant.
+    Do not include any explanation or other text.
+    
