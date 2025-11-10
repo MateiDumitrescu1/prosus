@@ -4,6 +4,7 @@
 ### Files
 Place the `embeddings.jsonl` file in the `tag_embeddings_voyage-3.5-lite_20251109_183615` folder.
 If was too big to be stored in github.
+The file can be found at: https://drive.google.com/file/d/1Wq95B0ON2mXfSw7TBiDOWesATyX3Jgyc/view?usp=sharing.
 
 ### Backend
 ```bash
