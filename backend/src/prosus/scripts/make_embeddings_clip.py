@@ -7,6 +7,7 @@ from datetime import datetime
 from sentence_transformers import SentenceTransformer
 from PIL import Image
 from tqdm import tqdm
+from prosus.constants import sentence_transformers_clip_model_name
 
 #! ---------------------- READ DATA ----------------------
 def read_item_images_from_csv(csv_path: str, images_base_dir: str) -> list[dict]:
@@ -61,7 +62,7 @@ def read_item_images_from_csv(csv_path: str, images_base_dir: str) -> list[dict]
 def embed_description_and_images_using_clip(
         original_csv_path: str,
         save_dir: str,
-        model_name: str = "clip-ViT-B-32",
+        model_name: str = sentence_transformers_clip_model_name,
         images_base_dir: str | None = None,
         cap_items: int | None = None
     ):
@@ -132,7 +133,8 @@ def embed_description_and_images_using_clip(
                 try:
                     # Load and encode the image
                     img = Image.open(img_path)
-                    img_embedding = model.encode(img, convert_to_tensor=False)
+                    # Normalize embeddings for proper cosine similarity
+                    img_embedding = model.encode(img, convert_to_tensor=False, normalize_embeddings=True)
 
                     # Save each image embedding as a separate row
                     embeddings_data.append({

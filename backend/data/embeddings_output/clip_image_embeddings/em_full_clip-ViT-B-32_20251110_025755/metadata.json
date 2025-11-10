@@ -1,16 +1,16 @@
 {
   "model_name": "clip-ViT-B-32",
   "num_items_processed": 5000,
-  "num_embedding_rows": 2969,
+  "num_embedding_rows": 4406,
   "embedding_dimension": 512,
-  "timestamp": "20251110_014813",
+  "timestamp": "20251110_025755",
   "source_csv": "../../../data/5k_items_curated.csv",
   "embedding_type": "images_only",
   "statistics": {
-    "items_with_images": 2304,
-    "items_without_images": 2696,
-    "total_images_embedded": 2969,
+    "items_with_images": 3517,
+    "items_without_images": 1483,
+    "total_images_embedded": 4406,
     "total_images_failed": 2,
-    "total_embedding_rows": 2969
+    "total_embedding_rows": 4406
   }
 }

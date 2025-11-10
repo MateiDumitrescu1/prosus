@@ -30,3 +30,5 @@ test_documents = [
     "Mount Everest is the tallest mountain on Earth at 29,032 feet.",
     "The periodic table organizes chemical elements by atomic structure."
 ]
+
+sentence_transformers_clip_model_name = "clip-ViT-B-32"

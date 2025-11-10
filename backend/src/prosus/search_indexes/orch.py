@@ -11,6 +11,7 @@ from prosus.api_wrappers.voyage_.voyage_api_wrapper import VoyageAIModelAPI, Voy
 from prosus.search_indexes.faiss_.faiss_ops import FaissIndex
 from prosus.search_indexes.bm25_.bm25_ import BM25Index
 from prosus.scripts.script_utils.combined_description_utils  import get_combined_descriptions_from_folder
+from prosus.constants import sentence_transformers_clip_model_name
 
 #! ---- config ----
 version_to_use = "v0"
@@ -20,7 +21,7 @@ combined_description_emb_file = Path(embeddings_output_dir) / "combined_descript
 # tags_and_hooks_emb_file = "../../../data/embeddings_output/tags_and_hooks_embeddings/tag_embeddings_voyage-3.5-lite_20251109_183615/embeddings.jsonl"
 tags_and_hooks_emb_file = Path(embeddings_output_dir) / "tags_and_hooks_embeddings" / "tag_embeddings_voyage-3.5-lite_20251109_183615" / "embeddings.jsonl"
 
-clip_emb_file = Path(clip_image_embeddings_dir) / "em_full_clip-ViT-B-32_20251110_014813" / "embeddings.jsonl"
+clip_emb_file = Path(clip_image_embeddings_dir) / "em_full_clip-ViT-B-32_20251110_025755" / "embeddings.jsonl"
 
 csv_ground_truth_path = "../../../data/5k_items_curated.csv"
 #! ---- config ----
@@ -156,6 +157,22 @@ def build_and_return__faiss_clip_image_index():
     # Convert embeddings to numpy array (float32 required by FAISS)
     embeddings_array = np.array(embeddings, dtype=np.float32)
 
+    # Normalize embeddings for proper cosine similarity (L2 normalization)
+    norms = np.linalg.norm(embeddings_array, axis=1, keepdims=True)
+    embeddings_array = embeddings_array / norms
+
+    # Sanity check: pick a random embedding and ensure its norm is ~1
+    if embeddings_array.shape[0] == 0:
+        raise ValueError("No embeddings found in CLIP embeddings file")
+
+    rand_idx = np.random.randint(0, embeddings_array.shape[0])
+    vec = embeddings_array[rand_idx]
+    norm = np.linalg.norm(vec)
+
+    # Very close to 1 (allow tiny numerical tolerance)
+    if not np.isclose(norm, 1.0, rtol=1e-6, atol=1e-6):
+        raise ValueError(f"CLIP embedding at index {rand_idx} has norm {norm:.8f}, expected ~1.0")
+    
     # Create and initialize the FAISS index
     faiss_index = FaissIndex()
     faiss_index.initialize(
@@ -215,6 +232,7 @@ def test_bm25_combined_description_index():
         print(f"   Name: {name}")
         print(f"   Description: {description}")
         print("-" * 100)
+        
     print("=" * 100)
 
 def test_faiss_tags_hooks_index():
@@ -345,18 +363,17 @@ def test_faiss_clip_image_index():
     print(f"Total items indexed: {len(item_ids)}")
 
     # Load the same CLIP model used for creating the image embeddings
-    print("\nLoading CLIP model (clip-ViT-B-32)...")
-    clip_model = SentenceTransformer('clip-ViT-B-32')
+    print("\nLoading CLIP model...")
+    clip_model = SentenceTransformer(sentence_transformers_clip_model_name)
 
-    test_query = "burger"
+    test_query = "burger with cheese and lettuce"
     print(f"\nTest query: '{test_query}'")
 
-    # Embed the text query using the CLIP model
-    # IMPORTANT: Using the same CLIP model as used for image embeddings
-    query_embedding = clip_model.encode(test_query)
+    # Embed the text query using the CLIP model and normalize the embedding vector
+    query_embedding = clip_model.encode(test_query, normalize_embeddings=True)
     query_vector = np.array(query_embedding, dtype=np.float32)
 
-    top_k = 10
+    top_k = 30
 
     # Query the index for top results
     distances, indices = faiss_index.search(query_vector, top_k=top_k)

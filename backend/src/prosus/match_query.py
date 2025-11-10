@@ -3,7 +3,8 @@ import json
 from prosus.search_indexes.orch import (
     build_and_return__bm25_combined_description_index,
     build_and_return__faiss_combined_description_index,
-    build_and_return__faiss_tags_hooks_index
+    build_and_return__faiss_tags_hooks_index,
+    build_and_return__faiss_clip_image_index,
 )
 from paths_ import matching_output_dir
 from functools import cache
@@ -213,6 +214,11 @@ async def match_query(query:str, rerank_strategy: RerankStrategy = RerankStrateg
         return await embed_query_and_search()
 
     async def search_in_faiss_clip_image_index(clip_query_embedding_array):
+        """
+        Search in the FAISS CLIP image index.
+        Returns list of dicts with item_id and the (similarity) score.
+        """
+        # use build_and_return__faiss_clip_image_index
         pass
     
     #* Step 1: Search all three indexes and get normalized scores
