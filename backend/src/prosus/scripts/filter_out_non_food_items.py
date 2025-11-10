@@ -17,7 +17,7 @@ import sys
 # Add parent directory to path to import the LLM wrapper
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from prosus.api_wrappers.llms.openai import get_openai_llm_response, OpenAIModel
+from prosus.api_wrappers.llms.openai_ import get_openai_llm_response, OpenAIModel
 
 
 async def is_food_related(item_name: str, item_description: str) -> bool:

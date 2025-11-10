@@ -1,3 +1,4 @@
+import torch
 from functools import cache
 import json
 import numpy as np
@@ -5,7 +6,7 @@ import asyncio
 import os
 import pandas as pd
 from pathlib import Path
-from paths_ import embeddings_output_dir, tags_and_hooks_embeddings_dir, combined_descriptions_dir
+from paths_ import embeddings_output_dir, tags_and_hooks_embeddings_dir, combined_descriptions_dir, clip_image_embeddings_dir
 from prosus.api_wrappers.voyage_.voyage_api_wrapper import VoyageAIModelAPI, VoyageAIModels, default_voyage_ai_embedding_model
 from prosus.search_indexes.faiss_.faiss_ops import FaissIndex
 from prosus.search_indexes.bm25_.bm25_ import BM25Index
@@ -18,6 +19,8 @@ combined_description_emb_file = Path(embeddings_output_dir) / "combined_descript
 
 # tags_and_hooks_emb_file = "../../../data/embeddings_output/tags_and_hooks_embeddings/tag_embeddings_voyage-3.5-lite_20251109_183615/embeddings.jsonl"
 tags_and_hooks_emb_file = Path(embeddings_output_dir) / "tags_and_hooks_embeddings" / "tag_embeddings_voyage-3.5-lite_20251109_183615" / "embeddings.jsonl"
+
+clip_emb_file = Path(clip_image_embeddings_dir) / "em_full_clip-ViT-B-32_20251110_014813" / "embeddings.jsonl"
 
 csv_ground_truth_path = "../../../data/5k_items_curated.csv"
 #! ---- config ----
@@ -129,6 +132,41 @@ def build_and_return__faiss_tags_hooks_index():
     print(f"Successfully built FAISS index with {len(words)} tag/hook embeddings")
 
     return faiss_index, words
+
+@cache
+def build_and_return__faiss_clip_image_index():
+    """
+    Build FAISS search index on CLIP image embeddings.
+
+    Returns:
+        tuple: (FaissIndex, item_ids) where:
+            - FaissIndex: Initialized FAISS index wrapper for similarity search
+            - item_ids: List of item IDs corresponding to each embedding index
+    """
+    # Read embeddings from the JSONL file
+    item_ids = []
+    embeddings = []
+
+    with open(clip_emb_file, 'r', encoding='utf-8') as f:
+        for line in f:
+            data = json.loads(line.strip())
+            item_ids.append(data['itemId'])
+            embeddings.append(data['embedding'])
+
+    # Convert embeddings to numpy array (float32 required by FAISS)
+    embeddings_array = np.array(embeddings, dtype=np.float32)
+
+    # Create and initialize the FAISS index
+    faiss_index = FaissIndex()
+    faiss_index.initialize(
+        embeddings=embeddings_array,
+        save_on_disk=False,
+        metric_type="ip"  # inner product for cosine similarity
+    )
+
+    print(f"Successfully built FAISS CLIP image index with {len(item_ids)} embeddings")
+
+    return faiss_index, item_ids
 
 #! ---------------- TESTING ----------------
 def test_bm25_combined_description_index():
@@ -279,11 +317,71 @@ def test_faiss_combined_description_index():
         print("-" * 100)
     print("=" * 100)
 
+def test_faiss_clip_image_index():
+    """
+    Test the FAISS CLIP image index by searching for similar items using a text query.
+    The query is embedded using the same CLIP model as the images.
+    """
+    from sentence_transformers import SentenceTransformer
+
+    # Read the ground truth CSV and create a mapping of item IDs -> (name, description)
+    print(f"Reading ground truth data from: {csv_ground_truth_path}")
+    df = pd.read_csv(csv_ground_truth_path)
+
+    item_metadata_map = {}
+    for _, row in df.iterrows():
+        item_id = row['itemId']
+        # Parse the itemMetadata JSON string
+        metadata = json.loads(row['itemMetadata'])
+        name = metadata.get('name', 'N/A')
+        description = metadata.get('description', 'N/A')
+        item_metadata_map[item_id] = (name, description)
+
+    print(f"Loaded metadata for {len(item_metadata_map)} items")
+
+    # Build the FAISS CLIP index and get the item IDs
+    faiss_index, item_ids = build_and_return__faiss_clip_image_index()
+    print(f"\nFAISS CLIP image index: {faiss_index}")
+    print(f"Total items indexed: {len(item_ids)}")
+
+    # Load the same CLIP model used for creating the image embeddings
+    print("\nLoading CLIP model (clip-ViT-B-32)...")
+    clip_model = SentenceTransformer('clip-ViT-B-32')
+
+    test_query = "burger"
+    print(f"\nTest query: '{test_query}'")
+
+    # Embed the text query using the CLIP model
+    # IMPORTANT: Using the same CLIP model as used for image embeddings
+    query_embedding = clip_model.encode(test_query)
+    query_vector = np.array(query_embedding, dtype=np.float32)
+
+    top_k = 10
+
+    # Query the index for top results
+    distances, indices = faiss_index.search(query_vector, top_k=top_k)
+
+    print(f"\nTop {top_k} most similar items to '{test_query}':")
+    print("=" * 100)
+    for rank, (idx, distance) in enumerate(zip(indices[0], distances[0]), 1):
+        item_id = item_ids[idx]
+        name, description = item_metadata_map.get(item_id, ("Unknown", "N/A"))
+
+        # Format and display the result with name and description
+        print(f"{rank}. [CLIP Score: {distance:.4f}]")
+        print(f"   Item ID: {item_id}")
+        print(f"   Name: {name}")
+        print(f"   Description: {description}")
+        print("-" * 100)
+    print("=" * 100)
+
 if __name__ == "__main__":
 
     # test_bm25_combined_description_index()
 
     # test_faiss_tags_hooks_index()
 
-    test_faiss_combined_description_index()
+    # test_faiss_combined_description_index()
+    
+    test_faiss_clip_image_index()
 

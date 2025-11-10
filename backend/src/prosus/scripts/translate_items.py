@@ -6,7 +6,7 @@ import json
 import asyncio
 import os
 from datetime import datetime
-from prosus.api_wrappers.llms.openai import translate_text
+from prosus.api_wrappers.llms.openai_ import translate_text
 from paths_ import fivek_items_csv_path, translations_dir
 
 

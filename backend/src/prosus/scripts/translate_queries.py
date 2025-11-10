@@ -9,7 +9,7 @@ import pandas as pd
 import asyncio
 import os
 from datetime import datetime
-from prosus.api_wrappers.llms.openai import translate_text
+from prosus.api_wrappers.llms.openai_ import translate_text
 from paths_ import queries_csv_path, translations_dir
 
 def read_queries_from_CSV(file_path) -> list[str]:

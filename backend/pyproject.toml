@@ -18,7 +18,10 @@ dependencies = [
     "numpy",
     "fastapi>=0.115.0", # Web framework for building APIs
     "uvicorn[standard]>=0.32.0", # ASGI server for running FastAPI
-    "pydantic>=2.0.0" # Data validation (comes with FastAPI but explicit is better)
+    "pydantic>=2.0.0", # Data validation (comes with FastAPI but explicit is better)
+    "sentence-transformers",
+    "pillow",
+    "tqdm",
 ]
 
 [tool.mypy]

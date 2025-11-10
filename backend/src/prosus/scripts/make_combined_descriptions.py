@@ -6,7 +6,7 @@ from typing import Dict, Optional
 import sys
 from paths_ import data_dir, fivek_items_csv_path, combined_descriptions_dir
 
-from prosus.api_wrappers.llms.openai import ( 
+from prosus.api_wrappers.llms.openai_ import ( 
     get_openai_llm_response, get_openai_vision_response, OpenAIModel
 )
 from prosus.utils.csv_json_jsonl import read_jsonl_to_list
@@ -95,7 +95,7 @@ async def make_combined_descriptions(
     good_ids: list[str],
     input_csv_path: Optional[str],
     output_jsonl_path: Optional[str],
-    batch_size: int = 20,
+    batch_size: int = 30,
     max_items: int | None = None,
     ids_to_skip: list[str] | None = None
 ) -> Dict[str, str]:
@@ -283,7 +283,7 @@ async def run_make_combined_descriptions():
     food_item_ids_only = read_good_ids()
     print(f"Loaded {len(food_item_ids_only)} good item IDs to process.")
     
-    existing_items = list(get_combined_descriptions_from_folder().keys())
+    existing_items = list(get_combined_descriptions_from_folder(version="v1").keys())
     print(f"Found {len(existing_items)} items with existing combined descriptions, skipping them.")
     
     await make_combined_descriptions(
@@ -291,12 +291,12 @@ async def run_make_combined_descriptions():
         input_csv_path=input_csv, 
         output_jsonl_path=str(output_jsonl), 
         max_items=None,
-        ids_to_skip=None,
+        ids_to_skip=existing_items,
     )
 
 #! --- TESTING ---
 def test_identify_all_ids_with_already_computed_descriptions():
-    ids = list(get_combined_descriptions_from_folder(version="v0").keys())
+    ids = list(get_combined_descriptions_from_folder(version="v1").keys())
     print(f"Found {len(ids)} item IDs with existing combined descriptions.")
 
 if __name__ == "__main__":

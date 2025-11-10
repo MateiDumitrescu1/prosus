@@ -114,6 +114,8 @@ async def match_query(query:str, rerank_strategy: RerankStrategy = RerankStrateg
     # Create the output folder if it doesn't exist
     results_folder.mkdir(parents=True, exist_ok=True)
     
+    #TODO embed the query using CLIP (Sentence Transformer) as well
+    
     async def search_in_bm25_combined_description_index(query:str):
         """
         Search in the BM25 combined description index.
@@ -210,6 +212,9 @@ async def match_query(query:str, rerank_strategy: RerankStrategy = RerankStrateg
 
         return await embed_query_and_search()
 
+    async def search_in_faiss_clip_image_index(clip_query_embedding_array):
+        pass
+    
     #* Step 1: Search all three indexes and get normalized scores
     print("Searching BM25 combined description index...")
     bm25_results = await search_in_bm25_combined_description_index(query)

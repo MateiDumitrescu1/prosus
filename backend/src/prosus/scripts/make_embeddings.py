@@ -46,7 +46,7 @@ def read_associated_keyword_hooks_from_jsonl(jsonl_path: str) -> list[str]:
             all_hooks.extend(hooks)
     return all_hooks
 
-#! ---------------------- embed ----------------------
+#! ---------------------- EMBED ----------------------
 def embed_combined_descriptions(
         version: str,
         save_dir: str,
@@ -226,7 +226,9 @@ def embed_tags_and_hooks(
 
     return save_folder_path
 
-#! --- RUN ---
+
+
+#! ---------------- RUN ----------------
 
 def run_embed_tags_and_hooks():
     """Run the tag and hook embedding function with default parameters"""
@@ -243,6 +245,7 @@ def run_embed_combined_descriptions():
         save_dir=Path(embeddings_output_dir) / "combined_description_embeddings",
         cap_items=None  # Set to an integer for testing with fewer items
     )
+
 
 #! --- TESTING ---
 
