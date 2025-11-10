@@ -6,6 +6,9 @@ Place the `embeddings.jsonl` file in the `tag_embeddings_voyage-3.5-lite_2025110
 If was too big to be stored in github.
 The file can be found at: https://drive.google.com/file/d/1Wq95B0ON2mXfSw7TBiDOWesATyX3Jgyc/view?usp=sharing.
 
+### .env
+Next to the .env.example file, create a .env file. Fill in the API keys shown in the .env.example file.
+
 ### Backend
 ```bash
 uv venv --python 3.11 

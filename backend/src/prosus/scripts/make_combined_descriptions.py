@@ -46,7 +46,8 @@ async def create_combined_description_for_item(
     1. Maintains accuracy to the original name/description/images
     2. Integrates visual details from the image(s) if available
     3. Does not add any new information that is not present in the name/description/images
-    4. Keywords are important for search matching, try to use them. Mention things like nutrients (mention high protein, low carb, etc. if applicable), mention adjectives (spicy, creamy, crunchy, etc.) if applicable.
+    4. Keywords are important for search matching, try to use them. Mention things like nutrients (mention high protein, low carb, etc. if applicable), 
+    mention adjectives (spicy, creamy, crunchy, etc.) if applicable.
     5. Is concise but informative (2-4 sentences)
     6. Is written in Portuguese (the same language as the input)
 
