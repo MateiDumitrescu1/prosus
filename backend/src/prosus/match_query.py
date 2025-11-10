@@ -1,4 +1,4 @@
-# this is the main pipeline 
+# this is the main pipeline
 import json
 from prosus.search_indexes.orch import (
     build_and_return__bm25_combined_description_index,
@@ -14,6 +14,8 @@ import asyncio
 from prosus.api_wrappers.voyage_.voyage_api_wrapper import VoyageAIModelAPI, VoyageAIModels
 from datetime import datetime
 from enum import StrEnum
+from sentence_transformers import SentenceTransformer
+from prosus.constants import sentence_transformers_clip_model_name
 
 class RerankStrategy(StrEnum):
     MULTIPLY = "multiply" # the final score is: aggregated_score * relevance_score
@@ -21,7 +23,20 @@ class RerankStrategy(StrEnum):
 
 #! config
 ground_truth_item_data = "../../data/5k_items_new_format@v1.jsonl" # we use this to get the tags and hooks for items
+clip_image_index_score_multiplier = 0.75
+bm25_tag_hooks_score_multiplier = 0.5
 #! config
+
+@cache
+def get_clip_model():
+    """
+    Load and cache the CLIP model for text encoding.
+    Returns the SentenceTransformer CLIP model instance.
+    """
+    print(f"Loading CLIP model: {sentence_transformers_clip_model_name}...")
+    model = SentenceTransformer(sentence_transformers_clip_model_name)
+    print(f"CLIP model loaded. Embedding dimension: {model.get_sentence_embedding_dimension()}")
+    return model
 
 @cache
 def build_tag_hooks_lookup_dict():
@@ -85,7 +100,7 @@ def build_item_descriptions_dict():
 
     return item_descriptions
 
-common_top_k = 30 # all 3 search methods will return top 30 items
+common_top_k = 30 # all 4 search methods will return top 30 items
 
 async def match_query(query:str, rerank_strategy: RerankStrategy = RerankStrategy.REPLACE):
     """
@@ -96,26 +111,34 @@ async def match_query(query:str, rerank_strategy: RerankStrategy = RerankStrateg
         rerank_strategy: Strategy for combining scores (MULTIPLY or REPLACE). Defaults to REPLACE.
 
     Pipeline:
-    1. search the indexes and get 0-1 normalized scores for top items from each index.
-    2. add up the scores for item ids and make a shortlist
-    3. use Voyage AI reranker to rerank the shortlisted items
-    4. apply the selected reranking strategy to compute final scores
-    5. modify the scores based on total_orders and reorder_rate (popularity boost).
-    6. return the final ranked list of items with scores.
+    1. Search four different indexes and get 0-1 normalized scores for top items from each:
+       - BM25 combined description index (text-based keyword matching)
+       - FAISS combined description index (semantic similarity on descriptions)
+       - FAISS tags/hooks index (semantic matching on tags and hooks)
+       - FAISS CLIP image index (visual-semantic matching on product images)
+    2. Apply score multipliers to specific search methods (clip_image_index_score_multiplier, bm25_tag_hooks_score_multiplier)
+    3. Aggregate scores across all search methods and create a shortlist
+    4. Use Voyage AI reranker to rerank the shortlisted items
+    5. Apply the selected reranking strategy to compute final scores
+    6. Modify the scores based on total_orders and reorder_rate (popularity boost - future enhancement)
+    7. Return the final ranked list of items with scores
     """
 
-    # Compute query embedding once at the top (used by FAISS indexes)
+    # Compute query embeddings once at the top (used by FAISS indexes)
     voyage_api = VoyageAIModelAPI()
     query_embedding = await voyage_api.aembed_queries([query])
     query_embedding_array = np.array(query_embedding[0], dtype=np.float32)
 
+    # Generate CLIP query embedding for image search
+    clip_model = get_clip_model()
+    clip_query_embedding = clip_model.encode(query, convert_to_tensor=False, normalize_embeddings=True)
+    clip_query_embedding_array = np.array([clip_query_embedding], dtype=np.float32)
+
     current_time = datetime.now().strftime("%Y%m%d_%H%M%S")
     results_folder = Path(matching_output_dir) / f"matching_results_{current_time}"
-    
+
     # Create the output folder if it doesn't exist
     results_folder.mkdir(parents=True, exist_ok=True)
-    
-    #TODO embed the query using CLIP (Sentence Transformer) as well
     
     async def search_in_bm25_combined_description_index(query:str):
         """
@@ -217,11 +240,38 @@ async def match_query(query:str, rerank_strategy: RerankStrategy = RerankStrateg
         """
         Search in the FAISS CLIP image index.
         Returns list of dicts with item_id and the (similarity) score.
+        The scores are clustered in a lower range (e.g., 0.25-0.35).
+        Normalize them to 0-1 range using min-max normalization.
         """
-        # use build_and_return__faiss_clip_image_index
-        pass
-    
-    #* Step 1: Search all three indexes and get normalized scores
+        faiss_index, item_ids = build_and_return__faiss_clip_image_index()
+
+        # Search the FAISS CLIP index using precomputed CLIP query embedding
+        distances, indices = faiss_index.search(clip_query_embedding_array, top_k=common_top_k)
+
+        # Extract scores and normalize to 0-1 range
+        scores_array = distances[0]  # Cosine similarity scores
+        indices_array = indices[0]
+
+        if len(scores_array) > 0:
+            max_score = np.max(scores_array)
+            min_score = np.min(scores_array)
+            # Avoid division by zero
+            if max_score > min_score:
+                normalized_scores = (scores_array - min_score) / (max_score - min_score)
+            else:
+                normalized_scores = np.ones_like(scores_array)
+        else:
+            normalized_scores = scores_array
+
+        # Format results
+        results = []
+        for idx, score in zip(indices_array, normalized_scores):
+            item_id = item_ids[idx]
+            results.append({"item_id": item_id, "score": float(score)})
+
+        return results
+
+    #* Step 1: Search all four indexes and get normalized scores
     print("Searching BM25 combined description index...")
     bm25_results = await search_in_bm25_combined_description_index(query)
     print(f"\033[91mFinished BM25 search for query: '{query}'\033[0m")
@@ -255,23 +305,41 @@ async def match_query(query:str, rerank_strategy: RerankStrategy = RerankStrateg
             f.write(json.dumps(result) + '\n')
     print(f"Saved FAISS tags/hooks intermediate results to {faiss_tags_file}")
 
-    #* Step 2: Aggregate scores by item_id
+    print("Searching FAISS CLIP image index...")
+    clip_image_results = await search_in_faiss_clip_image_index(clip_query_embedding_array)
+    print(f"\033[91mFinished FAISS CLIP image search for query: '{query}'\033[0m")
+
+    #~ Save FAISS CLIP image intermediate results
+    clip_image_file = results_folder / "clip_image_results.jsonl"
+    with open(clip_image_file, 'w', encoding='utf-8') as f:
+        for result in clip_image_results:
+            f.write(json.dumps(result) + '\n')
+    print(f"Saved FAISS CLIP image intermediate results to {clip_image_file}")
+
+    #* Step 2: Apply score multipliers and aggregate scores by item_id
     aggregated_scores = {}
 
-    # Add BM25 scores
+    # Add BM25 scores (no multiplier for BM25 description)
     for result in bm25_results:
         item_id = result["item_id"]
         aggregated_scores[item_id] = aggregated_scores.get(item_id, 0) + result["score"]
 
-    # Add FAISS description scores
+    # Add FAISS description scores (no multiplier)
     for result in faiss_desc_results:
         item_id = result["item_id"]
         aggregated_scores[item_id] = aggregated_scores.get(item_id, 0) + result["score"]
 
-    # Add FAISS tags/hooks scores
+    # Add FAISS tags/hooks scores with multiplier
     for result in faiss_tags_results:
         item_id = result["item_id"]
-        aggregated_scores[item_id] = aggregated_scores.get(item_id, 0) + result["score"]
+        weighted_score = result["score"] * bm25_tag_hooks_score_multiplier
+        aggregated_scores[item_id] = aggregated_scores.get(item_id, 0) + weighted_score
+
+    # Add CLIP image scores with multiplier
+    for result in clip_image_results:
+        item_id = result["item_id"]
+        weighted_score = result["score"] * clip_image_index_score_multiplier
+        aggregated_scores[item_id] = aggregated_scores.get(item_id, 0) + weighted_score
 
     #* Create shortlist of top items (sort by aggregated score)
     shortlist = sorted(aggregated_scores.items(), key=lambda x: x[1], reverse=True)
@@ -342,7 +410,6 @@ async def match_query(query:str, rerank_strategy: RerankStrategy = RerankStrateg
 
     print(f"Returning {len(final_scores)} results")
     return final_scores
-
 
 #! -------- TESTING --------
 

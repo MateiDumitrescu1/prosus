@@ -22,7 +22,8 @@ from prosus.match_query import match_query, RerankStrategy
 from prosus.search_indexes.orch import (
     build_and_return__bm25_combined_description_index,
     build_and_return__faiss_combined_description_index,
-    build_and_return__faiss_tags_hooks_index
+    build_and_return__faiss_tags_hooks_index,
+    build_and_return__faiss_clip_image_index
 )
 
 # Initialize FastAPI app
@@ -109,23 +110,28 @@ async def startup_event():
 
     try:
         # Load items data from CSV
-        print("\n[0/3] Loading items data from CSV...")
+        print("\n[0/4] Loading items data from CSV...")
         load_items_data()
 
         # Build BM25 index on combined descriptions
-        print("\n[1/3] Building BM25 combined description index...")
+        print("\n[1/4] Building BM25 combined description index...")
         bm25_index, bm25_items = build_and_return__bm25_combined_description_index()
         print(f"✓ BM25 index ready with {len(bm25_items)} items")
 
         # Build FAISS index on combined description embeddings
-        print("\n[2/3] Building FAISS combined description index...")
+        print("\n[2/4] Building FAISS combined description index...")
         faiss_desc_index, faiss_desc_items = build_and_return__faiss_combined_description_index()
         print(f"✓ FAISS description index ready with {len(faiss_desc_items)} items")
 
         # Build FAISS index on tags and hooks embeddings
-        print("\n[3/3] Building FAISS tags/hooks index...")
+        print("\n[3/4] Building FAISS tags/hooks index...")
         faiss_tags_index, faiss_tags_words = build_and_return__faiss_tags_hooks_index()
         print(f"✓ FAISS tags/hooks index ready with {len(faiss_tags_words)} tags/hooks")
+
+        # Build FAISS CLIP image index
+        print("\n[4/4] Building FAISS CLIP image index...")
+        faiss_clip_index, clip_item_ids = build_and_return__faiss_clip_image_index()
+        print(f"✓ FAISS CLIP image index ready with {len(clip_item_ids)} image embeddings")
 
         print("\n" + "="*80)
         print("ALL INDEXES INITIALIZED SUCCESSFULLY!")
